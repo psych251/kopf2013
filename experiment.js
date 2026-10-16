@@ -45,7 +45,7 @@ const EXPERIMENT = {
   prolific_completion_code: "",
 
   // Contact shown in consent and debrief.
-  contact_email: "bsevchik@stanford.edu",
+  contact_email: "stanfordpsych251@gmail.com",
 
   // Does this study need a physical keyboard? This one does (the n-back task uses the space bar).
   // On a phone or tablet no keyboard appears, so a participant cannot answer those trials;
