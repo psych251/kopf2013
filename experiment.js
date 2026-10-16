@@ -505,9 +505,10 @@ const NBACK = {
     type: jsPsychHtmlButtonResponse,
     stimulus: `
       <h2>Debrief</h2>
-      <p>Thank you. In this study we tested whether describing the same outcomes as lives saved or
-      as lives lost changes which program people choose. Different participants saw different
-      wordings. If you have questions about this research, contact
+      <p>Thank you. In this study we tested whether the emotional valence of words in a working memory task
+      affect performance on the working memory task. Every participant saw the same words, but in randomized order.
+      Each block contained either words with a positive, negative, or neutral valence.
+      If you have questions about this research, contact
       <a href="mailto:${EXPERIMENT.contact_email}">${EXPERIMENT.contact_email}</a>.
       Press the button to save your responses and finish.</p>`,
     choices: ["Finish"],
