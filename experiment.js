@@ -30,7 +30,7 @@ const EXPERIMENT = {
   // Trials per Firestore write. 1 = save every trial the moment it finishes (dropouts leave
   // partial data). The free tier allows 20,000 writes/day: with 200 participants x 100 trials
   // you would exceed it, so raise this for long trial-based tasks (e.g. 20).
-  chunk_size: 1,
+  chunk_size: 20,
 
   // Also store the complete jsPsych dataset on the participant document at the end.
   // Costs one extra write and makes export robust; turn off if trials are very large.
@@ -41,7 +41,7 @@ const EXPERIMENT = {
   prolific_completion_code: "",
 
   // Contact shown in consent and debrief.
-  contact_email: "stanfordpsych251@gmail.com",
+  contact_email: "bsevchik@stanford.edu",
 
   // Does this study need a physical keyboard? The demo does (the word task uses F and J).
   // On a phone or tablet no keyboard appears, so a participant cannot answer those trials;
@@ -185,8 +185,8 @@ if (USE_EMULATOR && URL_PARAMS.get("cc")) EXPERIMENT.prolific_completion_code = 
     type: jsPsychInstructions,
     pages: [
       `<h2>Welcome</h2>
-       <p>This short study has three parts: a few questions about you, one decision problem,
-       and a quick word task. It takes about three minutes.</p>`,
+       <p>This short study has three parts: a few questions about your emotions, one decision practice task,
+       and a longer memory task. It takes about thirty minutes.</p>`,
       `<p>Please complete the study in one sitting, in a quiet place, on a laptop or desktop
        computer. Use the buttons or the arrow keys to move between pages.</p>`,
     ],
