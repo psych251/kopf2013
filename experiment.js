@@ -18,7 +18,7 @@
  *
  * Timeline
  *   1. consent  2. welcome  3. PANAS  4. n-back instructions + instruction check
- *   5. practice (1-, 2-, 3-back)  6. main task (27 blocks)  7. debrief
+ *   5. practice (1-, 2-, 3-back)  6. main task (27 blocks)  7. feedback  8. debrief
  */
 
 // ---------------------------------------------------------------------------
@@ -499,7 +499,20 @@ const NBACK = {
   saver.updateParticipant({ block_order: mainBlocks.map((b) => `${b.n_back}-${b.valence}`) });
 
   // -------------------------------------------------------------------------
-  // 7. Debrief
+  // 7. Feedback on the participant experience (optional free text)
+  // -------------------------------------------------------------------------
+  const feedback = {
+    type: jsPsychSurveyText,
+    preamble: `<p>Thank you for participating in this study. If you would like to help improve this
+      study for future participants, please add any feedback, concerns, or issues you experienced
+      while completing this study in the free text box below.</p>`,
+    questions: [{ prompt: "", name: "feedback", rows: 6, columns: 60, required: false }],
+    button_label: "Continue",
+    data: { task: "feedback" },
+  };
+
+  // -------------------------------------------------------------------------
+  // 8. Debrief
   // -------------------------------------------------------------------------
   const debrief = {
     type: jsPsychHtmlButtonResponse,
@@ -523,6 +536,7 @@ const NBACK = {
     ...practiceBlocks.flatMap(blockTimeline),
     practiceEnd,
     ...mainBlocks.flatMap(blockTimeline),
+    feedback,
     debrief,
   ]);
 })();

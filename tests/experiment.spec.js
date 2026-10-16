@@ -70,12 +70,15 @@ async function runToDebrief(page) {
   await page.getByRole("button", { name: "Start the practice" }).click();
   // 5. practice (3 blocks) and 6. main task (27 blocks) run on timers
   await page.getByRole("button", { name: "Start the main task" }).click({ timeout: 60000 });
-  await page.getByRole("button", { name: "Finish" }).waitFor({ state: "visible", timeout: 120000 });
+  // 7. feedback (free text)
+  await page.locator("textarea").fill("Robot participant says hi.", { timeout: 120000 });
+  await page.locator("#jspsych-survey-text-next").click();
+  await page.getByRole("button", { name: "Finish" }).waitFor({ state: "visible", timeout: 30000 });
 }
 
 async function runThroughExperiment(page) {
   await runToDebrief(page);
-  // 7. debrief
+  // 8. debrief
   await page.getByRole("button", { name: "Finish" }).click();
   await expect(page.getByText("All done")).toBeVisible({ timeout: 30000 });
 }
@@ -161,6 +164,9 @@ test.describe("experiment", () => {
     expect(panas.response.panas.interested).toBe(4);
     expect(panas.panas_n_answered).toBe(1);
     expect(panas.panas_pa).toBe(null);
+
+    const fb = trials.find((t) => t.task === "feedback");
+    expect(fb.response.feedback).toBe("Robot participant says hi.");
 
     // Instruction check: wrong, then right.
     const checks = trials.filter((t) => t.task === "instruction_check");
