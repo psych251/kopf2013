@@ -17,35 +17,64 @@ const PROJECT = "demo-psych251";
 const EXPERIMENT_ID = "framing-demo";
 const FS = `http://localhost:8080/v1/projects/${PROJECT}/databases/(default)/documents`;
 
-async function runThroughExperiment(page) {
+// The n-back task runs on fixed timers. Under `?fast=1` (honoured on localhost only) each word
+// lasts 40 ms, too fast for Playwright round-trips, so the responder runs inside the page: it
+// presses the space bar on every target except the first (one miss) and on the first non-target
+// (one false alarm). Totals: 72 targets (3 practice x 6 + 27 main x 2), 630 words.
+const N_WORDS = 3 * 30 + 27 * 20;
+const N_TARGETS = 3 * 6 + 27 * 2;
+async function installNbackResponder(page) {
+  await page.evaluate(() => {
+    let targetsSeen = 0;
+    let falseAlarmDone = false;
+    const press = () => {
+      for (const type of ["keydown", "keyup"]) {
+        document.body.dispatchEvent(new KeyboardEvent(type, { key: " ", code: "Space", bubbles: true }));
+      }
+    };
+    new MutationObserver(() => {
+      const el = document.querySelector(".nback-word:not([data-seen])");
+      if (!el) return;
+      el.setAttribute("data-seen", "1");
+      if (el.dataset.target === "1") {
+        targetsSeen += 1;
+        if (targetsSeen === 1) return;      // miss the first target
+      } else {
+        if (falseAlarmDone) return;
+        falseAlarmDone = true;              // respond to the first non-target
+      }
+      setTimeout(press, 1);
+    }).observe(document.body, { childList: true, subtree: true });
+  });
+}
+
+// Plays everything up to (not including) the debrief's Finish button.
+async function runToDebrief(page) {
   // 1. consent
   await page.getByRole("button", { name: "I agree to participate" }).click();
-  // 2. instructions (two pages)
+  // 2. welcome (two pages)
   await page.locator("#jspsych-instructions-next").click();
   await page.locator("#jspsych-instructions-next").click();
-  // 3. demographics (SurveyJS)
-  await page.locator('input[type="number"]').fill("34");
-  await page.getByText("Woman", { exact: true }).click();
-  // SurveyJS boolean switches render "Yes" twice once toggled; scope to the question.
-  await page.locator('[data-name="native_english"]').getByText("Yes", { exact: true }).first().click();
+  // 3. PANAS: answer one item ("Interested" = 4), leave the rest blank
+  await page.locator('[data-name="panas"] tr').filter({ hasText: "Interested" }).locator("label").nth(3).click();
   await page.locator('input[value="Continue"]').click();
-  // 4. framing
-  await page.getByRole("button", { name: "Program A" }).click();
-  // 5. lexical decision: one instructions page, then 8 trials
-  await page.locator("#jspsych-instructions-next").click();
-  for (let i = 0; i < 8; i++) {
-    const stim = page.locator(".stimulus");
-    await stim.waitFor({ state: "visible" });
-    const word = (await stim.textContent()).trim();
-    const realWords = ["TABLE", "GARDEN", "PLANET", "SILVER"];
-    await page.keyboard.press(realWords.includes(word) ? "f" : "j");
-    await stim.waitFor({ state: "detached" });
-  }
-  // 6. feedback
-  await page.locator('input[name="Q0"][value="4"]').check();
-  await page.locator("#jspsych-survey-likert-next").click();
-  await page.locator("textarea").fill("Robot participant says hi.");
-  await page.locator("#jspsych-survey-text-next").click();
+  // 4. n-back instructions (three pages) + check: wrong first, which repeats the instructions
+  for (let i = 0; i < 3; i++) await page.locator("#jspsych-instructions-next").click();
+  await page.getByText("After every second word", { exact: true }).click();
+  await page.locator('input[value="Continue"]').click();
+  await page.getByRole("button", { name: "Show the instructions again" }).click();
+  for (let i = 0; i < 3; i++) await page.locator("#jspsych-instructions-next").click();
+  await page.getByText("When the word is the same as the word two words before it", { exact: true }).click();
+  await page.locator('input[value="Continue"]').click();
+  await installNbackResponder(page);
+  await page.getByRole("button", { name: "Start the practice" }).click();
+  // 5. practice (3 blocks) and 6. main task (27 blocks) run on timers
+  await page.getByRole("button", { name: "Start the main task" }).click({ timeout: 60000 });
+  await page.getByRole("button", { name: "Finish" }).waitFor({ state: "visible", timeout: 120000 });
+}
+
+async function runThroughExperiment(page) {
+  await runToDebrief(page);
   // 7. debrief
   await page.getByRole("button", { name: "Finish" }).click();
   await expect(page.getByText("All done")).toBeVisible({ timeout: 30000 });
@@ -78,10 +107,11 @@ function decodeFields(fields) {
 
 test.describe("experiment", () => {
   test("runs to the end and saves data", async ({ page }) => {
+    test.setTimeout(180000);
     const consoleErrors = [];
     page.on("pageerror", (e) => consoleErrors.push(String(e)));
 
-    await page.goto(EMULATOR ? "/?emulator=1&PROLIFIC_PID=robot123&STUDY_ID=s1&SESSION_ID=sess1" : "/");
+    await page.goto(EMULATOR ? "/?emulator=1&fast=1&PROLIFIC_PID=robot123&STUDY_ID=s1&SESSION_ID=sess1" : "/?fast=1");
     await page.waitForFunction(() => window.__saver && window.__saver.uid);
     const mode = await page.evaluate(() => window.__saver.mode);
     expect(mode).toBe(EMULATOR ? "emulator" : "offline");
@@ -104,32 +134,65 @@ test.describe("experiment", () => {
     expect(stats.writes_failed).toBe(0);
     await expect(page.locator("#data-saver-fallback")).toHaveCount(0);
 
-    // Participant document is complete and carries condition + Prolific ids.
+    // Participant document is complete and carries the design, block order and Prolific ids.
     const p = await fsGet(`experiments/${EXPERIMENT_ID}/participants/${uid}`);
     expect(p.status).toBe(200);
     const pdoc = decodeFields(p.body.fields);
     expect(pdoc.completed).toBe(true);
-    expect(["gain", "loss"]).toContain(pdoc.condition);
+    expect(pdoc.design).toBe("within-subjects");
+    expect(pdoc.block_order.length).toBe(27);
     expect(pdoc.prolific_pid).toBe("robot123");
-    expect(pdoc.n_trials).toBeGreaterThan(10);
+    expect(pdoc.n_trials).toBeGreaterThan(N_WORDS);
     expect(typeof pdoc.full_data).toBe("string");
     const full = JSON.parse(pdoc.full_data);
     expect(full.length).toBe(pdoc.n_trials);
 
-    // One chunk per trial (chunk_size = 1), each carrying the trial data.
+    // Trials arrive in chunks of the configured size, and together carry every trial.
+    const chunkSize = await page.evaluate(() => window.__saver.opts.chunk_size);
     const chunks = await fsGet(`experiments/${EXPERIMENT_ID}/participants/${uid}/trials?pageSize=500`);
     expect(chunks.status).toBe(200);
     const docs = (chunks.body.documents || []).map((d) => decodeFields(d.fields));
-    expect(docs.length).toBe(pdoc.n_trials);
-    const trials = docs.flatMap((d) => d.trials);
-    const framing = trials.find((t) => t.task === "framing");
-    expect(framing.choice).toBe("certain");
-    expect(framing.condition).toBe(pdoc.condition);
-    const ld = trials.filter((t) => t.task === "lexical_decision");
-    expect(ld.length).toBe(8);
-    expect(ld.every((t) => t.correct === true)).toBe(true);
-    const demo = trials.find((t) => t.task === "demographics");
-    expect(demo.response.age).toBe(34);
+    expect(docs.length).toBe(Math.ceil(pdoc.n_trials / chunkSize));
+    const trials = docs.flatMap((d) => d.trials).sort((a, b) => a.trial_index - b.trial_index);
+    expect(trials.length).toBe(pdoc.n_trials);
+
+    // PANAS: one answered item, so neither subscale sum is defined.
+    const panas = trials.find((t) => t.task === "panas");
+    expect(panas.response.panas.interested).toBe(4);
+    expect(panas.panas_n_answered).toBe(1);
+    expect(panas.panas_pa).toBe(null);
+
+    // Instruction check: wrong, then right.
+    const checks = trials.filter((t) => t.task === "instruction_check");
+    expect(checks.map((t) => t.correct)).toEqual([false, true]);
+
+    // n-back: block structure.
+    const nb = trials.filter((t) => t.task === "nback");
+    expect(nb.length).toBe(N_WORDS);
+    expect(nb.filter((t) => t.is_target).length).toBe(N_TARGETS);
+    const practice = nb.filter((t) => t.phase === "practice");
+    expect(practice.length).toBe(90);
+    expect(practice.every((t) => t.valence === "neutral")).toBe(true);
+    expect([...new Set(practice.map((t) => t.n_back))]).toEqual([1, 2, 3]);
+    const pauses = trials.filter((t) => t.task === "nback_pause" && t.phase === "main");
+    expect(pauses.length).toBe(27);
+    for (let i = 1; i < pauses.length; i++) expect(pauses[i].n_back).not.toBe(pauses[i - 1].n_back);
+    const cellCounts = {};
+    for (const b of pauses) cellCounts[`${b.n_back}-${b.valence}`] = (cellCounts[`${b.n_back}-${b.valence}`] || 0) + 1;
+    expect(Object.values(cellCounts)).toEqual(Array(9).fill(3));
+    // Every target repeats the word n positions earlier in its block; no other word does.
+    const byBlock = {};
+    for (const t of nb) (byBlock[`${t.phase}-${t.block}`] ||= []).push(t);
+    for (const words of Object.values(byBlock)) {
+      words.forEach((t, i) => expect(i >= t.n_back && t.word === words[i - t.n_back].word).toBe(t.is_target));
+    }
+
+    // n-back: responses scored as the robot played them (one miss, one false alarm).
+    const outcomes = {};
+    for (const t of nb) outcomes[t.outcome] = (outcomes[t.outcome] || 0) + 1;
+    expect(outcomes).toEqual({ hit: N_TARGETS - 1, miss: 1, false_alarm: 1, correct_rejection: N_WORDS - N_TARGETS - 1 });
+    expect(nb.every((t) => t.correct === (t.responded === t.is_target))).toBe(true);
+    expect(nb.filter((t) => t.responded).every((t) => typeof t.rt === "number")).toBe(true);
 
     // Every trial row must carry the same participant id as its participant document,
     // otherwise trials.csv and participants.csv cannot be joined in the analysis.
@@ -138,7 +201,8 @@ test.describe("experiment", () => {
 
   test("chunked writes (chunk_size > 1) save every trial", async ({ page }) => {
     test.skip(!EMULATOR, "needs the Firestore emulator");
-    await page.goto("/?emulator=1&chunk_size=5");
+    test.setTimeout(180000);
+    await page.goto("/?emulator=1&fast=1&chunk_size=5");
     await page.waitForFunction(() => window.__saver && window.__saver.uid);
     await runThroughExperiment(page);
     const uid = await page.evaluate(() => window.__saver.docId);
@@ -160,24 +224,11 @@ test.describe("experiment", () => {
 
   test("losing the connection at the end offers the download fallback instead of hanging", async ({ page, context }) => {
     test.skip(!EMULATOR, "needs the Firestore emulator");
-    test.setTimeout(120000);
+    test.setTimeout(180000);
     // Run the real flow up to the last click, then cut the connection before "Finish".
-    await page.goto("/?emulator=1");
+    await page.goto("/?emulator=1&fast=1");
     await page.waitForFunction(() => window.__saver && window.__saver.uid);
-    await page.getByRole("button", { name: "I agree to participate" }).click();
-    await page.locator("#jspsych-instructions-next").click();
-    await page.locator("#jspsych-instructions-next").click();
-    await page.locator('input[value="Continue"]').click();
-    await page.getByRole("button", { name: "Program B" }).click();
-    await page.locator("#jspsych-instructions-next").click();
-    for (let i = 0; i < 8; i++) {
-      const stim = page.locator(".stimulus");
-      await stim.waitFor({ state: "visible" });
-      await page.keyboard.press("f");
-      await stim.waitFor({ state: "detached" });
-    }
-    await page.locator("#jspsych-survey-likert-next").click();
-    await page.locator("#jspsych-survey-text-next").click();
+    await runToDebrief(page);
     await context.setOffline(true);
     await page.getByRole("button", { name: "Finish" }).click();
     await expect(page.locator("#data-saver-fallback")).toBeVisible({ timeout: 40000 });
@@ -188,13 +239,13 @@ test.describe("experiment", () => {
 
   test("a second run in the same browser is a new participant and saves cleanly", async ({ page }) => {
     test.skip(!EMULATOR, "needs the Firestore emulator");
-    test.setTimeout(120000);
+    test.setTimeout(300000);
 
     const ids = [];
     for (let run = 0; run < 2; run++) {
       // Same page/context both times: the anonymous auth session persists, exactly as it
       // does for a student testing twice in one browser or a participant who reloads.
-      await page.goto("/?emulator=1&PROLIFIC_PID=rerun" + run);
+      await page.goto("/?emulator=1&fast=1&PROLIFIC_PID=rerun" + run);
       await page.waitForFunction(() => window.__saver && window.__saver.docId);
       await runThroughExperiment(page);
       const info = await page.evaluate(() => ({
@@ -216,7 +267,8 @@ test.describe("experiment", () => {
       expect(pdoc.completed, "run " + run + " completed").toBe(true);
       expect(pdoc.prolific_pid).toBe("rerun" + run);
       const chunks = await fsGet(`experiments/${EXPERIMENT_ID}/participants/${ids[run].docId}/trials?pageSize=500`);
-      expect((chunks.body.documents || []).length).toBe(pdoc.n_trials);
+      const chunkSize = await page.evaluate(() => window.__saver.opts.chunk_size);
+      expect((chunks.body.documents || []).length).toBe(Math.ceil(pdoc.n_trials / chunkSize));
     }
   });
 
@@ -224,10 +276,11 @@ test.describe("experiment", () => {
     // Regression test for the failure students hit right before launch: with a completion
     // code set, the live page redirects to Prolific, but a test run must stay put so that
     // `npm test` and CI keep passing.
+    test.setTimeout(180000);
     const navigations = [];
     page.on("framenavigated", (f) => { if (f === page.mainFrame()) navigations.push(f.url()); });
 
-    await page.goto(EMULATOR ? "/?emulator=1&cc=QA123CODE" : "/?cc=QA123CODE");
+    await page.goto(EMULATOR ? "/?emulator=1&fast=1&cc=QA123CODE" : "/?fast=1&cc=QA123CODE");
     await page.waitForFunction(() => window.__saver && window.__saver.docId);
     await runThroughExperiment(page);
 

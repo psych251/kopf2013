@@ -9,3 +9,8 @@
 .framing .programs { margin: 1em 0; padding-left: 1.2em; }
 #jspsych-html-button-response-btngroup { text-align: center; }
 .thanks { text-align: center; }
+.nback-pause { text-align: center; font-size: 18px; }
+.nback-pause h2 { font-size: 40px; margin: 0.4em 0; }
+/* PANAS: SurveyJS gives matrix cells a 120px minimum, which makes 5 columns overflow 720px. */
+[data-name="panas"] .sd-table__cell { min-width: 80px !important; }
+[data-name="panas"] .sd-table__cell--row-text { min-width: 110px !important; }
