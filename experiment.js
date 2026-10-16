@@ -5,7 +5,7 @@
  *   IVs (both within-subjects): n-back load (1, 2, 3) x word valence (positive, negative, neutral).
  *   DVs: one row per word with task "nback": `responded`, `rt` (ms from word onset), `is_target`,
  *        `correct`, `outcome` (hit / miss / false_alarm / correct_rejection). Errors = misses +
- *        false alarms. PANAS item responses and `panas_pa` / `panas_na` sums on the "panas" row.
+ *        false alarms.
  *   Trials: practice = 3 neutral blocks (1-, 2-, 3-back), 30 words each, 6 targets each.
  *        Main = 27 blocks (3 per load x valence cell), 20 words each, 2 cue -> target pairs each.
  *        Each word 500 ms + 500 ms blank (1000 ms; a block lasts 20 s). Space bar accepted
@@ -17,8 +17,8 @@
  *   Checks: instruction check (multiple choice) repeats the instructions until answered correctly.
  *
  * Timeline
- *   1. consent  2. welcome  3. PANAS  4. n-back instructions + instruction check
- *   5. practice (1-, 2-, 3-back)  6. main task (27 blocks)  7. feedback  8. debrief
+ *   1. consent  2. welcome  3. n-back instructions + instruction check
+ *   4. practice (1-, 2-, 3-back)  5. main task (27 blocks)  6. feedback  7. debrief
  */
 
 // ---------------------------------------------------------------------------
@@ -220,7 +220,7 @@ const NBACK = {
     type: jsPsychInstructions,
     pages: [
       `<h2>Welcome</h2>
-       <p>This short study has three parts: a few questions about your emotions, one practice task,
+       <p>This short study has two parts: one practice task
        and a longer memory task. It takes about thirty minutes.</p>`,
       `<p>Please complete the study in one sitting, in a quiet place, on a laptop or desktop
        computer. Use the buttons or the arrow keys to move between pages.</p>`,
@@ -230,58 +230,7 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 3. PANAS (Watson, Clark & Tellegen, 1988; 20 items, wording from materials/PANAS_survey.pdf)
-  // -------------------------------------------------------------------------
-  const PANAS_ITEMS = [
-    "Interested", "Distressed", "Excited", "Upset", "Strong", "Guilty", "Scared", "Hostile",
-    "Enthusiastic", "Proud", "Irritable", "Alert", "Ashamed", "Inspired", "Nervous",
-    "Determined", "Attentive", "Jittery", "Active", "Afraid",
-  ];
-  // Item numbers (1-based) of each subscale, from the scoring sheet.
-  const PANAS_PA = [1, 3, 5, 9, 10, 12, 14, 16, 17, 19];
-  const PANAS_NA = [2, 4, 6, 7, 8, 11, 13, 15, 18, 20];
-  const panasKey = (item) => item.toLowerCase();
-  const panas = {
-    type: jsPsychSurvey,
-    survey_json: {
-      showQuestionNumbers: "off",
-      completeText: "Continue",
-      pages: [
-        {
-          elements: [
-            {
-              // The consent text promises participants may decline any question, so nothing is required.
-              type: "matrix", name: "panas", alternateRows: true,
-              title: "Indicate the extent you have felt this way over the past week.",
-              columns: [
-                { value: 1, text: "1 Very slightly or not at all" },
-                { value: 2, text: "2 A little" },
-                { value: 3, text: "3 Moderately" },
-                { value: 4, text: "4 Quite a bit" },
-                { value: 5, text: "5 Extremely" },
-              ],
-              rows: PANAS_ITEMS.map((item) => ({ value: panasKey(item), text: item })),
-            },
-          ],
-        },
-      ],
-    },
-    data: { task: "panas" },
-    on_finish: (data) => {
-      const answers = (data.response && data.response.panas) || {};
-      // A subscale sum is only meaningful when all 10 of its items were answered.
-      const sum = (items) => {
-        const vals = items.map((i) => answers[panasKey(PANAS_ITEMS[i - 1])]);
-        return vals.every((v) => typeof v === "number") ? vals.reduce((a, b) => a + b, 0) : null;
-      };
-      data.panas_pa = sum(PANAS_PA);
-      data.panas_na = sum(PANAS_NA);
-      data.panas_n_answered = Object.keys(answers).length;
-    },
-  };
-
-  // -------------------------------------------------------------------------
-  // 4. n-back instructions and instruction check (repeats until answered correctly)
+  // 3. n-back instructions and instruction check (repeats until answered correctly)
   // -------------------------------------------------------------------------
   const nbackInstructions = {
     type: jsPsychInstructions,
@@ -469,7 +418,7 @@ const NBACK = {
   }
 
   // -------------------------------------------------------------------------
-  // 5. Practice: one neutral block of each load, in order 1-, 2-, 3-back
+  // 4. Practice: one neutral block of each load, in order 1-, 2-, 3-back
   // -------------------------------------------------------------------------
   const practiceBlocks = NBACK.levels.map((n, i) =>
     makeBlock("practice", i + 1, NBACK.levels.length, n, "neutral", PRACTICE_WORDS,
@@ -484,7 +433,7 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 6. Main task: 3 blocks per load x valence cell (27), n-back level changes every block
+  // 5. Main task: 3 blocks per load x valence cell (27), n-back level changes every block
   // -------------------------------------------------------------------------
   const cells = [];
   for (const n of NBACK.levels) {
@@ -499,7 +448,7 @@ const NBACK = {
   saver.updateParticipant({ block_order: mainBlocks.map((b) => `${b.n_back}-${b.valence}`) });
 
   // -------------------------------------------------------------------------
-  // 7. Feedback on the participant experience (optional free text)
+  // 6. Feedback on the participant experience (optional free text)
   // -------------------------------------------------------------------------
   const feedback = {
     type: jsPsychSurveyText,
@@ -512,7 +461,7 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 8. Debrief
+  // 7. Debrief
   // -------------------------------------------------------------------------
   const debrief = {
     type: jsPsychHtmlButtonResponse,
@@ -531,7 +480,6 @@ const NBACK = {
   await jsPsych.run([
     consent,
     instructions,
-    panas,
     instructionLoop,
     ...practiceBlocks.flatMap(blockTimeline),
     practiceEnd,

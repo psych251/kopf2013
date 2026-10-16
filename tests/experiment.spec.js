@@ -55,10 +55,7 @@ async function runToDebrief(page) {
   // 2. welcome (two pages)
   await page.locator("#jspsych-instructions-next").click();
   await page.locator("#jspsych-instructions-next").click();
-  // 3. PANAS: answer one item ("Interested" = 4), leave the rest blank
-  await page.locator('[data-name="panas"] tr').filter({ hasText: "Interested" }).locator("label").nth(3).click();
-  await page.locator('input[value="Continue"]').click();
-  // 4. n-back instructions (three pages) + check: wrong first, which repeats the instructions
+  // 3. n-back instructions (three pages) + check: wrong first, which repeats the instructions
   for (let i = 0; i < 3; i++) await page.locator("#jspsych-instructions-next").click();
   await page.getByText("After every second word", { exact: true }).click();
   await page.locator('input[value="Continue"]').click();
@@ -68,9 +65,9 @@ async function runToDebrief(page) {
   await page.locator('input[value="Continue"]').click();
   await installNbackResponder(page);
   await page.getByRole("button", { name: "Start the practice" }).click();
-  // 5. practice (3 blocks) and 6. main task (27 blocks) run on timers
+  // 4. practice (3 blocks) and 5. main task (27 blocks) run on timers
   await page.getByRole("button", { name: "Start the main task" }).click({ timeout: 60000 });
-  // 7. feedback (free text)
+  // 6. feedback (free text)
   await page.locator("textarea").fill("Robot participant says hi.", { timeout: 120000 });
   await page.locator("#jspsych-survey-text-next").click();
   await page.getByRole("button", { name: "Finish" }).waitFor({ state: "visible", timeout: 30000 });
@@ -78,7 +75,7 @@ async function runToDebrief(page) {
 
 async function runThroughExperiment(page) {
   await runToDebrief(page);
-  // 8. debrief
+  // 7. debrief
   await page.getByRole("button", { name: "Finish" }).click();
   await expect(page.getByText("All done")).toBeVisible({ timeout: 30000 });
 }
@@ -158,12 +155,6 @@ test.describe("experiment", () => {
     expect(docs.length).toBe(Math.ceil(pdoc.n_trials / chunkSize));
     const trials = docs.flatMap((d) => d.trials).sort((a, b) => a.trial_index - b.trial_index);
     expect(trials.length).toBe(pdoc.n_trials);
-
-    // PANAS: one answered item, so neither subscale sum is defined.
-    const panas = trials.find((t) => t.task === "panas");
-    expect(panas.response.panas.interested).toBe(4);
-    expect(panas.panas_n_answered).toBe(1);
-    expect(panas.panas_pa).toBe(null);
 
     const fb = trials.find((t) => t.task === "feedback");
     expect(fb.response.feedback).toBe("Robot participant says hi.");
