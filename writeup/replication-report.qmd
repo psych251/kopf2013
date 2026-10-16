@@ -89,6 +89,8 @@ original_p_loss <- original$risky[original$condition == "loss"] / original$n[ori
 |ChatGPT(GPT-6.1 Sol Medium) | Helped edit code in R for creating key statistics and power analysis table | Confirmed output via manual code review |
 |ChatGPT(GPT-6.1 Sol Medium) | Searched for English language databases to use rated on valence and arousal | Downloaded relevant papers and chose paper to use English word list from |
 |ChatGPT(GPT-6.1 Sol Medium) | Generated list of 30 English words to use as stimuli for study, matching words from Warriner et al. to Berlin Affective Word List from original study | Cross-checked valence numbers with CSV file downloaded as supplementary file from Warriner et al.; manually checked word/syllable length |
+|ChatGPT(GPT-6.1 Sol Medium) | Generated list of 30 neutral English words to use as stimuli for the practice study, using words fro Warriner et al. | Cross-checked valence numbers with CSV file downloaded as supplementary file from Warriner et al.; manually checked word/syllable length |
+|Claude(Opus 5.5 Medium) | Edited experimental paradigm from demo to fit paradigm from original study as closely as possible | Manually reviewed code before committing to github in a separate branch, then tested the study as a participant before merging branch to main |
 
 I wrote all of the text in this report myself. AI tools were not used to write, rewrite or
 paraphrase it, and were not used to generate, alter, or impute any participant data. I take full
