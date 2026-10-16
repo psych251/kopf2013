@@ -458,13 +458,43 @@ well." Negative words with their English translations were: "TYPHUS (typhus), BE
 As for Materials: quote the original where you can and point out the exceptions. Describe the
 sequence a participant experiences, from consent to debrief, and how long it takes.
 :::
-- MINI interview to assess psychiatric disorders (past and current axis 1)
-- PANAS to control for current emotional status
--instructions
--instruction attention check
-- practice test
-- full task
-DESCRIBE SEQUENCE, FROM CONSENT TO DEBRIEF, and how long it takes AFTER YOU DO IT
+- First, the participant views the consent screen and consents to participate in the study.
+- Second, the participant sees the welcome page orienting them to what they should expect from the study.
+- Third, the participant goes through a series of instruction screens where they are instructed how to do a 1-back, 2-back, and 3-back task. They are then presented with question that checks their understanding of the instructions. A correct answer will lead to a 'correct' screen, whereas a wrong answer will send them back to instructions.
+- Fourth, the participant enters the practice block, which follows the same structure as the original study: "Before the experiment, participants practised the task using
+one block of each difficulty (1-, 2-, 3-back). Before the task
+itself, completed a training phase, where they saw 30 consecutive neutral words in the 1-back condition, the same
+neutral words in the 2-back condition and in the 3-back
+condition."
+- Fifth, the participant enters the main task block, which follows the same structure as the original study: "Participants saw blocks of ten consecutive words presented
+on a computer screen. Two of these words were used as cues
+and were followed by a target word which was presented one,
+two or three words after the cue word, to vary the difficulty level
+and thus the working memory load. When the participants saw
+the target word, they were instructed to press the space key on
+a standard keyboard. Each block of ten words comprised one
+difficulty level. Also the emotional content of the words was
+varied; the words were positive, negative or neutral. Each block
+encompassed only one emotional valence. In total, there were
+three blocks where the emotional valence was negative and
+the difficulty level was one, meaning the target word followed
+the cue word directly. Three blocks had a negative emotional
+valence and the difficulty level was two, meaning there was
+one word between cue word and target word. Three blocks had
+a negative emotional valence and the difficulty level was three,
+meaning there were two words between the cue word and the
+target word. The same was true for the positive and the neutral
+emotional valence; therefore, in sum the experiment had 27
+blocks. Each block was 20 seconds long, and blocks were
+separated by a 20-second pause. Within each block, each
+word was visible for 500 ms, followed by a blank screen, which
+was also 500 ms long. The difficulty level of the blocks was
+pseudorandomized, and difficulty levels always varied from one
+block to another. In the pause preceding a block, the instruction
+for the task (1-, 2-, 3-back) was presented on the screen."
+- Sixth, the participant sees a screen with an optional free-text box where they can write any feedback about their participation in the study.
+- Last, the participant sees the debrief screen with a 'Finish' button that saves the data.
+The entire task is expected to take around 25 minutes.
 
 ### Analysis plan
 
