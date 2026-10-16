@@ -1,0 +1,4 @@
+- source: replication-report.qmd
+  posit-connect-cloud:
+    - id: 01a142c8-ba6c-1c46-7917-8c3ed3c4979f
+      url: https://connect.posit.cloud/bsevchik/content/01a142c8-ba6c-1c46-7917-8c3ed3c4979f

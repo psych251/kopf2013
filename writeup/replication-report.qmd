@@ -86,6 +86,9 @@ original_p_loss <- original$risky[original$condition == "loss"] / original$n[ori
 | Tool and model | What it was used for | How you checked the output |
 |---|---|---|
 | ChatGPT(GPT-6.1 Sol Medium) | Brainstormed project ideas and relevant papers to choose to replicate given my personal research interests | Verified citations produced by ChatGPT by manually searching on Google Scholar; compared suggested papers with personal selections; read through each paper |
+|ChatGPT(GPT-6.1 Sol Medium) | Helped edit code in R for creating key statistics and power analysis table | Confirmed output via manual code review |
+|ChatGPT(GPT-6.1 Sol Medium) | Searched for English language databases to use rated on valence and arousal | Downloaded relevant papers and chose paper to use English word list from |
+|ChatGPT(GPT-6.1 Sol Medium) | Generated list of 30 English words to use as stimuli for study, matching words from Warriner et al. to Berlin Affective Word List from original study | Cross-checked valence numbers with CSV file downloaded as supplementary file from Warriner et al.; manually checked word/syllable length |
 
 I wrote all of the text in this report myself. AI tools were not used to write, rewrite or
 paraphrase it, and were not used to generate, alter, or impute any participant data. I take full
@@ -108,8 +111,18 @@ adapt its code and say so in the caption.
 #| label: analysis-functions
 #| code-summary: "Show the analysis code (shared by Phase 1 and Phase 2)"
 
-# Load one phase's exported data and apply the exclusion rule. Returns NULL if that phase
-# has not been exported yet, which is how every section below knows to skip itself.
+#| label: analysis-functions
+#| code-summary: "Show the analysis code (shared by Phase 1 and Phase 2)"
+
+# Requires tidyverse and afex.
+# Assumed trial columns: participant_id, task, practice, block_id,
+# valence, n_back, correct. Rename these to match your export.
+# task = "n_back"; valence = "negative"/"positive"/"neutral"; n_back = 1/2/3.
+# Include only evaluable word trials: missed targets and false alarms are errors;
+# correctly withholding a response is correct.
+
+# Load one phase's exported data and apply the exclusion rule.
+# Returns NULL if that phase has not been exported yet.
 read_phase <- function(id) {
   dir <- file.path("..", "data", "raw", id)
   if (!all(file.exists(file.path(dir, c("participants.csv", "trials.csv"))))) return(NULL)
@@ -120,66 +133,98 @@ read_phase <- function(id) {
 
   complete <- participants |> filter(completed)
 
-  # Exclusion rule: replace with the rule you preregistered. Here: at least 6 of 8
-  # lexical-decision trials correct, and at least one speeded response at all (a session in
-  # which every speeded trial timed out is what a device without a keyboard produces).
-  ld <- trials |>
-    filter(task == "lexical_decision") |>
+  # Proposed exclusion rule: replace with your preregistered rule.
+  # Here: completed study, all nine conditions present, no missing correctness.
+  # Also verify expected trial/block counts once your task design is finalized.
+  nb <- trials |>
+    filter(task == "n_back", practice == FALSE) |>
     group_by(participant_id) |>
-    summarise(ld_acc           = mean(as.logical(correct), na.rm = TRUE),
-              ld_all_timed_out = all(as.logical(timed_out)),
+    summarise(n_cells = n_distinct(valence, n_back),
+              missing_correct = any(is.na(correct)),
               .groups = "drop")
-  checked <- complete |> left_join(ld, by = "participant_id")
-  keep <- checked |> filter(!is.na(ld_acc), !ld_all_timed_out, ld_acc >= 0.75)
+
+  checked <- complete |> left_join(nb, by = "participant_id")
+  keep <- checked |> filter(n_cells == 9, !missing_correct)
 
   list(participants = participants, trials = trials, errors = errors,
-       complete = complete, keep = keep,
-       n_no_response = sum(checked$ld_all_timed_out %in% TRUE))
+       complete = complete, keep = keep)
 }
 
-# The key comparison's raw counts: how many analysed participants chose the risky program
-# in each frame.
-risky_counts <- function(d) {
+# Error counts per block, averaged across blocks within each participant's
+# valence × difficulty condition. Each participant contributes nine values.
+# Confirm this block-aggregation choice before preregistration.
+error_counts <- function(d) {
   d$trials |>
-    filter(task == "framing", participant_id %in% d$keep$participant_id) |>
-    group_by(condition) |>
-    summarise(risky = sum(choice == "risky"), n = n(), .groups = "drop")
+    filter(task == "n_back", practice == FALSE,
+           participant_id %in% d$keep$participant_id) |>
+    mutate(valence = factor(valence, levels = c("negative", "positive", "neutral")),
+           n_back = factor(n_back, levels = c(1, 2, 3))) |>
+    group_by(participant_id, valence, n_back, block_id) |>
+    summarise(errors = sum(correct == FALSE), .groups = "drop") |>
+    group_by(participant_id, valence, n_back) |>
+    summarise(errors = mean(errors), .groups = "drop")
 }
 
-# The key statistic: difference in the proportion choosing the risky program (loss minus
-# gain) with a 95% CI, and the uncorrected chi-square, which is the same test. NULL until
-# both frames have at least one analysed participant.
-diff_ci <- function(counts) {
-  loss <- counts[counts$condition == "loss", ]
-  gain <- counts[counts$condition == "gain", ]
-  if (nrow(loss) == 0 || nrow(gain) == 0) return(NULL)
-  pt <- prop.test(c(loss$risky, gain$risky), c(loss$n, gain$n), correct = FALSE)
-  tibble(N = loss$n + gain$n,
-         estimate = unname(pt$estimate[1] - pt$estimate[2]),
-         ci_low = pt$conf.int[1], ci_high = pt$conf.int[2],
-         statistic = unname(pt$statistic), p = pt$p.value)
+# Key test: valence × difficulty interaction in a 3 × 3 repeated-measures ANOVA.
+# Both factors are within participants. Report Greenhouse–Geisser-corrected df.
+# Returns NULL until at least two analysed participants are available.
+interaction_test <- function(counts) {
+  if (n_distinct(counts$participant_id) < 2) return(NULL)
+
+  fit <- afex::aov_ez(
+    id = "participant_id",
+    dv = "errors",
+    data = as.data.frame(counts),
+    within = c("valence", "n_back"),
+    anova_table = list(correction = "GG", es = "none")
+  )
+
+  tab <- as.data.frame(anova(fit, correction = "GG", es = "none"))
+  interaction <- tab["valence:n_back", , drop = FALSE]
+
+  tibble(N = n_distinct(counts$participant_id),
+         statistic = interaction[["F"]],
+         df1 = interaction[["num Df"]],
+         df2 = interaction[["den Df"]],
+         p = interaction[["Pr(>F)"]])
 }
 
-# Side-by-side figure: any number of studies on the same axes, in the order given.
-prop_ci <- function(x, n) {
-  ci <- prop.test(x, n, correct = FALSE)$conf.int
-  tibble(p = x / n, low = ci[1], high = ci[2])
+# Mean error counts and ±1 SE across participants, matching Figure 2's bar type.
+error_se <- function(x) {
+  se <- sd(x) / sqrt(length(x))
+  tibble(mean_errors = mean(x),
+         low = mean(x) - se,
+         high = mean(x) + se,
+         n = length(x))
 }
+
+# Side-by-side figure: supply participant-level tables from error_counts().
 comparison_plot <- function(...) {
   studies <- list(...)
   studies <- studies[!map_lgl(studies, ~ is.null(.x) || nrow(.x) == 0)]
+
+  if (length(studies) == 0) {
+    return(ggplot() + labs(title = "No analysed data yet"))
+  }
+
   df <- imap_dfr(studies, ~ mutate(.x, Study = .y)) |>
-    rowwise() |> mutate(prop_ci(risky, n)) |> ungroup() |>
-    mutate(Study = factor(Study, levels = names(studies)), label = sprintf("n = %d", n))
-  fills <- setNames(c("grey55", "#1E6E76", "#B8792A")[seq_along(studies)], names(studies))
+    group_by(Study, valence, n_back) |>
+    summarise(error_se(errors), .groups = "drop") |>
+    mutate(Study = factor(Study, levels = names(studies)))
+
   dodge <- position_dodge(width = 0.8)
-  ggplot(df, aes(x = condition, y = p, fill = Study)) +
+
+  ggplot(df, aes(x = valence, y = mean_errors, fill = n_back)) +
     geom_col(position = dodge, width = 0.75) +
-    geom_errorbar(aes(ymin = low, ymax = high), position = dodge, width = 0.2) +
-    geom_text(aes(y = 0.02, label = label), position = dodge, vjust = 0, size = 3, colour = "white") +
-    scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
-    scale_fill_manual(values = fills) +
-    labs(x = "Frame", y = "Chose the risky program", fill = NULL) +
+    geom_errorbar(aes(ymin = low, ymax = high),
+                  position = dodge, width = 0.2, na.rm = TRUE) +
+    facet_wrap(~ Study) +
+    scale_fill_manual(
+      values = c("grey85", "#9997C5", "#316AA8"),
+      labels = c("1-back", "2-back", "3-back")
+    ) +
+    labs(x = "Word valence", y = "Mean number of errors per block",
+         fill = "Difficulty") +
     theme_minimal(base_size = 12) +
     theme(legend.position = "top")
 }
@@ -193,24 +238,29 @@ have_phase2 <- !is.null(phase2)
 ```{r}
 #| label: key-stats
 #| echo: false
+
+# Original valence × difficulty interaction reported by Kopf et al. (2013).
+original <- tibble(N = 30, statistic = 3.7, df1 = 2.8, df2 = 82.1, p = .016)
+
 fmt_row <- function(study, r) {
   if (is.null(r)) {
-    return(tibble(Study = study, N = "", `Effect (loss − gain)` = "not yet collected",
-                  `95% CI` = "", `χ²(1)` = "", p = ""))
+    return(tibble(Study = study, N = "", `ANOVA comparison` = "valence * difficulty",
+                  `F` = "", `df1` = "", `df2` = "", p = ""))
   }
   tibble(Study = study, N = as.character(r$N),
-         `Effect (loss − gain)` = sprintf("%.0f points", 100 * r$estimate),
-         `95% CI` = sprintf("[%.0f, %.0f]", 100 * r$ci_low, 100 * r$ci_high),
-         `χ²(1)` = sprintf("%.2f", r$statistic),
+         `ANOVA comparison` = "valence * difficulty",
+         `F` = sprintf("%.2f", r$statistic),
+         `df1` = sprintf("%.2f", r$df1),
+         `df2` = sprintf("%.2f", r$df2),
          p = format.pval(r$p, digits = 2, eps = 0.001))
 }
 bind_rows(
-  fmt_row("Original", diff_ci(original)),
-  fmt_row("Phase 1: replication", if (have_data) diff_ci(risky_counts(phase1))),
-  fmt_row("Phase 2: extension", if (have_phase2) diff_ci(risky_counts(phase2)))
+  fmt_row("Original", original),
+  fmt_row("Phase 1: replication", if (have_data) interaction_test(error_counts(phase1))),
+  fmt_row("Phase 2: extension", if (have_phase2) interaction_test(error_counts(phase2)))
 ) |>
-  knitr::kable(align = "lrlllr",
-               caption = "Key comparison: difference in the percentage of analysed participants choosing the risky program, loss frame minus gain frame.")
+  knitr::kable(align = "lr lrrrr" |> gsub(" ", "", x = _),
+               caption = "Key comparison: valence × difficulty interaction on error counts in a 3 × 3 repeated-measures ANOVA, with Greenhouse–Geisser-corrected degrees of freedom.")
 ```
 
 # Phase 1: Replication
@@ -243,23 +293,47 @@ what the course's participant budget allowed.
 
 ```{r}
 #| label: power
+
+# Assumptions: same standardized interaction effect and Greenhouse–Geisser
+# correction as the original study. Results are approximate and depend on
+# these assumptions. Uses the original statistics defined in key-stats.
+
+original_effect <- original$statistic * original$df1 / original$df2
+epsilon <- original$df2 / (4 * (original$N - 1))
+
+power_at <- function(n) {
+  df1 <- 4 * epsilon
+  df2 <- 4 * (n - 1) * epsilon
+  critical_f <- qf(0.95, df1, df2)
+
+  pf(critical_f, df1, df2,
+     ncp = original_effect * df2, lower.tail = FALSE)
+}
+
 power_rows <- map_dfr(c(0.80, 0.90, 0.95), function(pw) {
-  n <- power.prop.test(p1 = original_p_gain, p2 = original_p_loss,
-                       power = pw, sig.level = 0.05)$n
-  tibble(power = scales::percent(pw), n_per_group = ceiling(n), n_total = 2 * ceiling(n))
+  n <- uniroot(function(n) power_at(n) - pw,
+               interval = c(2, 10000))$root
+  tibble(power = scales::percent(pw),
+         n_per_condition = ceiling(n),
+         n_total = ceiling(n))
 })
 
-original_effect <- original_p_loss - original_p_gain
-two_and_half <- ceiling(2.5 * original$n)
+two_and_half <- ceiling(2.5 * original$N)
 
-knitr::kable(power_rows, col.names = c("Power", "N per frame", "N total"),
+knitr::kable(power_rows,
+             col.names = c("Power", "N per condition", "N total"),
              caption = sprintf(
-               "Sample needed to detect the original effect (risky choice: %.0f%% gain vs %.0f%% loss, a difference of %.0f points), two-sided alpha = .05.",
-               100 * original_p_gain, 100 * original_p_loss, 100 * original_effect))
+               paste0(
+                 "Approximate sample needed for the valence × difficulty interaction, ",
+                 "assuming the original standardized effect (partial f² = %.3f) ",
+                 "and Greenhouse–Geisser epsilon = %.2f, alpha = .05. ",
+                 "All participants complete all nine conditions."
+               ),
+               original_effect, epsilon))
 ```
 
-For comparison, 2.5 times the original sample would be `r two_and_half[1]` in the gain frame
-and `r two_and_half[2]` in the loss frame (`r sum(two_and_half)` in total).
+
+In this instance, 2.5 times the original sample would be 75 participants (per condition and total, since this is a within-participant study).
 
 ### Planned sample
 
@@ -272,6 +346,9 @@ stopping rule should be data-independent: "collect until N participants pass the
 criteria below" rather than "until the result is clear".
 :::
 
+The planned sample is US residents on Prolific, fluent in English, 18 or older. There will also be filtering questions to ensure participants are right-handed and they will be asked to indicate if they have any neuropsychiatric disorders (confirmed later by MINI assessment), to be consistent with the original study.
+The planned sample size is 75 participants, following the 2.5* original sample rule that is a widely-used alternative to using the original sample size (Simonsohn, 2015). I will collect until 75 participants pass the exclusion criteria above (i.e., if they have a disorder indicated by the MINI assessment), and the exclusion criteria below described in the Analysis plan.
+
 ### Materials
 
 ::: {.callout-tip icon=false}
@@ -282,14 +359,110 @@ and note that it was followed precisely, or quote it and point out the exception
 live experiment above rather than pasting screenshots of every screen.
 :::
 
+- The n-back task structure is identical to the original article, quoted here: "Participants saw blocks of ten consecutive words presented
+on a computer screen. Two of these words were used as cues
+and were followed by a target word which was presented one,
+two or three words after the cue word, to vary the difficulty level
+and thus the working memory load. When the participants saw
+the target word, they were instructed to press the space key on
+a standard keyboard. Each block of ten words comprised one
+difficulty level. Also the emotional content of the words was
+varied; the words were positive, negative or neutral. Each block
+encompassed only one emotional valence. In total, there were
+three blocks where the emotional valence was negative and
+the difficulty level was one, meaning the target word followed
+the cue word directly. Three blocks had a negative emotional
+valence and the difficulty level was two, meaning there was
+one word between cue word and target word. Three blocks had
+a negative emotional valence and the difficulty level was three,
+meaning there were two words between the cue word and the
+target word. The same was true for the positive and the neutral
+emotional valence; therefore, in sum the experiment had 27
+blocks. Each block was 20 seconds long, and blocks were
+separated by a 20-second pause. Within each block, each
+word was visible for 500 ms, followed by a blank screen, which
+was also 500 ms long. The difficulty level of the blocks was
+pseudorandomized, and difficulty levels always varied from one
+block to another. In the pause preceding a block, the instruction
+for the task (1-, 2-, 3-back) was presented on the screen."
+
+- The words in the original study were as follows: "The words (a list of which can be seen in Table 1) were
+chosen from the Berlin Affective Word List [11], were all nouns
+and matched for valence (positive nouns had a mean valence
+of 2, negative nouns a mean valence of -2 and neutral words a
+mean valence rating of 0, with the valence scale spanning from
+-3 for very negative to 3 for very positive). Mean arousal of
+emotional words was matched in respect of their valence,
+meaning the negative and positive words had a mean arousal
+of 3, the neutral words had a mean arousal of 0 (on a scale
+from 1: very low arousal to 5: very high arousal). To ensure
+equal working memory load for all words, phoneme length (5),
+syllable length (2), and number of letters (6) were matched as
+well." Negative words with their English translations were: "TYPHUS (typhus), BEFEHL (order), ARREST (warrant), TYRANN (tyrant), GREUEL (horror), SEENOT (distress at sea), HORROR (horror), TRAUMA (trauma), TERROR (terror), and UNHEIL (calamity)". Positive words were "RETTER (savior), WISSEN (knowledge), MUTTER (mother), GEWINN (win), GEFÜHL (feeling), HIMMEL (heaven), FRIEDE (peace), URLAUB (vacation), SOMMER (summer), and FREUND (friend)". Neutral workds were: "ABLAUF (sequence), AFFEKT (affect), BANNER (banner), GERUCH (smell), KELLER (basement), LOSUNG (watchword), STELLE (position), ZEUGIN (eye witness), AKZENT (accent), and INHALT (content)."
+
+- We used as close to equivalent words in English as possible, matched on the same valence/arousal conditions and matched on phoneme/word length as in the original study. Words were taken from Warriner et al.'s "Norms of valence, arousal, and dominance for 13,915 English lemmas" (https://doi.org/10.3758/s13428-012-0314-x) (downloaded supplementary CSV file with words and their ratings). We asked Chatgpt (GPT-6.2 Sol Medium) to come up with a list of words with similar arousal/valence as the German words in the original study, and matched on word length, etc., then verified the output by checking the CSV itself and the original paper to see if it matched the original study. Please see the tables below for the word lists. Note that English words use a 1-9 scale, as opposed to the -3 to +3 valence scores of the Berlin Affective Word List.
+
+| Negative word | Valence | Arousal |
+|---|---:|---:|
+| coffin | 2.63 | 4.30 |
+| trauma | 2.89 | 4.87 |
+| malice | 2.81 | 4.81 |
+| damage | 2.98 | 4.86 |
+| orphan | 2.90 | 3.24 |
+| duress | 2.82 | 4.45 |
+| demise | 3.00 | 4.18 |
+| dismay | 3.10 | 2.85 |
+| poison | 2.16 | 6.01 |
+| maggot | 2.00 | 5.60 |
+
+| Positive word | Valence | Arousal |
+|---|---:|---:|
+| heaven | 7.50 | 4.23 |
+| beauty | 7.58 | 4.89 |
+| cuddle | 7.60 | 3.83 |
+| rabbit | 7.21 | 3.98 |
+| couple | 7.11 | 4.95 |
+| guitar | 7.10 | 4.40 |
+| riches | 7.10 | 5.42 |
+| sundae | 7.76 | 4.79 |
+| kitten | 7.58 | 3.19 |
+| giggle | 7.95 | 5.39 |
+
+| Neutral word | Valence | Arousal |
+|---|---:|---:|
+| bonnet | 4.89 | 2.96 |
+| column | 5.00 | 3.11 |
+| packet | 5.16 | 3.62 |
+| saddle | 4.95 | 3.10 |
+| vessel | 5.20 | 3.62 |
+| ticket | 5.28 | 3.95 |
+| shovel | 4.80 | 3.50 |
+| funnel | 5.32 | 2.95 |
+| barrel | 4.92 | 3.43 |
+| thesis | 4.70 | 4.10 |
+
+| Category | Mean valence | Mean arousal |
+|---|---:|---:|
+| Negative | 2.73 | 4.52 |
+| Positive | 7.45 | 4.51 |
+| Neutral | 5.02 | 3.43 |
+
 ### Procedure
 
 ::: {.callout-tip icon=false}
+
 ## Guidance
 
 As for Materials: quote the original where you can and point out the exceptions. Describe the
 sequence a participant experiences, from consent to debrief, and how long it takes.
 :::
+- MINI interview to assess psychiatric disorders (past and current axis 1)
+- PANAS to control for current emotional status
+-instructions
+-instruction attention check
+- practice test
+- full task
+DESCRIBE SEQUENCE, FROM CONSENT TO DEBRIEF, and how long it takes AFTER YOU DO IT
 
 ### Analysis plan
 
@@ -305,15 +478,12 @@ stands or falls on, and it must match your preregistration. You can pre-specify 
 analyses here too.
 :::
 
-**Key analysis of interest.** The proportion of participants choosing the risky program is
-higher in the loss frame than in the gain frame, tested with a chi-square test of independence
-on the 2 × 2 table of frame by choice. The effect size is the difference in the proportion
-choosing the risky program (loss minus gain), with a 95% confidence interval.
+**Key analysis of interest.** On more difficult n-back tasks, more errors are made on blocks with negatively-valenced words as stimuli. This is tested as a 3 by 3 (emotional valence of word (positive, negative, neutral) by difficulty of task (easy, medium, hard/1-back, 2-back, 3-back)) repeated within-subjects ANOVA. The reported statistics include the F-value with degrees of freedom and the p-value on the interaction effect of word valence on error rate (the degrees of freedom are corrected with Greenhouse-Geisser method as described in the original paper).
 
-**Exclusions.** Participants are excluded if they did not complete the study, if they answered
-no speeded trial at all (every lexical-decision trial timed out, the signature of a device
-without a keyboard), or if they answered fewer than 6 of the 8 lexical-decision trials
-correctly.
+**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." The original paper does, however, exclude based on psychiatric disorders.
+As such, I will exclude participants based on their neuropsychiatric results as well on the MINI, and add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the condiitons as follows:
+- Participants who never press the response key during any block of the n-back task
+- Participants who respond on more than 80% of non-target trials (i.e., the word they see is NOT the same as the word n trials before)
 
 ### Differences from the original study
 
@@ -329,12 +499,12 @@ level of detail expected; replace them with yours.
 
 | Aspect | Original study | This replication | Expected to matter? |
 |---|---|---|---|
-| Sample | University students in Stanford and British Columbia classrooms | Adults recruited on Prolific | Possibly. Framing effects have been found in both student and general samples, but their size varies across populations. |
-| Setting | Paper questionnaire in class | Online, unsupervised, on the participant's own computer | Unlikely for a single vignette, though attention may be lower online. |
-| Wording | "an unusual Asian disease" | "an unusual disease" | Unlikely. The ethnonym is incidental to the manipulation and dated. |
-| Design | Between subjects: each participant saw one frame | Between subjects, randomly assigned | No. |
-| Response | Circle a program on paper | Click a button | Unlikely. |
-| Other tasks | Problems presented alongside other questionnaire items | Followed by a short lexical-decision task used as an attention check | Unlikely: the check comes after the choice. |
+| Sample | Thirty-two healthy right-handed volunteers (in person), German speakers| Adults recruited on Prolific, English speakers from the U.S.| Possibly. Even if our English words matched the Berlin Affective Word list exactly, cultural differences between German and U.S. participants could elicity varying results |
+| Setting | Online task; participants wore fNIRS equipment and EEG electrodes while completing task | Online, unsupervised, on the participant's own computer, without fNIRS or EEG equipment | Possibly. Wearing the equipment (which is likely uncomfortable) could have some influence on participants' overall n-back task performance |
+| Wording | German words from Berlin Affective Word list | English words from Warriner et al. | Unlikely. English words matched conditions of words from original study; they were matched on word and syllable length, arousal, and words were chosen to have equivalent valences to the German word set used in the original study. |
+| Design | Within subjects, pseudo-randomized condition order | Between subjects, pseudo-randomized condition order | The study specifies a psuedo-randomized condition order whereby the difficulty level had to vary from one block after the other, so in the replicated study the exact order for each subject will be different than the exact order for each subject in the original study. This is unlikely to have any effect. |
+| Response | Keyboard press (space key on standard keyboard) | Keyboard press (space key; however we cannot regulate what kind of keyboard participants have access to at home) | Unlikely. Most participants will probably have a standard keyboard, and any keyboard has a space bar on it.|
+| Other tasks | Tasks were completed alongside fluid and crystallized intelligence questionnaires | Instructions were followed by an instruction comprehension check | Unlikely: the instruction check is meant to ensure participants understand the task, not to change any results |
 
 ### Methods addendum (post data collection)
 
