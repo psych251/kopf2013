@@ -11,3 +11,5 @@
 .thanks { text-align: center; }
 .nback-pause { text-align: center; font-size: 18px; }
 .nback-pause h2 { font-size: 40px; margin: 0.4em 0; }
+#debug-skip { position: fixed; top: 44px; right: 12px; z-index: 1000; background: #fde68a; border-color: #d97706; font-size: 13px; }
+#debug-skip[hidden] { display: none; }

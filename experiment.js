@@ -52,6 +52,13 @@ const EXPERIMENT = {
   // they would time out silently and the session would still look complete. When true, such
   // devices are turned away before consent. Set to false if your study is buttons/touch only.
   requires_keyboard: true,
+
+  // DEBUGGING ONLY. Shows a "Skip section" button in the corner that ends the current section
+  // (welcome, n-back instructions, practice, main task, feedback) and jumps to the next one.
+  // Consent and debrief cannot be skipped. Skipped trials are saved with `debug_skipped: true`
+  // and every row carries `debug_skip_buttons`, so debug runs are easy to drop.
+  // MUST be false before real data collection.
+  debug_skip_buttons: true,
 };
 
 // True on anything with a mouse, trackpad, or stylus, including laptops with touchscreens.
@@ -184,6 +191,49 @@ const NBACK = {
   // No between-subjects factor: every participant does every load x valence cell.
   jsPsych.data.addProperties({ design: "within-subjects", fast_timing: FAST });
   saver.updateParticipant({ design: "within-subjects", fast_timing: FAST });
+  jsPsych.data.addProperties({ debug_skip_buttons: EXPERIMENT.debug_skip_buttons });
+  saver.updateParticipant({ debug_skip_buttons: EXPERIMENT.debug_skip_buttons });
+
+  // -------------------------------------------------------------------------
+  // Debug "Skip section" button (EXPERIMENT.debug_skip_buttons). Each skippable section is a
+  // named timeline (see `section` below); the button ends the current trial and aborts that
+  // timeline, so jsPsych moves on to whatever comes after it.
+  // -------------------------------------------------------------------------
+  let currentSection = null;
+  let skipButton = null;
+  if (EXPERIMENT.debug_skip_buttons) {
+    console.warn("EXPERIMENT.debug_skip_buttons is on. Turn it off before collecting real data.");
+    skipButton = document.createElement("button");
+    skipButton.id = "debug-skip";
+    skipButton.className = "jspsych-btn";
+    skipButton.hidden = true;
+    // Never take keyboard focus: a focused button would be "clicked" by the n-back space bar.
+    skipButton.tabIndex = -1;
+    skipButton.addEventListener("mousedown", (e) => e.preventDefault());
+    skipButton.addEventListener("click", () => {
+      if (!currentSection) return;
+      const name = currentSection;
+      setSection(null);
+      jsPsych.abortTimelineByName(name);
+      jsPsych.pluginAPI.cancelAllKeyboardResponses();
+      jsPsych.pluginAPI.clearAllTimeouts();
+      jsPsych.finishTrial({ response: null, rt: null, debug_skipped: true });
+    });
+    document.body.appendChild(skipButton);
+  }
+  function setSection(name) {
+    currentSection = name;
+    if (!skipButton) return;
+    skipButton.hidden = !name;
+    if (name) skipButton.textContent = `Skip section: ${name} (debug)`;
+  }
+  // Wraps trials in a named timeline that the skip button can abort.
+  const section = (name, timeline) => ({
+    name,
+    timeline,
+    on_timeline_start: () => setSection(name),
+    on_timeline_finish: () => setSection(null),
+  });
 
   // -------------------------------------------------------------------------
   // 1. Consent (course-wide IRB text; edit only the contact address)
@@ -286,7 +336,8 @@ const NBACK = {
     on_finish: (data) => {
       checkAttempt += 1;
       data.attempt = checkAttempt;
-      data.correct = data.response.two_back_rule === "two_back";
+      // `response` is null when the debug skip button ended this trial.
+      data.correct = data.response?.two_back_rule === "two_back";
     },
   };
   const lastCheckCorrect = () => jsPsych.data.get().filter({ task: "instruction_check" }).last(1).values()[0].correct;
@@ -479,12 +530,12 @@ const NBACK = {
 
   await jsPsych.run([
     consent,
-    instructions,
-    instructionLoop,
-    ...practiceBlocks.flatMap(blockTimeline),
+    section("welcome", [instructions]),
+    section("n-back instructions", [instructionLoop]),
+    section("practice", practiceBlocks.flatMap(blockTimeline)),
     practiceEnd,
-    ...mainBlocks.flatMap(blockTimeline),
-    feedback,
+    section("main task", mainBlocks.flatMap(blockTimeline)),
+    section("feedback", [feedback]),
     debrief,
   ]);
 })();
