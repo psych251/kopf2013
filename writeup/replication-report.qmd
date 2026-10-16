@@ -89,6 +89,8 @@ original_p_loss <- original$risky[original$condition == "loss"] / original$n[ori
 |ChatGPT(GPT-6.1 Sol Medium) | Helped edit code in R for creating key statistics and power analysis table | Confirmed output via manual code review |
 |ChatGPT(GPT-6.1 Sol Medium) | Searched for English language databases to use rated on valence and arousal | Downloaded relevant papers and chose paper to use English word list from |
 |ChatGPT(GPT-6.1 Sol Medium) | Generated list of 30 English words to use as stimuli for study, matching words from Warriner et al. to Berlin Affective Word List from original study | Cross-checked valence numbers with CSV file downloaded as supplementary file from Warriner et al.; manually checked word/syllable length |
+|ChatGPT(GPT-6.1 Sol Medium) | Generated list of 30 neutral English words to use as stimuli for the practice study, using words fro Warriner et al. | Cross-checked valence numbers with CSV file downloaded as supplementary file from Warriner et al.; manually checked word/syllable length |
+|Claude(Opus 5.5 Medium) | Edited experimental paradigm from demo to fit paradigm from original study as closely as possible | Manually reviewed code before committing to github in a separate branch, then tested the study as a participant before merging branch to main |
 
 I wrote all of the text in this report myself. AI tools were not used to write, rewrite or
 paraphrase it, and were not used to generate, alter, or impute any participant data. I take full
@@ -626,21 +628,28 @@ the data beyond that.
 ```{r}
 #| label: confirmatory
 #| eval: !expr have_data
-framing <- trials |>
-  filter(task == "framing", participant_id %in% keep$participant_id) |>
-  select(participant_id, condition, choice)
-risky <- risky_counts(phase1)
-tab <- table(Frame = framing$condition, Choice = framing$choice)
+counts <- error_counts(phase1)
+result <- interaction_test(counts)
 
-if (all(dim(tab) == c(2, 2))) {
-  # No continuity correction, so this test and the effect-size interval below agree: the
-  # uncorrected 2 x 2 chi-square is the same test as the two-proportion comparison.
-  print(tab)
-  print(chisq.test(tab, correct = FALSE))
+if (!is.null(result)) {
+  result |>
+    transmute(
+      N,
+      `ANOVA comparison` = "valence × difficulty",
+      F = sprintf("%.2f", statistic),
+      df1 = sprintf("%.2f", df1),
+      df2 = sprintf("%.2f", df2),
+      p = format.pval(p, digits = 2, eps = 0.001)
+    ) |>
+    knitr::kable(
+      caption = paste(
+        "Confirmatory analysis: valence × difficulty interaction on error counts",
+        "in a 3 × 3 repeated-measures ANOVA.",
+        "Degrees of freedom are Greenhouse–Geisser corrected."
+      )
+    )
 } else {
-  message("Chi-square not run: the frame-by-choice table is ", paste(dim(tab), collapse = " x "),
-          ". It needs both frames and both choices; with ", nrow(framing),
-          " participant(s) in the analysis set this is expected.")
+  message("ANOVA not run: need at least two analysed participants with complete data across all nine conditions.")
 }
 ```
 
@@ -657,20 +666,25 @@ informative and should be reported as such (Experimentology §3.2).
 :::
 
 ```{r}
-#| label: comparison
-#| eval: !expr have_data
-orig <- diff_ci(original)
-rep  <- diff_ci(risky)
+orig <- original
+rep  <- if (have_data) interaction_test(error_counts(phase1)) else NULL
 
 if (!is.null(rep)) {
   bind_rows(orig |> mutate(Study = "Original"), rep |> mutate(Study = "Phase 1: replication")) |>
     transmute(Study, N,
-              `Difference (loss − gain)` = sprintf("%.0f points", 100 * estimate),
-              `95% CI` = sprintf("[%.0f, %.0f]", 100 * ci_low, 100 * ci_high),
+              `Partial eta squared` = sprintf("%.3f",
+                (statistic * df1) / (statistic * df1 + df2)),
+              F = sprintf("%.2f", statistic),
+              df1 = sprintf("%.2f", df1),
+              df2 = sprintf("%.2f", df2),
               p = format.pval(p, digits = 2, eps = 0.001)) |>
-    knitr::kable(caption = "Effect size: difference in the percentage choosing the risky program.")
+    knitr::kable(caption = paste(
+      "Valence × difficulty interaction on error counts.",
+      "Degrees of freedom are Greenhouse–Geisser corrected.",
+      "Original partial eta squared is reconstructed from rounded published statistics."
+    ))
 } else {
-  message("Replication effect size not computed yet: need at least one analysed participant in each frame.")
+  message("Replication statistics not computed yet: need at least two analysed participants with complete data across all nine conditions.")
 }
 ```
 
@@ -680,14 +694,22 @@ if (!is.null(rep)) {
 #| echo: false
 #| results: asis
 if (!is.null(rep)) {
-  excludes_zero <- rep$ci_low > 0 | rep$ci_high < 0
-  includes_orig <- orig$estimate >= rep$ci_low & orig$estimate <= rep$ci_high
+  orig_effect <- (orig$statistic * orig$df1) /
+    (orig$statistic * orig$df1 + orig$df2)
+  rep_effect <- (rep$statistic * rep$df1) /
+    (rep$statistic * rep$df1 + rep$df2)
+
   cat(sprintf(
-    "The replication's 95%% interval %s zero and %s the original estimate of %.0f points. ",
-    if (excludes_zero) "excludes" else "includes",
-    if (includes_orig) "includes" else "does not include",
-    100 * orig$estimate))
-  cat("These two facts are the starting point for the summary in the Discussion, not the conclusion.\n")
+    "The replication's valence × difficulty interaction had partial eta squared = %.3f, compared with approximately %.3f in the original study. ",
+    rep_effect, orig_effect))
+
+  cat(sprintf(
+    "The replication interaction was %s at alpha = .05 (%s). ",
+    if (rep$p < .05) "statistically significant" else "not statistically significant",
+    format.pval(rep$p, digits = 2, eps = .001) |>
+      paste0("p ", if (rep$p < .001) "" else "= ", x = _)))
+
+  cat("No effect-size confidence interval was calculated. Assess replication using both the interaction magnitude and the pattern of errors across conditions, rather than statistical significance alone.\n")
 }
 ```
 

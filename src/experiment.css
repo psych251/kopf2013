@@ -9,3 +9,5 @@
 .framing .programs { margin: 1em 0; padding-left: 1.2em; }
 #jspsych-html-button-response-btngroup { text-align: center; }
 .thanks { text-align: center; }
+.nback-pause { text-align: center; font-size: 18px; }
+.nback-pause h2 { font-size: 40px; margin: 0.4em 0; }
