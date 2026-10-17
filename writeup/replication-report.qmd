@@ -206,43 +206,73 @@ error_counts <- function(d) {
 # Key test: valence × difficulty interaction in a 3 × 3 repeated-measures ANOVA.
 # Apply Greenhouse–Geisser only when Mauchly's test indicates violated sphericity.
 interaction_test <- function(counts) {
-  if (n_distinct(counts$participant_id) < 2) return(NULL)
+  N <- n_distinct(counts$participant_id)
 
-  fit <- afex::aov_ez(
-    id = "participant_id",
-    dv = "errors",
-    data = as.data.frame(counts),
-    within = c("valence", "n_back"),
-    anova_table = list(correction = "none", es = "none")
-  )
-
-  sphericity <- summary(
-    fit$Anova, multivariate = FALSE, univariate = TRUE
-  )$sphericity.tests
-
-  if (is.null(sphericity) ||
-      !"valence:n_back" %in% rownames(sphericity)) {
-    stop("Mauchly's test could not be estimated for the interaction.")
+  if (N < 2) {
+    message("ANOVA skipped: fewer than two analysed participants.")
+    return(NULL)
   }
 
-  mauchly_p <- sphericity["valence:n_back", "p-value"]
+  tryCatch({
+    fit <- afex::aov_ez(
+      id = "participant_id",
+      dv = "errors",
+      data = as.data.frame(counts),
+      within = c("valence", "n_back"),
+      anova_table = list(correction = "none", es = "none")
+    )
 
-  if (!is.finite(mauchly_p)) {
-    stop("Mauchly's test did not produce a valid p value.")
-  }
+    mauchly_p <- NA_real_
+    correction <- "none"
 
-  correction <- if (mauchly_p < .05) "GG" else "none"
+    if (N >= 5) {
+      sphericity <- tryCatch(
+        suppressWarnings(
+          summary(
+            fit$Anova,
+            multivariate = FALSE,
+            univariate = TRUE
+          )$sphericity.tests
+        ),
+        error = function(e) NULL
+      )
 
-  tab <- as.data.frame(anova(fit, correction = correction, es = "none"))
-  interaction <- tab["valence:n_back", , drop = FALSE]
+      if (!is.null(sphericity) &&
+          "valence:n_back" %in% rownames(sphericity)) {
+        mauchly_p <- sphericity["valence:n_back", "p-value"]
+      }
+    }
 
-  tibble(N = n_distinct(counts$participant_id),
-         statistic = interaction[["F"]],
-         df1 = interaction[["num Df"]],
-         df2 = interaction[["den Df"]],
-         p = interaction[["Pr(>F)"]],
-         mauchly_p = mauchly_p,
-         correction = correction)
+    if (is.finite(mauchly_p)) {
+      correction <- if (mauchly_p < .05) "GG" else "none"
+    } else {
+      message("Mauchly's test unavailable: reporting an uncorrected pilot ANOVA.")
+    }
+
+    tab <- as.data.frame(
+      anova(fit, correction = correction, es = "none")
+    )
+    interaction <- tab["valence:n_back", , drop = FALSE]
+
+    if (!is.finite(interaction[["F"]]) ||
+        !is.finite(interaction[["Pr(>F)"]])) {
+      message("ANOVA skipped: the interaction F statistic or p value is undefined.")
+      return(NULL)
+    }
+
+    tibble(
+      N = N,
+      statistic = interaction[["F"]],
+      df1 = interaction[["num Df"]],
+      df2 = interaction[["den Df"]],
+      p = interaction[["Pr(>F)"]],
+      mauchly_p = mauchly_p,
+      correction = correction
+    )
+  }, error = function(e) {
+    message("ANOVA skipped: ", conditionMessage(e))
+    NULL
+  })
 }
 
 # Mean error counts and ±1 SE across participants.
@@ -775,10 +805,7 @@ if (!is.null(rep)) {
               df2 = sprintf("%.2f", df2),
               p = format.pval(p, digits = 2, eps = 0.001)) |>
     knitr::kable(caption = paste(
-      "Valence × difficulty interaction on error counts.",
-      "Original degrees of freedom are Greenhouse–Geisser corrected.",
-      "Replication results use the correction when Mauchly's test indicates violated sphericity (p < .05).",
-      "Original partial eta squared is reconstructed from rounded published statistics."
+      "Valence × difficulty interaction on error counts. Original degrees of freedom are Greenhouse–Geisser corrected. Replication results use the correction when Mauchly’s test indicates violated sphericity (p < .05). When Mauchly’s test cannot be estimated, uncorrected replication results are shown for pilot debugging only. Original partial eta squared is reconstructed from rounded published statistics."
     ))
 } else {
   message("Replication statistics not computed yet: need at least two analysed participants with complete data across all nine conditions.")
