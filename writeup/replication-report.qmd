@@ -56,20 +56,19 @@ experiment_id_phase2 <- "framing-demo-phase2"
 ```{r}
 #| label: original-study
 #| include: false
-# The original study's numbers, entered once and used by the power analysis, the Key
-# statistics table, and the side-by-side figures. Replace these with your original study's
-# values, and say in a comment exactly where in the paper each one comes from.
-#
-# Tversky & Kahneman (1981), Problem 1 (gain frame, N = 152): 72% chose the certain program,
-# 28% the risky one. Problem 2 (loss frame, N = 155): 22% certain, 78% risky. The paper
-# reports percentages, so the counts below are reconstructed from them.
+# Kopf et al. (2013), Results: "2. Behavioral Results" (p. 5).
+# Valence × difficulty interaction on errors:
+# F(2.8, 82.1) = 3.7, p = .016.
+# Degrees of freedom are Greenhouse–Geisser corrected.
+# Analysed N = 30, reported in Materials and Methods: "1. Participants" (p. 2).
+
 original <- tibble(
-  condition = c("gain", "loss"),
-  n         = c(152, 155),
-  risky     = round(c(0.28 * 152, 0.78 * 155))
+  N         = 30,
+  statistic = 3.7,
+  df1       = 2.8,
+  df2       = 82.1,
+  p         = .016
 )
-original_p_gain <- original$risky[original$condition == "gain"] / original$n[original$condition == "gain"]
-original_p_loss <- original$risky[original$condition == "loss"] / original$n[original$condition == "loss"]
 ```
 
 ::: {.callout-note appearance="simple" icon=false}
@@ -115,9 +114,6 @@ adapt its code and say so in the caption.
 #| label: analysis-functions
 #| code-summary: "Show the analysis code (shared by Phase 1 and Phase 2)"
 
-#| label: analysis-functions
-#| code-summary: "Show the analysis code (shared by Phase 1 and Phase 2)"
-
 # Requires tidyverse and afex.
 # Assumed trial columns: participant_id, task, practice, block_id,
 # valence, n_back, correct. Rename these to match your export.
@@ -127,9 +123,11 @@ adapt its code and say so in the caption.
 
 # Load one phase's exported data and apply the exclusion rule.
 # Returns NULL if that phase has not been exported yet.
+
 read_phase <- function(id) {
   dir <- file.path("..", "data", "raw", id)
   if (!all(file.exists(file.path(dir, c("participants.csv", "trials.csv"))))) return(NULL)
+
   participants <- read_csv(file.path(dir, "participants.csv"), show_col_types = FALSE)
   trials       <- read_csv(file.path(dir, "trials.csv"), show_col_types = FALSE)
   errors_path  <- file.path(dir, "errors.csv")
@@ -137,22 +135,64 @@ read_phase <- function(id) {
 
   complete <- participants |> filter(completed)
 
-  # Proposed exclusion rule: replace with your preregistered rule.
-  # Here: completed study, all nine conditions present, no missing correctness.
-  # Also verify expected trial/block counts once your task design is finalized.
-  nb <- trials |>
+  # Assumes task = "n_back", practice = TRUE/FALSE,
+  # is_target = TRUE/FALSE, and response contains the recorded key.
+  # Keep " " as a valid space-bar response; do not trim whitespace.
+  main <- trials |>
     filter(task == "n_back", practice == FALSE) |>
+    mutate(
+      is_target = as.logical(is_target),
+      responded = !is.na(response) &
+        !as.character(response) %in% c("", "null", "NA")
+    )
+
+  if (anyNA(main$is_target)) {
+    stop("Every main-task trial needs a valid is_target value.")
+  }
+
+  nb <- main |>
     group_by(participant_id) |>
-    summarise(n_cells = n_distinct(valence, n_back),
-              missing_correct = any(is.na(correct)),
-              .groups = "drop")
+    summarise(
+      n_responses = sum(responded),
+      n_non_target = sum(!is_target),
+      n_false_alarms = sum(responded & !is_target),
+      .groups = "drop"
+    ) |>
+    mutate(
+      false_alarm_rate = if_else(
+        n_non_target > 0,
+        n_false_alarms / n_non_target,
+        NA_real_
+      )
+    )
 
-  checked <- complete |> left_join(nb, by = "participant_id")
-  keep <- checked |> filter(n_cells == 9, !missing_correct)
+  checked <- complete |>
+    left_join(nb, by = "participant_id") |>
+    mutate(
+      n_responses = coalesce(n_responses, 0L),
+      no_response = n_responses == 0,
+      excessive_responses = false_alarm_rate > 0.80
+    )
 
-  list(participants = participants, trials = trials, errors = errors,
-       complete = complete, keep = keep)
+  # A participant who responded needs non-target trials
+  # to evaluate the second exclusion rule.
+  if (any(checked$n_responses > 0 & is.na(checked$false_alarm_rate))) {
+    stop("Cannot evaluate exclusions: a responding participant has no recorded non-target trials.")
+  }
+
+  keep <- checked |>
+    filter(!no_response, !(excessive_responses %in% TRUE))
+
+  list(
+    participants = participants,
+    trials = trials,
+    errors = errors,
+    complete = complete,
+    checked = checked,
+    keep = keep
+  )
 }
+
 
 # Error counts per block, averaged across blocks within each participant's
 # valence × difficulty condition. Each participant contributes nine values.
@@ -170,8 +210,7 @@ error_counts <- function(d) {
 }
 
 # Key test: valence × difficulty interaction in a 3 × 3 repeated-measures ANOVA.
-# Both factors are within participants. Report Greenhouse–Geisser-corrected df.
-# Returns NULL until at least two analysed participants are available.
+# Apply Greenhouse–Geisser only when Mauchly's test indicates violated sphericity.
 interaction_test <- function(counts) {
   if (n_distinct(counts$participant_id) < 2) return(NULL)
 
@@ -180,17 +219,36 @@ interaction_test <- function(counts) {
     dv = "errors",
     data = as.data.frame(counts),
     within = c("valence", "n_back"),
-    anova_table = list(correction = "GG", es = "none")
+    anova_table = list(correction = "none", es = "none")
   )
 
-  tab <- as.data.frame(anova(fit, correction = "GG", es = "none"))
+  sphericity <- summary(
+    fit$Anova, multivariate = FALSE, univariate = TRUE
+  )$sphericity.tests
+
+  if (is.null(sphericity) ||
+      !"valence:n_back" %in% rownames(sphericity)) {
+    stop("Mauchly's test could not be estimated for the interaction.")
+  }
+
+  mauchly_p <- sphericity["valence:n_back", "p-value"]
+
+  if (!is.finite(mauchly_p)) {
+    stop("Mauchly's test did not produce a valid p value.")
+  }
+
+  correction <- if (mauchly_p < .05) "GG" else "none"
+
+  tab <- as.data.frame(anova(fit, correction = correction, es = "none"))
   interaction <- tab["valence:n_back", , drop = FALSE]
 
   tibble(N = n_distinct(counts$participant_id),
          statistic = interaction[["F"]],
          df1 = interaction[["num Df"]],
          df2 = interaction[["den Df"]],
-         p = interaction[["Pr(>F)"]])
+         p = interaction[["Pr(>F)"]],
+         mauchly_p = mauchly_p,
+         correction = correction)
 }
 
 # Mean error counts and ±1 SE across participants, matching Figure 2's bar type.
@@ -243,9 +301,6 @@ have_phase2 <- !is.null(phase2)
 #| label: key-stats
 #| echo: false
 
-# Original valence × difficulty interaction reported by Kopf et al. (2013).
-original <- tibble(N = 30, statistic = 3.7, df1 = 2.8, df2 = 82.1, p = .016)
-
 fmt_row <- function(study, r) {
   if (is.null(r)) {
     return(tibble(Study = study, N = "", `ANOVA comparison` = "valence * difficulty",
@@ -263,8 +318,8 @@ bind_rows(
   fmt_row("Phase 1: replication", if (have_data) interaction_test(error_counts(phase1))),
   fmt_row("Phase 2: extension", if (have_phase2) interaction_test(error_counts(phase2)))
 ) |>
-  knitr::kable(align = "lr lrrrr" |> gsub(" ", "", x = _),
-               caption = "Key comparison: valence × difficulty interaction on error counts in a 3 × 3 repeated-measures ANOVA, with Greenhouse–Geisser-corrected degrees of freedom.")
+  knitr::kable(align = "lrlrrrr",
+               caption = "Key comparison: valence × difficulty interaction on error counts in a 3 × 3 repeated-measures ANOVA. Original degrees of freedom are Greenhouse–Geisser corrected. Replication results use the correction when Mauchly's test indicates violated sphericity (p < .05).")
 ```
 
 # Phase 1: Replication
@@ -299,8 +354,10 @@ what the course's participant budget allowed.
 #| label: power
 
 # Assumptions: same standardized interaction effect and Greenhouse–Geisser
-# correction as the original study. Results are approximate and depend on
-# these assumptions. Uses the original statistics defined in key-stats.
+# epsilon as the original study. Results are approximate and depend on
+# these assumptions. Uses original statistics defined in original-study.
+# This approximates the GG-corrected test, rather than the complete
+# Mauchly-based conditional-correction procedure.
 
 original_effect <- original$statistic * original$df1 / original$df2
 epsilon <- original$df2 / (4 * (original$N - 1))
@@ -514,8 +571,7 @@ analyses here too.
 
 **Key analysis of interest.** On more difficult n-back tasks, more errors are made on blocks with negatively-valenced words as stimuli. This is tested as a 3 by 3 (emotional valence of word (positive, negative, neutral) by difficulty of task (easy, medium, hard/1-back, 2-back, 3-back)) repeated within-subjects ANOVA. The reported statistics include the F-value with degrees of freedom and the p-value on the interaction effect of word valence on error rate (the degrees of freedom are corrected with Greenhouse-Geisser method as described in the original paper).
 
-**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." The original paper does, however, exclude based on psychiatric disorders.
-As such, I will exclude participants based on their neuropsychiatric results as well on the MINI, and add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the condiitons as follows:
+**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." I will add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the condiitons as follows:
 - Participants who never press the response key during any block of the n-back task
 - Participants who respond on more than 80% of non-target trials (i.e., the word they see is NOT the same as the word n trials before)
 
@@ -573,12 +629,12 @@ if (!have_data) {
 #| eval: !expr have_data
 # Loaded and excluded by read_phase(), under Key statistics, so Phase 1 and Phase 2 share one
 # exclusion rule.
-participants  <- phase1$participants
-trials        <- phase1$trials
-errors        <- phase1$errors
-complete      <- phase1$complete
-keep          <- phase1$keep
-n_no_response <- phase1$n_no_response
+participants <- phase1$participants
+trials       <- phase1$trials
+errors       <- phase1$errors
+complete     <- phase1$complete
+keep         <- phase1$keep
+checked      <- phase1$checked
 ```
 
 ```{r}
@@ -591,11 +647,9 @@ bind_rows(
   keep         |> mutate(step = "Passed exclusion criteria")
 ) |>
   mutate(step = factor(step, levels = funnel_levels)) |>
-  count(step, condition, .drop = FALSE) |>
-  pivot_wider(names_from = condition, values_from = n, values_fill = 0) |>
-  mutate(Total = rowSums(across(-step))) |>
+  count(step, name = "Total", .drop = FALSE) |>
   rename(Step = step) |>
-  knitr::kable(caption = "Participants at each step, by frame. Differences between frames in attrition or exclusion are a threat to validity and should be discussed.")
+  knitr::kable(caption = "Participants at each step. All analysed participants complete the within-subjects valence × difficulty design.")
 ```
 
 ```{r}
@@ -603,13 +657,21 @@ bind_rows(
 #| eval: !expr have_data
 #| echo: false
 #| results: asis
-cat(sprintf("Of %d participants who started, %d completed the study and %d met the exclusion criteria.",
+cat(sprintf("Of %d participants who started, %d completed the study and %d were retained after exclusions.",
             nrow(participants), nrow(complete), nrow(keep)))
+
+n_no_response <- sum(checked$no_response %in% TRUE)
+n_excessive_responses <- sum(checked$excessive_responses %in% TRUE)
+
 if (n_no_response > 0) {
-  cat(sprintf(" %d completed session(s) contained no response to any speeded trial and were excluded on that basis.",
+  cat(sprintf(" %d completed session(s) contained no response during the main n-back task and were excluded.",
               n_no_response))
 }
-if (nrow(keep) == 0) cat(" No participants remain for analysis yet, so the results below are empty.")
+if (n_excessive_responses > 0) {
+  cat(sprintf(" %d completed session(s) contained responses on more than 80%% of non-target trials and were excluded.",
+              n_excessive_responses))
+}
+if (nrow(keep) == 0) cat(" No participants remain for analysis yet.")
 cat("\n")
 ```
 
@@ -677,7 +739,8 @@ if (!is.null(result)) {
       caption = paste(
         "Confirmatory analysis: valence × difficulty interaction on error counts",
         "in a 3 × 3 repeated-measures ANOVA.",
-        "Degrees of freedom are Greenhouse–Geisser corrected."
+        "Greenhouse–Geisser correction is applied when Mauchly's test indicates",
+        "violated sphericity (p < .05)."
       )
     )
 } else {
@@ -712,7 +775,8 @@ if (!is.null(rep)) {
               p = format.pval(p, digits = 2, eps = 0.001)) |>
     knitr::kable(caption = paste(
       "Valence × difficulty interaction on error counts.",
-      "Degrees of freedom are Greenhouse–Geisser corrected.",
+      "Original degrees of freedom are Greenhouse–Geisser corrected.",
+      "Replication results use the correction when Mauchly's test indicates violated sphericity (p < .05).",
       "Original partial eta squared is reconstructed from rounded published statistics."
     ))
 } else {
@@ -780,10 +844,10 @@ caption. If the original reported no variability, say so rather than leaving it 
 ```{r}
 #| label: fig-comparison
 #| eval: !expr have_data
-#| fig-cap: "Percentage choosing the risky program in each frame, original study and Phase 1 replication. Error bars are 95% confidence intervals."
+#| fig-cap: "Mean number of errors per block by word valence and task difficulty in the Phase 1 replication. Error bars indicate ±1 standard error across participants."
 #| fig-width: 7
 #| fig-height: 4
-comparison_plot(Original = original, `Phase 1: replication` = risky)
+comparison_plot(`Phase 1: replication` = error_counts(phase1))
 ```
 
 ### Exploratory analyses
@@ -798,18 +862,25 @@ they generate hypotheses rather than test them.
 ```{r}
 #| label: exploratory-rt
 #| eval: !expr have_data
-ld <- trials |>
-  filter(task == "lexical_decision", participant_id %in% keep$participant_id) |>
-  mutate(correct = as.logical(correct), is_word = as.logical(is_word), rt = as.numeric(rt)) |>
-  filter(correct, !is.na(rt))
+nb <- trials |>
+  filter(task == "n_back", practice == FALSE,
+         participant_id %in% keep$participant_id) |>
+  mutate(correct = as.logical(correct),
+         is_target = as.logical(is_target),
+         rt = as.numeric(rt)) |>
+  filter(correct, is_target, is.finite(rt), rt > 0)
 
-if (nrow(ld) > 0) {
-  ld |>
-    group_by(`Real word` = is_word) |>
-    summarise(`Mean RT (ms)` = round(mean(rt)), `SD (ms)` = round(sd(rt)), Trials = n(), .groups = "drop") |>
-    knitr::kable(caption = "Exploratory: lexical-decision response times, correct trials only.")
+if (nrow(nb) > 0) {
+  nb |>
+    group_by(participant_id, valence, n_back) |>
+    summarise(mean_rt = mean(rt), .groups = "drop") |>
+    group_by(valence, n_back) |>
+    summarise(`Mean RT (ms)` = round(mean(mean_rt)),
+              `SD of participant means (ms)` = round(sd(mean_rt)),
+              Participants = n(), .groups = "drop") |>
+    knitr::kable(caption = "Exploratory: n-back response times for correct targets, averaged within participants before summarizing across participants.")
 } else {
-  message("No correct lexical-decision trials with a response time yet.")
+  message("No correct n-back target responses with a valid response time yet.")
 }
 ```
 
