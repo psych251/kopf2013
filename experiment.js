@@ -17,8 +17,8 @@
  *   Checks: instruction check (multiple choice) repeats the instructions until answered correctly.
  *
  * Timeline
- *   1. consent  2. welcome  3. n-back instructions + instruction check
- *   4. practice (1-, 2-, 3-back)  5. main task (27 blocks)  6. feedback  7. debrief
+ *   1. consent  2. demographics  3. welcome  4. n-back instructions + instruction check
+ *   5. practice (1-, 2-, 3-back)  6. main task (27 blocks)  7. feedback  8. debrief
  */
 
 // ---------------------------------------------------------------------------
@@ -54,7 +54,7 @@ const EXPERIMENT = {
   requires_keyboard: true,
 
   // DEBUGGING ONLY. Shows a "Skip section" button in the corner that ends the current section
-  // (welcome, n-back instructions, practice, main task, feedback) and jumps to the next one.
+  // (demographics, welcome, n-back instructions, practice, main task, feedback) and jumps to the next one.
   // Consent and debrief cannot be skipped. Skipped trials are saved with `debug_skipped: true`
   // and every row carries `debug_skip_buttons`, so debug runs are easy to drop.
   // MUST be false before real data collection.
@@ -264,7 +264,31 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 2. Instructions
+  // 2. Demographics (bare minimum: age and gender, saved in data.response)
+  // -------------------------------------------------------------------------
+  const demographics = {
+    type: jsPsychSurvey,
+    survey_json: {
+      showQuestionNumbers: "off",
+      completeText: "Continue",
+      pages: [
+        {
+          elements: [
+            // The consent text promises participants may decline any question, so nothing here is required.
+            { type: "text", name: "age", title: "How old are you?", inputType: "number", min: 18, max: 120 },
+            {
+              type: "radiogroup", name: "gender", title: "What is your gender?",
+              choices: ["Woman", "Man", "Non-binary"], showOtherItem: true, showNoneItem: true, noneText: "Prefer not to say",
+            },
+          ],
+        },
+      ],
+    },
+    data: { task: "demographics" },
+  };
+
+  // -------------------------------------------------------------------------
+  // 3. Instructions
   // -------------------------------------------------------------------------
   const instructions = {
     type: jsPsychInstructions,
@@ -280,7 +304,7 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 3. n-back instructions and instruction check (repeats until answered correctly)
+  // 4. n-back instructions and instruction check (repeats until answered correctly)
   // -------------------------------------------------------------------------
   const nbackInstructions = {
     type: jsPsychInstructions,
@@ -469,7 +493,7 @@ const NBACK = {
   }
 
   // -------------------------------------------------------------------------
-  // 4. Practice: one neutral block of each load, in order 1-, 2-, 3-back
+  // 5. Practice: one neutral block of each load, in order 1-, 2-, 3-back
   // -------------------------------------------------------------------------
   const practiceBlocks = NBACK.levels.map((n, i) =>
     makeBlock("practice", i + 1, NBACK.levels.length, n, "neutral", PRACTICE_WORDS,
@@ -484,7 +508,7 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 5. Main task: 3 blocks per load x valence cell (27), n-back level changes every block
+  // 6. Main task: 3 blocks per load x valence cell (27), n-back level changes every block
   // -------------------------------------------------------------------------
   const cells = [];
   for (const n of NBACK.levels) {
@@ -499,7 +523,7 @@ const NBACK = {
   saver.updateParticipant({ block_order: mainBlocks.map((b) => `${b.n_back}-${b.valence}`) });
 
   // -------------------------------------------------------------------------
-  // 6. Feedback on the participant experience (optional free text)
+  // 7. Feedback on the participant experience (optional free text)
   // -------------------------------------------------------------------------
   const feedback = {
     type: jsPsychSurveyText,
@@ -512,7 +536,7 @@ const NBACK = {
   };
 
   // -------------------------------------------------------------------------
-  // 7. Debrief
+  // 8. Debrief
   // -------------------------------------------------------------------------
   const debrief = {
     type: jsPsychHtmlButtonResponse,
@@ -530,6 +554,7 @@ const NBACK = {
 
   await jsPsych.run([
     consent,
+    section("demographics", [demographics]),
     section("welcome", [instructions]),
     section("n-back instructions", [instructionLoop]),
     section("practice", practiceBlocks.flatMap(blockTimeline)),

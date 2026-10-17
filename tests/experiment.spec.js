@@ -52,10 +52,14 @@ async function installNbackResponder(page) {
 async function runToDebrief(page) {
   // 1. consent
   await page.getByRole("button", { name: "I agree to participate" }).click();
-  // 2. welcome (two pages)
+  // 2. demographics
+  await page.locator('[data-name="age"] input').fill("34");
+  await page.locator('[data-name="gender"]').getByText("Woman", { exact: true }).click();
+  await page.locator('input[value="Continue"]').click();
+  // 3. welcome (two pages)
   await page.locator("#jspsych-instructions-next").click();
   await page.locator("#jspsych-instructions-next").click();
-  // 3. n-back instructions (three pages) + check: wrong first, which repeats the instructions
+  // 4. n-back instructions (three pages) + check: wrong first, which repeats the instructions
   for (let i = 0; i < 3; i++) await page.locator("#jspsych-instructions-next").click();
   await page.getByText("After every second word", { exact: true }).click();
   await page.locator('input[value="Continue"]').click();
@@ -65,9 +69,9 @@ async function runToDebrief(page) {
   await page.locator('input[value="Continue"]').click();
   await installNbackResponder(page);
   await page.getByRole("button", { name: "Start the practice" }).click();
-  // 4. practice (3 blocks) and 5. main task (27 blocks) run on timers
+  // 5. practice (3 blocks) and 6. main task (27 blocks) run on timers
   await page.getByRole("button", { name: "Start the main task" }).click({ timeout: 60000 });
-  // 6. feedback (free text)
+  // 7. feedback (free text)
   await page.locator("textarea").fill("Robot participant says hi.", { timeout: 120000 });
   await page.locator("#jspsych-survey-text-next").click();
   await page.getByRole("button", { name: "Finish" }).waitFor({ state: "visible", timeout: 30000 });
@@ -75,7 +79,7 @@ async function runToDebrief(page) {
 
 async function runThroughExperiment(page) {
   await runToDebrief(page);
-  // 7. debrief
+  // 8. debrief
   await page.getByRole("button", { name: "Finish" }).click();
   await expect(page.getByText("All done")).toBeVisible({ timeout: 30000 });
 }
@@ -155,6 +159,9 @@ test.describe("experiment", () => {
     expect(docs.length).toBe(Math.ceil(pdoc.n_trials / chunkSize));
     const trials = docs.flatMap((d) => d.trials).sort((a, b) => a.trial_index - b.trial_index);
     expect(trials.length).toBe(pdoc.n_trials);
+
+    const demo = trials.find((t) => t.task === "demographics");
+    expect(demo.response).toEqual({ age: 34, gender: "Woman" });
 
     const fb = trials.find((t) => t.task === "feedback");
     expect(fb.response.feedback).toBe("Robot participant says hi.");
