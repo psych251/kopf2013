@@ -115,39 +115,34 @@ adapt its code and say so in the caption.
 #| code-summary: "Show the analysis code (shared by Phase 1 and Phase 2)"
 
 # Requires tidyverse and afex.
-# Assumed trial columns: participant_id, task, practice, block_id,
-# valence, n_back, correct. Rename these to match your export.
-# task = "n_back"; valence = "negative"/"positive"/"neutral"; n_back = 1/2/3.
-# Include only evaluable word trials: missed targets and false alarms are errors;
-# correctly withholding a response is correct.
 
-# Load one phase's exported data and apply the exclusion rule.
+# Load exported data and adapt column names to the analysis functions.
 # Returns NULL if that phase has not been exported yet.
-
 read_phase <- function(id) {
   dir <- file.path("..", "data", "raw", id)
   if (!all(file.exists(file.path(dir, c("participants.csv", "trials.csv"))))) return(NULL)
 
   participants <- read_csv(file.path(dir, "participants.csv"), show_col_types = FALSE)
-  trials       <- read_csv(file.path(dir, "trials.csv"), show_col_types = FALSE)
-  errors_path  <- file.path(dir, "errors.csv")
+  trials <- read_csv(file.path(dir, "trials.csv"), show_col_types = FALSE) |>
+    mutate(
+      task = recode(task, "nback" = "n_back"),
+      practice = phase == "practice",
+      block_id = block,
+      is_target = as.logical(is_target),
+      responded = as.logical(responded),
+      correct = as.logical(correct)
+    )
+
+  errors_path <- file.path(dir, "errors.csv")
   errors <- if (file.exists(errors_path)) read_csv(errors_path, show_col_types = FALSE) else tibble()
 
   complete <- participants |> filter(completed)
 
-  # Assumes task = "n_back", practice = TRUE/FALSE,
-  # is_target = TRUE/FALSE, and response contains the recorded key.
-  # Keep " " as a valid space-bar response; do not trim whitespace.
   main <- trials |>
-    filter(task == "n_back", practice == FALSE) |>
-    mutate(
-      is_target = as.logical(is_target),
-      responded = !is.na(response) &
-        !as.character(response) %in% c("", "null", "NA")
-    )
+    filter(task == "n_back", practice == FALSE)
 
-  if (anyNA(main$is_target)) {
-    stop("Every main-task trial needs a valid is_target value.")
+  if (anyNA(main$is_target) || anyNA(main$responded)) {
+    stop("Every main-task trial needs valid is_target and responded values.")
   }
 
   nb <- main |>
@@ -174,12 +169,12 @@ read_phase <- function(id) {
       excessive_responses = false_alarm_rate > 0.80
     )
 
-  # A participant who responded needs non-target trials
-  # to evaluate the second exclusion rule.
   if (any(checked$n_responses > 0 & is.na(checked$false_alarm_rate))) {
     stop("Cannot evaluate exclusions: a responding participant has no recorded non-target trials.")
   }
 
+  # Exclude completed participants with no main-task responses or
+  # responses on more than 80% of main-task non-target trials.
   keep <- checked |>
     filter(!no_response, !(excessive_responses %in% TRUE))
 
@@ -193,10 +188,9 @@ read_phase <- function(id) {
   )
 }
 
-
 # Error counts per block, averaged across blocks within each participant's
-# valence × difficulty condition. Each participant contributes nine values.
-# Confirm this block-aggregation choice before preregistration.
+# valence × difficulty condition.
+# The original paper does not clearly specify this aggregation step.
 error_counts <- function(d) {
   d$trials |>
     filter(task == "n_back", practice == FALSE,
@@ -251,7 +245,7 @@ interaction_test <- function(counts) {
          correction = correction)
 }
 
-# Mean error counts and ±1 SE across participants, matching Figure 2's bar type.
+# Mean error counts and ±1 SE across participants.
 error_se <- function(x) {
   se <- sd(x) / sqrt(length(x))
   tibble(mean_errors = mean(x),
@@ -848,14 +842,21 @@ both panels, label which is which, and cite the source of the original values or
 caption. If the original reported no variability, say so rather than leaving it out silently.
 :::
 
+::: {layout-ncol=2}
+
+![Original: Kopf et al. (2013), Figure 2. Error bars indicate standard errors. Source: doi:10.1371/journal.pone.0075598.g002.](images/original-figure.png)
+
 ```{r}
 #| label: fig-comparison
 #| eval: !expr have_data
-#| fig-cap: "Mean number of errors per block by word valence and task difficulty in the Phase 1 replication. Error bars indicate ±1 standard error across participants."
-#| fig-width: 7
+#| fig-cap: "Phase 1 replication: mean errors per block by word valence and task difficulty. Error bars indicate ±1 SE across participants."
+#| fig-width: 6
 #| fig-height: 4
 comparison_plot(`Phase 1: replication` = error_counts(phase1))
 ```
+
+:::
+
 
 ### Exploratory analyses
 
@@ -927,6 +928,7 @@ challenges raised by you or the original authors.
 :::
 
 # Phase 2: Extension
+<!-- Phase 2 code is disabled until this phase begins. -->
 
 ::: {.callout-tip icon=false}
 ## Guidance: choosing your extension
@@ -997,6 +999,7 @@ have it and the original's otherwise.
 
 ```{r}
 #| label: phase2-power
+#| eval: false
 phase2_n_per_group <- 150   # planned analysed participants per condition in Phase 2
 
 p1_counts <- if (have_data) risky_counts(phase1)
@@ -1056,6 +1059,7 @@ set `experiment_id_phase2` at the top of this file to match, so the two phases' 
 ```{r}
 #| label: phase2-notice
 #| echo: false
+#| eval: false
 #| results: asis
 if (!have_phase2) {
   cat(
@@ -1070,7 +1074,8 @@ if (!have_phase2) {
 
 ```{r}
 #| label: phase2-results
-#| eval: !expr have_phase2
+#| eval: false
+##| eval: !expr have_phase2
 p2_counts <- risky_counts(phase2)
 p2_stats  <- diff_ci(p2_counts)
 cat(sprintf("Phase 2: %d started, %d completed, %d analysed.\n",
@@ -1085,7 +1090,8 @@ if (!is.null(p2_stats)) {
 
 ```{r}
 #| label: fig-phase2
-#| eval: !expr have_phase2
+#| eval: false
+##| eval: !expr have_phase2
 #| fig-cap: "Percentage choosing the risky program in each frame: original study, Phase 1 replication, and Phase 2 extension. Error bars are 95% confidence intervals."
 #| fig-width: 8
 #| fig-height: 4
