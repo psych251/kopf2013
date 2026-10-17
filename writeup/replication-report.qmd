@@ -518,14 +518,15 @@ As for Materials: quote the original where you can and point out the exceptions.
 sequence a participant experiences, from consent to debrief, and how long it takes.
 :::
 - First, the participant views the consent screen and consents to participate in the study.
-- Second, the participant sees the welcome page orienting them to what they should expect from the study.
-- Third, the participant goes through a series of instruction screens where they are instructed how to do a 1-back, 2-back, and 3-back task. They are then presented with question that checks their understanding of the instructions. A correct answer will lead to a 'correct' screen, whereas a wrong answer will send them back to instructions.
-- Fourth, the participant enters the practice block, which follows the same structure as the original study: "Before the experiment, participants practised the task using
+- Second, the participant completes a demographics page.
+- Third, the participant sees the welcome page orienting them to what they should expect from the study.
+- Fourth, the participant goes through a series of instruction screens where they are instructed how to do a 1-back, 2-back, and 3-back task. They are then presented with question that checks their understanding of the instructions. A correct answer will lead to a 'correct' screen, whereas a wrong answer will send them back to instructions.
+- Fifth, the participant enters the practice block, which follows the same structure as the original study: "Before the experiment, participants practised the task using
 one block of each difficulty (1-, 2-, 3-back). Before the task
 itself, completed a training phase, where they saw 30 consecutive neutral words in the 1-back condition, the same
 neutral words in the 2-back condition and in the 3-back
 condition."
-- Fifth, the participant enters the main task block, which follows the same structure as the original study: "Participants saw blocks of ten consecutive words presented
+- Sixth, the participant enters the main task block, which follows the same structure as the original study: "Participants saw blocks of ten consecutive words presented
 on a computer screen. Two of these words were used as cues
 and were followed by a target word which was presented one,
 two or three words after the cue word, to vary the difficulty level
@@ -551,7 +552,7 @@ was also 500 ms long. The difficulty level of the blocks was
 pseudorandomized, and difficulty levels always varied from one
 block to another. In the pause preceding a block, the instruction
 for the task (1-, 2-, 3-back) was presented on the screen."
-- Sixth, the participant sees a screen with an optional free-text box where they can write any feedback about their participation in the study.
+- Seventh, the participant sees a screen with an optional free-text box where they can write any feedback about their participation in the study.
 - Last, the participant sees the debrief screen with a 'Finish' button that saves the data.
 The entire task is expected to take around 25 minutes.
 
