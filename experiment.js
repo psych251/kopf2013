@@ -88,18 +88,18 @@ const TIMING = FAST
   : { word_ms: 500, soa_ms: 1000, pause_ms: 20000 };
 
 // ---------------------------------------------------------------------------
-// Stimuli (copied from materials/nback-word-ratings.csv and
-// materials/nback-practice-word-ratings.csv; materials/ itself is not published)
+// Stimuli (copied from materials/nback-zmatched-experiment-word-ratings.csv and
+// materials/nback-zmatched-practice-word-ratings.csv)
 // ---------------------------------------------------------------------------
 const WORDS = {
-  positive: ["heaven", "beauty", "cuddle", "rabbit", "couple", "guitar", "riches", "sundae", "kitten", "giggle"],
-  negative: ["coffin", "trauma", "malice", "damage", "orphan", "duress", "demise", "dismay", "poison", "maggot"],
-  neutral: ["bonnet", "column", "packet", "saddle", "vessel", "ticket", "shovel", "funnel", "barrel", "thesis"],
+  positive: ["access", "orchid", "muffin", "riches", "yogurt", "season", "vision", "silver", "cuddle", "kitten"],
+  negative: ["trauma", "deceit", "lesion", "maggot", "hazard", "danger", "famine", "battle", "spider", "zombie"],
+  neutral: ["domain", "cannon", "module", "fiddle", "gender", "method", "duffel", "tassel", "copter", "retail"],
 };
 const PRACTICE_WORDS = [
-  "bucket", "mallet", "pallet", "docket", "kennel", "pellet", "cannon", "cocoon", "deacon", "beacon",
-  "bottle", "button", "buckle", "fiddle", "middle", "paddle", "border", "corner", "barber", "tanker",
-  "banker", "bunker", "kernel", "sermon", "tassel", "filter", "binder", "jumper", "sensor", "roster",
+  "corner", "raffle", "tycoon", "jigsaw", "makeup", "ballot", "barrel", "ravine", "beacon", "factor",
+  "fender", "motive", "runway", "novice", "lawman", "bunker", "sinker", "rating", "camper", "barley",
+  "banker", "skewer", "seaman", "kidney", "offset", "shaman", "shovel", "nuance", "primer", "intern",
 ];
 
 const NBACK = {
