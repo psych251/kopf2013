@@ -58,7 +58,7 @@ const EXPERIMENT = {
   // Consent and debrief cannot be skipped. Skipped trials are saved with `debug_skipped: true`
   // and every row carries `debug_skip_buttons`, so debug runs are easy to drop.
   // MUST be false before real data collection.
-  debug_skip_buttons: true,
+  debug_skip_buttons: false,
 };
 
 // True on anything with a mouse, trackpad, or stylus, including laptops with touchscreens.
