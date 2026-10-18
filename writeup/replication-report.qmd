@@ -76,7 +76,7 @@ original <- tibble(
 
 - **Original paper:** Kopf, J. et al. (2013). The Effect of Emotional Content on Brain Activation and the Late Positive Potential in a Word n-back Task. *PloS One*. 2013 Sep 26;8(9):e75598. <https://doi.org/10.1371/journal.pone.0075598>
 - **Preregistration:** [OSF registration](https://osf.io/XXXXX) *(registered YYYY-MM-DD, before final data collection)*
-- **Live experiment:** <https://psych251.github.io/your-repo/> (take the study exactly as participants did)
+- **Live experiment:** < https://psych251.github.io/kopf2013/> (take the study exactly as participants did)
 - **Repository:** <https://github.com/psych251/kopf2013> (experiment code, data, and this report)
 :::
 
@@ -99,16 +99,6 @@ responsibility for the content of this report, including any errors introduced b
 
 # Key statistics
 
-::: {.callout-tip icon=false}
-## Guidance
-
-One row per study for the key comparison: the original, your Phase 1 replication, and your
-Phase 2 extension. The table fills itself in from the data as each phase is exported, using the
-analysis code below (open "Show the analysis code"), which is shared by both phases so they are
-analysed identically. Edit that code once, here, to match your design and preregistered
-exclusion rule. On the scientific-extension track, the Phase 2 row reports the new comparison:
-adapt its code and say so in the caption.
-:::
 
 ```{r}
 #| label: analysis-functions
@@ -418,21 +408,12 @@ knitr::kable(power_rows,
 ```
 
 
-In this instance, 2.5 times the original sample would be 75 participants (per condition and total, since this is a within-participant study).
+The original sample size was intended to be 32 participants, but 2 were excluded, for a final sample size of 30 participants. The original effect size was F(2.8, 82.1) = 3.7 (which we can calculate as partial f2 = 0.126). The table above shows the sample size needed to detect this effect size. In this instance, 2.5 times the original sample would be 75 participants (per condition and total, since this is a within-participant study). We will use the 2.5 times original sample method and recruit 75 participants. Since the task takes about 25 minutes and is $10 per hour, the budget will be around $312.50 for the first replication.
 
 ### Planned sample
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Planned sample size and stopping rule, sampling frame (for example, "US residents on Prolific,
-fluent in English, 18 or older"), known demographics, and any preselection or screening. The
-stopping rule should be data-independent: "collect until N participants pass the exclusion
-criteria below" rather than "until the result is clear".
-:::
-
-The planned sample is US residents on Prolific, fluent in English, 18 or older. There will also be filtering questions to ensure participants are right-handed and they will be asked to indicate if they have any neuropsychiatric disorders (confirmed later by MINI assessment), to be consistent with the original study.
-The planned sample size is 75 participants, following the 2.5* original sample rule that is a widely-used alternative to using the original sample size (Simonsohn, 2015). I will collect until 75 participants pass the exclusion criteria above (i.e., if they have a disorder indicated by the MINI assessment), and the exclusion criteria below described in the Analysis plan.
+The planned sample is US residents on Prolific, fluent in English, 18 or older. There are no filtering questions for the first replication.
+The planned sample size is 75 participants, following the 2.5* original sample rule that is a widely-used alternative to using the original sample size (Simonsohn, 2015). I will collect until 75 participants pass the exclusion criteria described below in the Analysis plan (i.e., 75 participants that actually completed the experiment correctly and paid attention).
 
 ### Materials
 
@@ -485,7 +466,7 @@ equal working memory load for all words, phoneme length (5),
 syllable length (2), and number of letters (6) were matched as
 well." Negative words with their English translations were: "TYPHUS (typhus), BEFEHL (order), ARREST (warrant), TYRANN (tyrant), GREUEL (horror), SEENOT (distress at sea), HORROR (horror), TRAUMA (trauma), TERROR (terror), and UNHEIL (calamity)". Positive words were "RETTER (savior), WISSEN (knowledge), MUTTER (mother), GEWINN (win), GEFÜHL (feeling), HIMMEL (heaven), FRIEDE (peace), URLAUB (vacation), SOMMER (summer), and FREUND (friend)". Neutral workds were: "ABLAUF (sequence), AFFEKT (affect), BANNER (banner), GERUCH (smell), KELLER (basement), LOSUNG (watchword), STELLE (position), ZEUGIN (eye witness), AKZENT (accent), and INHALT (content)."
 
-- We used as close to equivalent words in English as possible, matched on the same valence/arousal conditions and matched on phoneme/word length as in the original study. Words were taken from Warriner et al.'s "Norms of valence, arousal, and dominance for 13,915 English lemmas" (https://doi.org/10.3758/s13428-012-0314-x) (downloaded supplementary CSV file with words and their ratings). We asked Chatgpt (GPT-6.2 Sol Medium) to come up with a list of words with similar arousal/valence as the German words in the original study, and matched on word length, etc., then verified the output by checking the CSV itself and the original paper to see if it matched the original study. Please see the tables below for the word lists. Note that English words use a 1-9 scale, as opposed to the -3 to +3 valence scores of the Berlin Affective Word List.
+- We used as close to equivalent words in English as possible, matched on the same valence/arousal conditions and matched on phoneme/word length as in the original study. Words were taken from Warriner et al.'s "Norms of valence, arousal, and dominance for 13,915 English lemmas" (https://doi.org/10.3758/s13428-012-0314-x) (downloaded supplementary CSV file with words and their ratings). We asked Chatgpt (GPT-6.2 Sol Medium) to come up with a list of words with similar arousal/valence as the German words in the original study (z-scored the scales to then compare their ratings), and matched on word length, etc., then verified the output by checking the CSV itself and the original paper to see if it matched the original study. Please see the tables below for the word lists. Note that English words use a 1-9 scale, as opposed to the -3 to +3 valence scores of the Berlin Affective Word List, which is why we had ChatGPT do z-scoring for the comparison with the German word list.
 
 | Negative word | Valence | Arousal | Valence z | Arousal z |
 |---|---:|---:|---:|---:|
@@ -532,21 +513,9 @@ well." Negative words with their English translations were: "TYPHUS (typhus), BE
 | Positive | 7.104 | 4.080 | 1.600 | -0.146 |
 | Neutral | 4.970 | 4.165 | -0.074 | -0.051 |
 
-Raw valence and arousal ratings use Warriner et al.'s 1–9 scales. Z-scores
-were calculated separately for arousal and valence using the full Warriner
-database's mean and sample SD Category means were
-calculated before rounding individual z-scores. (This was calculated with ChatGPT).
-I manually assessed phoneme/syllable length.
 
 ### Procedure
 
-::: {.callout-tip icon=false}
-
-## Guidance
-
-As for Materials: quote the original where you can and point out the exceptions. Describe the
-sequence a participant experiences, from consent to debrief, and how long it takes.
-:::
 - First, the participant views the consent screen and consents to participate in the study.
 - Second, the participant completes a demographics page.
 - Third, the participant sees the welcome page orienting them to what they should expect from the study.
@@ -585,46 +554,26 @@ for the task (1-, 2-, 3-back) was presented on the screen."
 - Seventh, the participant sees a screen with an optional free-text box where they can write any feedback about their participation in the study.
 - Last, the participant sees the debrief screen with a 'Finish' button that saves the data.
 The entire task is expected to take around 25 minutes.
+- The only exception between our study and the original study is adding in particular consent, demographics, feedback, and debrief screens. The task was the same except the words were in English, as described above.
 
 ### Analysis plan
 
-::: {.callout-tip icon=false}
-## Guidance
+**Key analysis of interest.** On more difficult n-back tasks, more errors are made on blocks with negatively-valenced words as stimuli. This is tested as a 3 by 3 (emotional valence of word (positive, negative, neutral) by difficulty of task (easy, medium, hard/1-back, 2-back, 3-back)) repeated within-subjects ANOVA. The reported statistics include the F-value with degrees of freedom and the p-value on the interaction effect of word valence on error rate (the degrees of freedom are corrected with Greenhouse-Geisser method if sphericity is violated as described in the original paper).
 
-The analysis strategy, as close to the original as possible: data cleaning rules, exclusion
-rules, covariates, and the model or test. Original papers often do not spell this out; say
-where you had to make a choice and what you chose.
+**Exploratory analysis.** We also looked at the n-back response times based on valence, as described in the Exploratory analyses section below.
 
-**State the key analysis of interest explicitly.** That is the single test your replication
-stands or falls on, and it must match your preregistration. You can pre-specify additional
-analyses here too.
-:::
-
-**Key analysis of interest.** On more difficult n-back tasks, more errors are made on blocks with negatively-valenced words as stimuli. This is tested as a 3 by 3 (emotional valence of word (positive, negative, neutral) by difficulty of task (easy, medium, hard/1-back, 2-back, 3-back)) repeated within-subjects ANOVA. The reported statistics include the F-value with degrees of freedom and the p-value on the interaction effect of word valence on error rate (the degrees of freedom are corrected with Greenhouse-Geisser method as described in the original paper).
-
-**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." I will add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the condiitons as follows:
-- Participants who never press the response key during any block of the n-back task
-- Participants who respond on more than 80% of non-target trials (i.e., the word they see is NOT the same as the word n trials before)
+**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." I will add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the condiitons as follows: Pparticipants who never press the response key during any block of the n-back task; participants who respond on more than 80% of non-target trials (i.e., the word they see is NOT the same as the word n trials before)
 
 ### Differences from the original study
-
-::: {.callout-tip icon=false}
-## Guidance
-
-Every known difference in sample, setting, procedure, materials, and analysis, one per row.
-Minimizing differences is the goal, but some always remain. For each one, say whether it is
-expected to matter, based on claims in the original article or later research on when the
-effect does and does not appear. The rows below are the demo's real differences and show the
-level of detail expected; replace them with yours.
-:::
 
 | Aspect | Original study | This replication | Expected to matter? |
 |---|---|---|---|
 | Sample | Thirty-two healthy right-handed volunteers (in person), German speakers| Adults recruited on Prolific, English speakers from the U.S.| Possibly. Even if our English words matched the Berlin Affective Word list exactly, cultural differences between German and U.S. participants could elicity varying results |
-| Setting | Online task; participants wore fNIRS equipment and EEG electrodes while completing task | Online, unsupervised, on the participant's own computer, without fNIRS or EEG equipment | Possibly. Wearing the equipment (which is likely uncomfortable) could have some influence on participants' overall n-back task performance |
+| Setting | Online task but conducted in person; participants wore fNIRS equipment and EEG electrodes while completing task | Online, unsupervised, on the participant's own computer, without fNIRS or EEG equipment | Possibly. Wearing the equipment (which is likely uncomfortable) could have some influence on participants' overall n-back task performance |
 | Wording | German words from Berlin Affective Word list | English words from Warriner et al. | Unlikely. English words matched conditions of words from original study; they were matched on word and syllable length, arousal, and words were chosen to have equivalent valences to the German word set used in the original study. |
-| Design | Within subjects, pseudo-randomized condition order | Between subjects, pseudo-randomized condition order | The study specifies a psuedo-randomized condition order whereby the difficulty level had to vary from one block after the other, so in the replicated study the exact order for each subject will be different than the exact order for each subject in the original study. This is unlikely to have any effect. |
+| Design | Within subjects, pseudo-randomized condition order | Within subjects, pseudo-randomized condition order | The study specifies a psuedo-randomized condition order whereby the difficulty level had to vary from one block after the other, so in the replicated study the exact order for each subject will be different than the exact order for each subject in the original study. This is unlikely to have any effect. |
 | Response | Keyboard press (space key on standard keyboard) | Keyboard press (space key; however we cannot regulate what kind of keyboard participants have access to at home) | Unlikely. Most participants will probably have a standard keyboard, and any keyboard has a space bar on it.|
+| Exclusion criteria | Not specified other than "technical reasons" | Excluded based on participants who never pressed response key during any n-back block, or responded on more than 80% of non-target trials | Unlikely. If the original study included participants who weren't paying attention, then it would have likely made the effect size less significant. However, the original study took place in person, so experimenters would have likely noticed if a participant wasn't paying attention (these checks matter more for our online study on Prolific). |
 | Other tasks | Tasks were completed alongside fluid and crystallized intelligence questionnaires, a clinician interview to assess for neuropsychiatric diagnoses, and a emotions/mood questionnaire (PANAS). | Instructions were followed by an instruction comprehension check, all additional surveys were excluded | Unlikely: the instruction check is meant to ensure participants understand the task, not to change any results. Given the within-subjects design for the behavioral result, the additional surveys (intelligence, mood, neuropsychitric diagnoses), which were included in original study to confirm that there were comparable intelligence levels in the sample and that there were no neuropsychiatric diagnoses, should not have any effect on within-subjects ANOVA results. |
 
 ### Methods addendum (post data collection)
@@ -740,14 +689,6 @@ belong here even if they seem minor, together with the reason.
 
 ### Data preparation
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Data preparation follows the analysis plan. Loading and exclusions are done by the shared
-analysis code under Key statistics (open "Show the analysis code"). Describe anything you did to
-the data beyond that.
-:::
-
 ### Confirmatory analysis
 
 ```{r}
@@ -833,41 +774,9 @@ if (!is.null(rep)) {
     format.pval(rep$p, digits = 2, eps = .001) |>
       paste0("p ", if (rep$p < .001) "" else "= ", x = _)))
 
-  cat("No effect-size confidence interval was calculated. Assess replication using both the interaction magnitude and the pattern of errors across conditions, rather than statistical significance alone.\n")
 }
 ```
 
-::: {.callout-tip icon=false}
-## Guidance: show the original next to your replication
-
-**Every report should have a figure that puts the original finding and your replication side by
-side.** It is the single most informative thing in a replication report: a reader can see at a
-glance whether the effect came back, and how its size compares. Make it however you can, in
-roughly this order of preference:
-
-1. **Replot both from numbers.** Enter the original's summary statistics (means or proportions,
-   with SDs, SEs or CIs, and Ns) in the original-study chunk at the top of this file, and plot
-   them on the same axes as yours. That is what the demo figure below does.
-2. **Replot the original from its data**, if the authors shared it or it is in an open
-   repository, using exactly the same plotting code as for your own data.
-3. **Show the original figure as an image** next to yours if neither is possible. Save a
-   screenshot of it, for example as `writeup/images/original-figure.png`, and lay the two out
-   in columns:
-
-   ````markdown
-   ::: {layout-ncol=2}
-   ![Original: Tversky & Kahneman (1981), Figure 1](images/original-figure.png)
-
-   ```{{r}}
-   # your replication plot here
-   ```
-   :::
-   ````
-
-Whichever you choose, use the same measure, scale, condition order and error-bar meaning for
-both panels, label which is which, and cite the source of the original values or figure in the
-caption. If the original reported no variability, say so rather than leaving it out silently.
-:::
 
 ::: {layout-ncol=2}
 
@@ -886,13 +795,6 @@ comparison_plot(`Phase 1: replication` = error_counts(phase1))
 
 
 ### Exploratory analyses
-
-::: {.callout-tip icon=false}
-## Guidance
-
-Any follow-up analyses (optional). Label them clearly as exploratory: they were not planned, so
-they generate hypotheses rather than test them.
-:::
 
 ```{r}
 #| label: exploratory-rt
@@ -1148,7 +1050,7 @@ should be public; if something cannot be shared, say what and why.
 :::
 
 The experiment code, the anonymized data, and the code that produces every number in this
-report are available at <https://github.com/psych251/your-repo>. The experiment itself can be
-taken at <https://psych251.github.io/your-repo/>. The data contain no names, email addresses,
+report are available at <https://github.com/psych251/kopf2013/>. The experiment itself can be
+taken at <https://psych251.github.io/kopf2013/>. The data contain no names, email addresses,
 IP addresses, or Prolific IDs; the file linking participants to their Prolific IDs is kept
 privately for payment and is not shared.
