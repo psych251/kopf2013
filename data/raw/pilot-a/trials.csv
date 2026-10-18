@@ -1737,3 +1737,872 @@ IWXO6LtqBMViyY3ORHnjnSXYDp22-86ef9159,668,debrief,,html-button-response,11257,0,
       If you have questions about this research, contact
       <a href=""mailto:stanfordpsych251@gmail.com"">stanfordpsych251@gmail.com</a>.
       Press the button to save your responses and finish.</p>",2.1.0,pilot-a,within-subjects,false,false,,,,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,0,consent,,html-button-response,7438,0,7455,"
+      <div class=""consent"">
+        <h2>Consent</h2>
+        <p>By answering the following questions, you are participating in a study being performed by
+        cognitive scientists in the Stanford Department of Psychology. If you have questions about
+        this research, please contact us at <a href=""mailto:stanfordpsych251@gmail.com"">stanfordpsych251@gmail.com</a>.
+        You must be at least 18 years old to participate. Your participation in this research is
+        voluntary. You may decline to answer any or all of the following questions. You may decline
+        further participation, at any time, without adverse consequences. Your anonymity is assured;
+        the researchers who have requested your participation will not receive any personal
+        information about you.</p>
+      </div>",2.1.0,pilot-a,within-subjects,false,false,true,,,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,1,demographics,,survey,3979,"{""age"":26,""gender"":""Man""}",11528,,4.0.0,pilot-a,within-subjects,false,false,,,,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,2,instructions,,instructions,7666,,19199,,2.1.0,pilot-a,within-subjects,false,false,,"[{""page_index"":0,""viewing_time"":3886},{""page_index"":1,""viewing_time"":3780}]",,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,3,instructions,,instructions,36142,,55344,,2.1.0,pilot-a,within-subjects,false,false,,"[{""page_index"":0,""viewing_time"":12910},{""page_index"":1,""viewing_time"":14252},{""page_index"":2,""viewing_time"":8980}]",,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,4,instruction_check,,survey,13839,"{""two_back_rule"":""two_back""}",69199,,4.0.0,pilot-a,within-subjects,false,false,,,1,true,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,5,instruction_check_feedback,,html-button-response,1726,0,70930,<p>Correct. Next come the three practice blocks.</p>,2.1.0,pilot-a,within-subjects,false,false,,,,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,6,nback_pause,,html-keyboard-response,,,90947,"
+        <div class=""nback-pause"">
+          <p>Practice block 1 of 3</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,practice,1,1,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,7,nback,,html-keyboard-response,,,91961,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,1,sinker,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,8,nback,,html-keyboard-response,,,92972,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,2,camper,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,9,nback,,html-keyboard-response,386, ,93983,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,3,camper,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,10,nback,,html-keyboard-response,,,94997,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,4,barrel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,11,nback,,html-keyboard-response,,,96005,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,5,motive,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,12,nback,,html-keyboard-response,315, ,97020,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,6,motive,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,13,nback,,html-keyboard-response,,,98028,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,7,intern,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,14,nback,,html-keyboard-response,,,99036,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,8,seaman,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,15,nback,,html-keyboard-response,276, ,100046,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,9,seaman,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,16,nback,,html-keyboard-response,,,101061,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,10,barley,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,17,nback,,html-keyboard-response,,,102075,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,11,sinker,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,18,nback,,html-keyboard-response,233, ,103077,,2.2.0,pilot-a,within-subjects,false,false,,,,false,practice,1,1,neutral,,12,banker,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,19,nback,,html-keyboard-response,,,104091,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,13,ravine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,20,nback,,html-keyboard-response,,,105102,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,14,primer,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,21,nback,,html-keyboard-response,,,106109,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,15,motive,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,22,nback,,html-keyboard-response,329, ,107122,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,16,motive,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,23,nback,,html-keyboard-response,,,108135,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,17,ravine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,24,nback,,html-keyboard-response,,,109150,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,18,raffle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,25,nback,,html-keyboard-response,,,110164,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,19,runway,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,26,nback,,html-keyboard-response,,,111174,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,20,offset,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,27,nback,,html-keyboard-response,,,112188,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,21,jigsaw,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,28,nback,,html-keyboard-response,,,113197,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,22,primer,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,29,nback,,html-keyboard-response,,,114207,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,23,tycoon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,30,nback,,html-keyboard-response,,,115217,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,24,barley,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,31,nback,,html-keyboard-response,,,116229,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,25,shovel,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,32,nback,,html-keyboard-response,417, ,117241,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,26,shovel,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,33,nback,,html-keyboard-response,,,118250,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,27,raffle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,34,nback,,html-keyboard-response,,,119265,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,28,seaman,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,35,nback,,html-keyboard-response,,,120274,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,29,novice,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,36,nback,,html-keyboard-response,414, ,121286,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,1,1,neutral,,30,novice,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,37,nback_pause,,html-keyboard-response,,,141301,"
+        <div class=""nback-pause"">
+          <p>Practice block 2 of 3</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,practice,2,2,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,38,nback,,html-keyboard-response,,,142307,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,1,kidney,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,39,nback,,html-keyboard-response,,,143315,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,2,rating,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,40,nback,,html-keyboard-response,,,144327,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,3,corner,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,41,nback,,html-keyboard-response,,,145336,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,4,intern,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,42,nback,,html-keyboard-response,429, ,146345,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,5,corner,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,43,nback,,html-keyboard-response,,,147360,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,6,offset,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,44,nback,,html-keyboard-response,,,148374,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,7,shovel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,45,nback,,html-keyboard-response,,,149388,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,8,makeup,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,46,nback,,html-keyboard-response,,,150400,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,9,raffle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,47,nback,,html-keyboard-response,,,151414,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,10,motive,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,48,nback,,html-keyboard-response,487, ,152426,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,11,raffle,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,49,nback,,html-keyboard-response,680, ,153427,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,12,motive,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,50,nback,,html-keyboard-response,,,154441,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,13,barrel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,51,nback,,html-keyboard-response,,,155451,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,14,skewer,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,52,nback,,html-keyboard-response,,,156466,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,15,factor,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,53,nback,,html-keyboard-response,441, ,157478,,2.2.0,pilot-a,within-subjects,false,false,,,,false,practice,2,2,neutral,,16,barley,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,54,nback,,html-keyboard-response,,,158492,,2.2.0,pilot-a,within-subjects,false,false,,,,false,practice,2,2,neutral,,17,factor,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,55,nback,,html-keyboard-response,,,159509,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,18,banker,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,56,nback,,html-keyboard-response,,,160524,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,19,jigsaw,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,57,nback,,html-keyboard-response,,,161537,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,20,seaman,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,58,nback,,html-keyboard-response,,,162546,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,21,novice,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,59,nback,,html-keyboard-response,,,163561,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,22,motive,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,60,nback,,html-keyboard-response,,,164569,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,23,rating,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,61,nback,,html-keyboard-response,,,165583,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,24,makeup,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,62,nback,,html-keyboard-response,497, ,166592,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,25,rating,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,63,nback,,html-keyboard-response,,,167606,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,26,tycoon,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,64,nback,,html-keyboard-response,,,168619,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,27,barrel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,65,nback,,html-keyboard-response,394, ,169629,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,28,tycoon,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,66,nback,,html-keyboard-response,,,170637,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,29,camper,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,67,nback,,html-keyboard-response,,,171646,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,2,2,neutral,,30,skewer,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,68,nback_pause,,html-keyboard-response,,,191657,"
+        <div class=""nback-pause"">
+          <p>Practice block 3 of 3</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,practice,3,3,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,69,nback,,html-keyboard-response,,,192662,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,1,novice,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,70,nback,,html-keyboard-response,,,193665,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,2,motive,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,71,nback,,html-keyboard-response,,,194670,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,3,barrel,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,72,nback,,html-keyboard-response,564, ,195673,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,4,novice,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,73,nback,,html-keyboard-response,,,196687,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,5,banker,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,74,nback,,html-keyboard-response,711, ,197692,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,6,barrel,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,75,nback,,html-keyboard-response,,,198697,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,7,kidney,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,76,nback,,html-keyboard-response,,,199699,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,8,lawman,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,77,nback,,html-keyboard-response,,,200704,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,9,novice,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,78,nback,,html-keyboard-response,,,201709,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,10,factor,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,79,nback,,html-keyboard-response,,,202724,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,11,corner,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,80,nback,,html-keyboard-response,,,203730,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,12,intern,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,81,nback,,html-keyboard-response,661, ,204734,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,13,factor,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,82,nback,,html-keyboard-response,,,205740,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,14,primer,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,83,nback,,html-keyboard-response,,,206747,,2.2.0,pilot-a,within-subjects,false,false,,,,false,practice,3,3,neutral,,15,intern,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,84,nback,,html-keyboard-response,,,207754,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,16,raffle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,85,nback,,html-keyboard-response,,,208761,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,17,fender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,86,nback,,html-keyboard-response,,,209766,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,18,skewer,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,87,nback,,html-keyboard-response,,,210772,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,19,camper,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,88,nback,,html-keyboard-response,,,211774,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,20,tycoon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,89,nback,,html-keyboard-response,,,212778,,2.2.0,pilot-a,within-subjects,false,false,,,,false,practice,3,3,neutral,,21,skewer,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,90,nback,,html-keyboard-response,,,213781,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,22,kidney,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,91,nback,,html-keyboard-response,,,214783,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,23,novice,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,92,nback,,html-keyboard-response,,,215786,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,24,offset,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,93,nback,,html-keyboard-response,513, ,216798,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,25,kidney,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,94,nback,,html-keyboard-response,,,217813,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,26,shaman,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,95,nback,,html-keyboard-response,,,218821,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,27,camper,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,96,nback,,html-keyboard-response,,,219823,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,28,jigsaw,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,97,nback,,html-keyboard-response,,,220835,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,29,beacon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,98,nback,,html-keyboard-response,,,221838,,2.2.0,pilot-a,within-subjects,false,false,,,,true,practice,3,3,neutral,,30,shovel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,99,practice_end,,html-button-response,11558,0,233400,"<h2>Practice complete</h2>
+      <p>The main task works the same way: 27 blocks, each preceded by a 20-second pause that
+      tells you which rule (1-, 2- or 3-back) to use. It takes about 18 minutes.</p>",2.1.0,pilot-a,within-subjects,false,false,,,,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,100,nback_pause,,html-keyboard-response,,,253406,"
+        <div class=""nback-pause"">
+          <p>Block 1 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,1,1,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,101,nback,,html-keyboard-response,,,254418,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,1,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,102,nback,,html-keyboard-response,,,255423,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,2,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,103,nback,,html-keyboard-response,,,256425,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,3,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,104,nback,,html-keyboard-response,,,257436,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,4,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,105,nback,,html-keyboard-response,,,258451,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,5,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,106,nback,,html-keyboard-response,,,259456,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,6,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,107,nback,,html-keyboard-response,,,260460,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,7,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,108,nback,,html-keyboard-response,,,261471,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,8,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,109,nback,,html-keyboard-response,,,262475,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,9,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,110,nback,,html-keyboard-response,,,263483,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,10,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,111,nback,,html-keyboard-response,,,264485,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,11,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,112,nback,,html-keyboard-response,,,265487,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,12,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,113,nback,,html-keyboard-response,,,266496,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,13,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,114,nback,,html-keyboard-response,,,267503,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,14,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,115,nback,,html-keyboard-response,,,268506,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,15,riches,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,116,nback,,html-keyboard-response,456, ,269512,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,16,riches,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,117,nback,,html-keyboard-response,,,270513,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,17,vision,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,118,nback,,html-keyboard-response,350, ,271524,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,18,vision,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,119,nback,,html-keyboard-response,,,272530,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,19,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,120,nback,,html-keyboard-response,,,273538,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,1,1,positive,,20,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,121,nback_pause,,html-keyboard-response,,,293549,"
+        <div class=""nback-pause"">
+          <p>Block 2 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,2,2,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,122,nback,,html-keyboard-response,,,294553,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,1,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,123,nback,,html-keyboard-response,,,295570,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,2,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,124,nback,,html-keyboard-response,,,296572,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,3,module,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,125,nback,,html-keyboard-response,,,297579,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,4,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,126,nback,,html-keyboard-response,574, ,298594,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,5,module,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,127,nback,,html-keyboard-response,,,299602,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,6,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,128,nback,,html-keyboard-response,,,300611,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,7,tassel,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,129,nback,,html-keyboard-response,,,301620,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,8,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,130,nback,,html-keyboard-response,410, ,302621,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,9,tassel,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,131,nback,,html-keyboard-response,,,303627,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,10,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,132,nback,,html-keyboard-response,,,304638,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,11,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,133,nback,,html-keyboard-response,,,305640,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,12,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,134,nback,,html-keyboard-response,,,306641,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,13,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,135,nback,,html-keyboard-response,,,307646,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,14,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,136,nback,,html-keyboard-response,,,308654,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,15,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,137,nback,,html-keyboard-response,,,309659,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,16,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,138,nback,,html-keyboard-response,,,310668,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,17,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,139,nback,,html-keyboard-response,,,311671,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,18,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,140,nback,,html-keyboard-response,,,312677,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,19,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,141,nback,,html-keyboard-response,,,313683,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,2,2,neutral,,20,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,142,nback_pause,,html-keyboard-response,,,333689,"
+        <div class=""nback-pause"">
+          <p>Block 3 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,3,3,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,143,nback,,html-keyboard-response,,,334696,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,1,fiddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,144,nback,,html-keyboard-response,,,335708,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,2,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,145,nback,,html-keyboard-response,,,336725,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,3,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,146,nback,,html-keyboard-response,489, ,337729,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,4,fiddle,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,147,nback,,html-keyboard-response,,,338733,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,5,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,148,nback,,html-keyboard-response,,,339738,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,6,cannon,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,149,nback,,html-keyboard-response,,,340740,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,7,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,150,nback,,html-keyboard-response,,,341757,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,8,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,151,nback,,html-keyboard-response,640, ,342762,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,9,cannon,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,152,nback,,html-keyboard-response,,,343771,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,10,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,153,nback,,html-keyboard-response,,,344781,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,11,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,154,nback,,html-keyboard-response,,,345787,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,12,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,155,nback,,html-keyboard-response,,,346797,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,13,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,156,nback,,html-keyboard-response,,,347802,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,14,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,157,nback,,html-keyboard-response,,,348811,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,15,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,158,nback,,html-keyboard-response,,,349819,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,16,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,159,nback,,html-keyboard-response,,,350827,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,17,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,160,nback,,html-keyboard-response,,,351838,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,18,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,161,nback,,html-keyboard-response,,,352844,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,19,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,162,nback,,html-keyboard-response,,,353845,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,3,3,neutral,,20,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,163,nback_pause,,html-keyboard-response,,,373847,"
+        <div class=""nback-pause"">
+          <p>Block 4 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,4,2,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,164,nback,,html-keyboard-response,,,374857,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,1,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,165,nback,,html-keyboard-response,,,375860,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,2,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,166,nback,,html-keyboard-response,,,376862,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,3,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,167,nback,,html-keyboard-response,,,377867,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,4,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,168,nback,,html-keyboard-response,,,378874,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,5,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,169,nback,,html-keyboard-response,,,379877,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,6,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,170,nback,,html-keyboard-response,,,380888,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,7,access,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,171,nback,,html-keyboard-response,,,381893,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,8,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,172,nback,,html-keyboard-response,,,382897,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,4,2,positive,,9,access,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,173,nback,,html-keyboard-response,,,383905,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,10,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,174,nback,,html-keyboard-response,,,384912,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,11,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,175,nback,,html-keyboard-response,,,385918,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,12,season,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,176,nback,,html-keyboard-response,669, ,386927,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,4,2,positive,,13,silver,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,177,nback,,html-keyboard-response,,,387936,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,4,2,positive,,14,season,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,178,nback,,html-keyboard-response,,,388945,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,15,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,179,nback,,html-keyboard-response,,,389947,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,16,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,180,nback,,html-keyboard-response,,,390956,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,17,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,181,nback,,html-keyboard-response,,,391967,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,18,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,182,nback,,html-keyboard-response,,,392970,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,19,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,183,nback,,html-keyboard-response,,,393986,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,4,2,positive,,20,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,184,nback_pause,,html-keyboard-response,,,413990,"
+        <div class=""nback-pause"">
+          <p>Block 5 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,5,1,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,185,nback,,html-keyboard-response,,,414992,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,1,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,186,nback,,html-keyboard-response,,,416003,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,2,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,187,nback,,html-keyboard-response,,,417007,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,3,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,188,nback,,html-keyboard-response,,,418016,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,4,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,189,nback,,html-keyboard-response,,,419024,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,5,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,190,nback,,html-keyboard-response,,,420034,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,6,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,191,nback,,html-keyboard-response,,,421043,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,7,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,192,nback,,html-keyboard-response,,,422047,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,8,cuddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,193,nback,,html-keyboard-response,386, ,423055,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,9,cuddle,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,194,nback,,html-keyboard-response,,,424064,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,10,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,195,nback,,html-keyboard-response,,,425078,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,11,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,196,nback,,html-keyboard-response,,,426094,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,12,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,197,nback,,html-keyboard-response,,,427103,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,13,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,198,nback,,html-keyboard-response,,,428109,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,14,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,199,nback,,html-keyboard-response,,,429118,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,15,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,200,nback,,html-keyboard-response,,,430134,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,16,muffin,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,201,nback,,html-keyboard-response,514, ,431144,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,17,muffin,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,202,nback,,html-keyboard-response,,,432153,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,18,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,203,nback,,html-keyboard-response,,,433162,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,19,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,204,nback,,html-keyboard-response,,,434168,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,5,1,positive,,20,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,205,nback_pause,,html-keyboard-response,,,454176,"
+        <div class=""nback-pause"">
+          <p>Block 6 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,6,3,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,206,nback,,html-keyboard-response,,,455184,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,1,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,207,nback,,html-keyboard-response,,,456193,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,2,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,208,nback,,html-keyboard-response,,,457202,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,3,duffel,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,209,nback,,html-keyboard-response,,,458208,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,4,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,210,nback,,html-keyboard-response,,,459210,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,5,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,211,nback,,html-keyboard-response,767, ,460217,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,6,duffel,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,212,nback,,html-keyboard-response,,,461222,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,7,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,213,nback,,html-keyboard-response,,,462225,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,8,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,214,nback,,html-keyboard-response,,,463231,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,9,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,215,nback,,html-keyboard-response,,,464235,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,10,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,216,nback,,html-keyboard-response,,,465240,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,11,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,217,nback,,html-keyboard-response,,,466253,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,12,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,218,nback,,html-keyboard-response,,,467259,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,13,fiddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,219,nback,,html-keyboard-response,,,468273,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,14,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,220,nback,,html-keyboard-response,,,469282,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,15,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,221,nback,,html-keyboard-response,967, ,470283,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,16,fiddle,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,222,nback,,html-keyboard-response,,,471294,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,17,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,223,nback,,html-keyboard-response,,,472301,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,18,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,224,nback,,html-keyboard-response,,,473303,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,19,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,225,nback,,html-keyboard-response,,,474310,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,6,3,neutral,,20,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,226,nback_pause,,html-keyboard-response,,,494321,"
+        <div class=""nback-pause"">
+          <p>Block 7 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,7,2,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,227,nback,,html-keyboard-response,,,495327,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,1,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,228,nback,,html-keyboard-response,,,496335,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,2,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,229,nback,,html-keyboard-response,,,497352,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,3,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,230,nback,,html-keyboard-response,,,498357,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,4,trauma,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,231,nback,,html-keyboard-response,,,499360,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,5,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,232,nback,,html-keyboard-response,702, ,500375,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,6,trauma,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,233,nback,,html-keyboard-response,,,501384,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,7,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,234,nback,,html-keyboard-response,,,502400,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,8,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,235,nback,,html-keyboard-response,,,503406,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,9,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,236,nback,,html-keyboard-response,,,504424,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,10,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,237,nback,,html-keyboard-response,,,505431,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,11,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,238,nback,,html-keyboard-response,,,506435,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,12,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,239,nback,,html-keyboard-response,,,507445,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,13,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,240,nback,,html-keyboard-response,,,508447,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,14,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,241,nback,,html-keyboard-response,,,509450,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,15,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,242,nback,,html-keyboard-response,,,510455,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,16,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,243,nback,,html-keyboard-response,,,511459,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,17,danger,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,244,nback,,html-keyboard-response,,,512472,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,18,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,245,nback,,html-keyboard-response,437, ,513477,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,19,danger,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,246,nback,,html-keyboard-response,,,514484,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,7,2,negative,,20,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,247,nback_pause,,html-keyboard-response,,,534486,"
+        <div class=""nback-pause"">
+          <p>Block 8 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,8,3,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,248,nback,,html-keyboard-response,,,535491,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,1,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,249,nback,,html-keyboard-response,,,536501,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,2,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,250,nback,,html-keyboard-response,,,537507,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,3,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,251,nback,,html-keyboard-response,,,538521,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,4,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,252,nback,,html-keyboard-response,,,539528,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,5,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,253,nback,,html-keyboard-response,,,540530,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,6,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,254,nback,,html-keyboard-response,,,541535,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,7,orchid,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,255,nback,,html-keyboard-response,,,542544,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,8,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,256,nback,,html-keyboard-response,,,543552,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,9,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,257,nback,,html-keyboard-response,419, ,544563,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,10,orchid,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,258,nback,,html-keyboard-response,,,545576,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,11,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,259,nback,,html-keyboard-response,,,546586,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,12,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,260,nback,,html-keyboard-response,,,547592,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,13,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,261,nback,,html-keyboard-response,,,548602,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,14,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,262,nback,,html-keyboard-response,,,549610,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,15,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,263,nback,,html-keyboard-response,,,550627,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,16,cuddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,264,nback,,html-keyboard-response,,,551635,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,17,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,265,nback,,html-keyboard-response,,,552651,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,18,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,266,nback,,html-keyboard-response,,,553662,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,8,3,positive,,19,cuddle,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,267,nback,,html-keyboard-response,,,554668,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,8,3,positive,,20,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,268,nback_pause,,html-keyboard-response,,,574686,"
+        <div class=""nback-pause"">
+          <p>Block 9 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,9,1,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,269,nback,,html-keyboard-response,,,575693,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,1,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,270,nback,,html-keyboard-response,,,576697,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,2,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,271,nback,,html-keyboard-response,,,577699,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,3,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,272,nback,,html-keyboard-response,,,578711,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,4,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,273,nback,,html-keyboard-response,,,579721,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,5,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,274,nback,,html-keyboard-response,,,580726,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,6,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,275,nback,,html-keyboard-response,,,581731,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,7,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,276,nback,,html-keyboard-response,,,582734,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,8,maggot,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,277,nback,,html-keyboard-response,522, ,583743,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,9,maggot,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,278,nback,,html-keyboard-response,,,584746,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,10,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,279,nback,,html-keyboard-response,,,585750,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,11,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,280,nback,,html-keyboard-response,,,586761,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,12,spider,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,281,nback,,html-keyboard-response,,,587768,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,9,1,negative,,13,spider,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,282,nback,,html-keyboard-response,,,588784,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,14,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,283,nback,,html-keyboard-response,,,589789,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,15,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,284,nback,,html-keyboard-response,,,590792,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,16,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,285,nback,,html-keyboard-response,,,591801,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,17,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,286,nback,,html-keyboard-response,,,592818,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,18,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,287,nback,,html-keyboard-response,,,593826,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,19,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,288,nback,,html-keyboard-response,,,594828,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,9,1,negative,,20,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,289,nback_pause,,html-keyboard-response,,,614835,"
+        <div class=""nback-pause"">
+          <p>Block 10 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,10,3,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,290,nback,,html-keyboard-response,,,615842,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,1,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,291,nback,,html-keyboard-response,,,616851,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,2,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,292,nback,,html-keyboard-response,,,617860,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,3,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,293,nback,,html-keyboard-response,,,618863,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,4,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,294,nback,,html-keyboard-response,,,619867,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,5,deceit,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,295,nback,,html-keyboard-response,683, ,620882,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,10,3,negative,,6,lesion,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,296,nback,,html-keyboard-response,,,621885,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,7,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,297,nback,,html-keyboard-response,592, ,622900,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,8,deceit,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,298,nback,,html-keyboard-response,,,623917,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,9,spider,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,299,nback,,html-keyboard-response,,,624925,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,10,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,300,nback,,html-keyboard-response,,,625933,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,11,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,301,nback,,html-keyboard-response,459, ,626942,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,12,spider,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,302,nback,,html-keyboard-response,,,627959,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,13,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,303,nback,,html-keyboard-response,,,628968,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,14,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,304,nback,,html-keyboard-response,,,629975,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,15,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,305,nback,,html-keyboard-response,,,630993,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,16,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,306,nback,,html-keyboard-response,,,632001,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,17,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,307,nback,,html-keyboard-response,,,633017,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,18,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,308,nback,,html-keyboard-response,,,634025,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,19,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,309,nback,,html-keyboard-response,,,635033,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,10,3,negative,,20,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,310,nback_pause,,html-keyboard-response,,,655042,"
+        <div class=""nback-pause"">
+          <p>Block 11 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,11,1,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,311,nback,,html-keyboard-response,,,656044,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,1,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,312,nback,,html-keyboard-response,,,657050,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,2,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,313,nback,,html-keyboard-response,,,658067,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,3,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,314,nback,,html-keyboard-response,,,659072,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,4,module,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,315,nback,,html-keyboard-response,505, ,660082,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,5,module,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,316,nback,,html-keyboard-response,,,661092,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,6,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,317,nback,,html-keyboard-response,,,662101,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,7,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,318,nback,,html-keyboard-response,,,663117,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,8,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,319,nback,,html-keyboard-response,,,664124,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,9,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,320,nback,,html-keyboard-response,,,665143,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,10,tassel,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,321,nback,,html-keyboard-response,392, ,666151,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,11,tassel,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,322,nback,,html-keyboard-response,,,667159,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,12,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,323,nback,,html-keyboard-response,,,668163,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,13,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,324,nback,,html-keyboard-response,,,669166,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,14,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,325,nback,,html-keyboard-response,,,670184,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,15,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,326,nback,,html-keyboard-response,,,671193,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,16,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,327,nback,,html-keyboard-response,,,672198,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,17,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,328,nback,,html-keyboard-response,,,673205,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,18,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,329,nback,,html-keyboard-response,,,674208,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,19,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,330,nback,,html-keyboard-response,,,675217,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,11,1,neutral,,20,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,331,nback_pause,,html-keyboard-response,,,695232,"
+        <div class=""nback-pause"">
+          <p>Block 12 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,12,2,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,332,nback,,html-keyboard-response,,,696241,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,1,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,333,nback,,html-keyboard-response,,,697248,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,2,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,334,nback,,html-keyboard-response,,,698256,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,3,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,335,nback,,html-keyboard-response,,,699273,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,4,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,336,nback,,html-keyboard-response,,,700281,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,5,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,337,nback,,html-keyboard-response,,,701295,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,6,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,338,nback,,html-keyboard-response,,,702309,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,7,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,339,nback,,html-keyboard-response,,,703324,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,8,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,340,nback,,html-keyboard-response,,,704331,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,9,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,341,nback,,html-keyboard-response,,,705336,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,10,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,342,nback,,html-keyboard-response,,,706342,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,11,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,343,nback,,html-keyboard-response,,,707358,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,12,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,344,nback,,html-keyboard-response,,,708361,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,13,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,345,nback,,html-keyboard-response,,,709366,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,14,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,346,nback,,html-keyboard-response,,,710373,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,15,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,347,nback,,html-keyboard-response,,,711389,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,16,muffin,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,348,nback,,html-keyboard-response,,,712392,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,17,yogurt,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,349,nback,,html-keyboard-response,,,713402,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,12,2,positive,,18,muffin,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,350,nback,,html-keyboard-response,515, ,714409,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,19,yogurt,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,351,nback,,html-keyboard-response,,,715417,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,12,2,positive,,20,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,352,nback_pause,,html-keyboard-response,,,735432,"
+        <div class=""nback-pause"">
+          <p>Block 13 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,13,3,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,353,nback,,html-keyboard-response,,,736444,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,1,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,354,nback,,html-keyboard-response,,,737457,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,2,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,355,nback,,html-keyboard-response,,,738464,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,3,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,356,nback,,html-keyboard-response,,,739476,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,4,domain,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,357,nback,,html-keyboard-response,,,740483,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,5,fiddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,358,nback,,html-keyboard-response,,,741490,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,6,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,359,nback,,html-keyboard-response,359, ,742499,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,7,domain,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,360,nback,,html-keyboard-response,,,743511,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,13,3,neutral,,8,fiddle,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,361,nback,,html-keyboard-response,,,744515,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,9,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,362,nback,,html-keyboard-response,,,745525,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,10,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,363,nback,,html-keyboard-response,,,746540,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,11,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,364,nback,,html-keyboard-response,,,747550,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,12,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,365,nback,,html-keyboard-response,,,748565,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,13,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,366,nback,,html-keyboard-response,,,749567,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,14,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,367,nback,,html-keyboard-response,,,750573,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,15,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,368,nback,,html-keyboard-response,,,751582,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,16,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,369,nback,,html-keyboard-response,,,752590,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,17,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,370,nback,,html-keyboard-response,,,753599,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,18,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,371,nback,,html-keyboard-response,,,754615,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,19,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,372,nback,,html-keyboard-response,,,755630,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,13,3,neutral,,20,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,373,nback_pause,,html-keyboard-response,,,775639,"
+        <div class=""nback-pause"">
+          <p>Block 14 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,14,2,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,374,nback,,html-keyboard-response,,,776640,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,1,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,375,nback,,html-keyboard-response,,,777656,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,2,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,376,nback,,html-keyboard-response,,,778661,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,3,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,377,nback,,html-keyboard-response,,,779662,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,4,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,378,nback,,html-keyboard-response,,,780665,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,5,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,379,nback,,html-keyboard-response,,,781673,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,6,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,380,nback,,html-keyboard-response,,,782684,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,7,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,381,nback,,html-keyboard-response,,,783691,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,8,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,382,nback,,html-keyboard-response,,,784701,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,9,cuddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,383,nback,,html-keyboard-response,,,785704,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,10,silver,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,384,nback,,html-keyboard-response,565, ,786707,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,11,cuddle,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,385,nback,,html-keyboard-response,415, ,787724,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,12,silver,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,386,nback,,html-keyboard-response,,,788732,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,13,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,387,nback,,html-keyboard-response,,,789746,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,14,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,388,nback,,html-keyboard-response,,,790754,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,15,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,389,nback,,html-keyboard-response,,,791759,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,16,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,390,nback,,html-keyboard-response,,,792769,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,17,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,391,nback,,html-keyboard-response,441, ,793777,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,14,2,positive,,18,kitten,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,392,nback,,html-keyboard-response,,,794790,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,19,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,393,nback,,html-keyboard-response,,,795798,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,14,2,positive,,20,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,394,nback_pause,,html-keyboard-response,,,815813,"
+        <div class=""nback-pause"">
+          <p>Block 15 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,15,3,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,395,nback,,html-keyboard-response,,,816815,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,1,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,396,nback,,html-keyboard-response,,,817830,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,2,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,397,nback,,html-keyboard-response,,,818844,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,3,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,398,nback,,html-keyboard-response,,,819856,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,4,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,399,nback,,html-keyboard-response,,,820860,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,5,lesion,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,400,nback,,html-keyboard-response,,,821870,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,6,danger,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,401,nback,,html-keyboard-response,,,822880,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,7,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,402,nback,,html-keyboard-response,558, ,823893,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,8,lesion,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,403,nback,,html-keyboard-response,,,824896,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,15,3,negative,,9,danger,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,404,nback,,html-keyboard-response,,,825907,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,10,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,405,nback,,html-keyboard-response,,,826910,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,11,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,406,nback,,html-keyboard-response,,,827921,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,12,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,407,nback,,html-keyboard-response,,,828937,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,13,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,408,nback,,html-keyboard-response,,,829943,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,14,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,409,nback,,html-keyboard-response,,,830951,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,15,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,410,nback,,html-keyboard-response,,,831962,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,16,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,411,nback,,html-keyboard-response,,,832965,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,17,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,412,nback,,html-keyboard-response,,,833973,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,18,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,413,nback,,html-keyboard-response,,,834986,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,19,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,414,nback,,html-keyboard-response,,,835990,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,15,3,negative,,20,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,415,nback_pause,,html-keyboard-response,,,855999,"
+        <div class=""nback-pause"">
+          <p>Block 16 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,16,1,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,416,nback,,html-keyboard-response,,,857014,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,1,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,417,nback,,html-keyboard-response,,,858020,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,2,danger,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,418,nback,,html-keyboard-response,460, ,859022,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,3,danger,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,419,nback,,html-keyboard-response,,,860037,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,4,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,420,nback,,html-keyboard-response,,,861045,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,5,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,421,nback,,html-keyboard-response,,,862055,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,6,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,422,nback,,html-keyboard-response,,,863062,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,7,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,423,nback,,html-keyboard-response,,,864064,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,8,trauma,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,424,nback,,html-keyboard-response,498, ,865065,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,9,trauma,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,425,nback,,html-keyboard-response,,,866068,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,10,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,426,nback,,html-keyboard-response,,,867072,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,11,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,427,nback,,html-keyboard-response,,,868075,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,12,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,428,nback,,html-keyboard-response,,,869089,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,13,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,429,nback,,html-keyboard-response,,,870097,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,14,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,430,nback,,html-keyboard-response,,,871105,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,15,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,431,nback,,html-keyboard-response,,,872112,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,16,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,432,nback,,html-keyboard-response,,,873124,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,17,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,433,nback,,html-keyboard-response,,,874137,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,18,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,434,nback,,html-keyboard-response,,,875145,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,19,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,435,nback,,html-keyboard-response,,,876159,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,16,1,negative,,20,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,436,nback_pause,,html-keyboard-response,,,896163,"
+        <div class=""nback-pause"">
+          <p>Block 17 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,17,2,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,437,nback,,html-keyboard-response,,,897172,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,1,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,438,nback,,html-keyboard-response,,,898180,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,2,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,439,nback,,html-keyboard-response,,,899186,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,3,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,440,nback,,html-keyboard-response,,,900197,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,4,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,441,nback,,html-keyboard-response,,,901205,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,5,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,442,nback,,html-keyboard-response,,,902211,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,6,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,443,nback,,html-keyboard-response,,,903221,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,7,gender,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,444,nback,,html-keyboard-response,,,904233,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,8,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,445,nback,,html-keyboard-response,610, ,905238,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,9,gender,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,446,nback,,html-keyboard-response,,,906241,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,10,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,447,nback,,html-keyboard-response,,,907249,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,11,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,448,nback,,html-keyboard-response,,,908254,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,12,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,449,nback,,html-keyboard-response,,,909262,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,13,method,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,450,nback,,html-keyboard-response,,,910266,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,14,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,451,nback,,html-keyboard-response,821, ,911272,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,15,method,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,452,nback,,html-keyboard-response,,,912278,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,16,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,453,nback,,html-keyboard-response,,,913283,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,17,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,454,nback,,html-keyboard-response,,,914297,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,18,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,455,nback,,html-keyboard-response,,,915303,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,19,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,456,nback,,html-keyboard-response,,,916305,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,17,2,neutral,,20,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,457,nback_pause,,html-keyboard-response,,,936313,"
+        <div class=""nback-pause"">
+          <p>Block 18 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,18,1,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,458,nback,,html-keyboard-response,,,937325,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,1,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,459,nback,,html-keyboard-response,,,938331,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,2,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,460,nback,,html-keyboard-response,,,939347,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,3,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,461,nback,,html-keyboard-response,,,940352,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,4,tassel,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,462,nback,,html-keyboard-response,434, ,941362,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,5,tassel,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,463,nback,,html-keyboard-response,,,942370,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,6,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,464,nback,,html-keyboard-response,,,943380,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,7,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,465,nback,,html-keyboard-response,,,944385,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,8,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,466,nback,,html-keyboard-response,,,945394,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,9,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,467,nback,,html-keyboard-response,,,946396,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,10,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,468,nback,,html-keyboard-response,,,947399,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,11,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,469,nback,,html-keyboard-response,,,948405,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,12,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,470,nback,,html-keyboard-response,,,949415,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,13,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,471,nback,,html-keyboard-response,,,950419,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,14,domain,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,472,nback,,html-keyboard-response,484, ,951428,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,15,domain,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,473,nback,,html-keyboard-response,,,952429,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,16,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,474,nback,,html-keyboard-response,,,953437,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,17,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,475,nback,,html-keyboard-response,,,954446,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,18,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,476,nback,,html-keyboard-response,,,955449,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,19,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,477,nback,,html-keyboard-response,,,956458,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,18,1,neutral,,20,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,478,nback_pause,,html-keyboard-response,,,976462,"
+        <div class=""nback-pause"">
+          <p>Block 19 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,19,2,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,479,nback,,html-keyboard-response,,,977474,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,1,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,480,nback,,html-keyboard-response,,,978476,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,2,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,481,nback,,html-keyboard-response,,,979486,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,3,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,482,nback,,html-keyboard-response,,,980495,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,4,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,483,nback,,html-keyboard-response,,,981505,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,5,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,484,nback,,html-keyboard-response,,,982508,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,6,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,485,nback,,html-keyboard-response,,,983516,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,7,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,486,nback,,html-keyboard-response,,,984522,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,8,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,487,nback,,html-keyboard-response,,,985538,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,9,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,488,nback,,html-keyboard-response,,,986546,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,10,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,489,nback,,html-keyboard-response,,,987555,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,11,module,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,490,nback,,html-keyboard-response,,,988564,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,12,cannon,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,491,nback,,html-keyboard-response,,,989577,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,19,2,neutral,,13,module,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,492,nback,,html-keyboard-response,430, ,990580,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,14,cannon,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,493,nback,,html-keyboard-response,,,991589,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,15,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,494,nback,,html-keyboard-response,,,992606,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,16,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,495,nback,,html-keyboard-response,,,993620,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,17,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,496,nback,,html-keyboard-response,,,994638,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,18,copter,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,497,nback,,html-keyboard-response,,,995647,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,19,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,498,nback,,html-keyboard-response,,,996659,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,19,2,neutral,,20,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,499,nback_pause,,html-keyboard-response,,,1016662,"
+        <div class=""nback-pause"">
+          <p>Block 20 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,20,1,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,500,nback,,html-keyboard-response,,,1017667,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,1,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,501,nback,,html-keyboard-response,,,1018671,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,2,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,502,nback,,html-keyboard-response,,,1019675,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,3,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,503,nback,,html-keyboard-response,,,1020679,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,4,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,504,nback,,html-keyboard-response,,,1021688,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,5,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,505,nback,,html-keyboard-response,,,1022696,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,6,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,506,nback,,html-keyboard-response,,,1023704,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,7,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,507,nback,,html-keyboard-response,,,1024717,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,8,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,508,nback,,html-keyboard-response,,,1025726,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,9,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,509,nback,,html-keyboard-response,,,1026730,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,10,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,510,nback,,html-keyboard-response,,,1027736,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,11,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,511,nback,,html-keyboard-response,,,1028747,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,12,spider,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,512,nback,,html-keyboard-response,419, ,1029755,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,13,spider,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,513,nback,,html-keyboard-response,,,1030771,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,14,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,514,nback,,html-keyboard-response,,,1031779,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,15,maggot,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,515,nback,,html-keyboard-response,521, ,1032793,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,16,maggot,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,516,nback,,html-keyboard-response,,,1033809,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,17,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,517,nback,,html-keyboard-response,,,1034816,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,18,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,518,nback,,html-keyboard-response,,,1035821,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,19,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,519,nback,,html-keyboard-response,,,1036829,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,20,1,negative,,20,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,520,nback_pause,,html-keyboard-response,,,1056844,"
+        <div class=""nback-pause"">
+          <p>Block 21 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,21,3,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,521,nback,,html-keyboard-response,,,1057853,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,1,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,522,nback,,html-keyboard-response,,,1058854,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,2,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,523,nback,,html-keyboard-response,,,1059862,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,3,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,524,nback,,html-keyboard-response,,,1060869,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,4,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,525,nback,,html-keyboard-response,,,1061880,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,5,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,526,nback,,html-keyboard-response,704, ,1062886,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,21,3,negative,,6,zombie,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,527,nback,,html-keyboard-response,,,1063894,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,7,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,528,nback,,html-keyboard-response,,,1064905,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,8,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,529,nback,,html-keyboard-response,,,1065911,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,9,maggot,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,530,nback,,html-keyboard-response,,,1066922,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,10,zombie,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,531,nback,,html-keyboard-response,,,1067931,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,11,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,532,nback,,html-keyboard-response,514, ,1068934,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,12,maggot,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,533,nback,,html-keyboard-response,,,1069945,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,21,3,negative,,13,zombie,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,534,nback,,html-keyboard-response,,,1070962,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,14,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,535,nback,,html-keyboard-response,,,1071969,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,15,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,536,nback,,html-keyboard-response,,,1072978,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,16,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,537,nback,,html-keyboard-response,,,1073995,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,17,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,538,nback,,html-keyboard-response,,,1075003,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,18,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,539,nback,,html-keyboard-response,,,1076011,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,19,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,540,nback,,html-keyboard-response,,,1077019,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,21,3,negative,,20,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,541,nback_pause,,html-keyboard-response,,,1097029,"
+        <div class=""nback-pause"">
+          <p>Block 22 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,22,2,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,542,nback,,html-keyboard-response,,,1098043,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,1,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,543,nback,,html-keyboard-response,,,1099046,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,2,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,544,nback,,html-keyboard-response,,,1100052,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,3,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,545,nback,,html-keyboard-response,,,1101054,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,4,battle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,546,nback,,html-keyboard-response,,,1102062,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,5,hazard,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,547,nback,,html-keyboard-response,,,1103075,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,22,2,negative,,6,battle,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,548,nback,,html-keyboard-response,,,1104077,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,7,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,549,nback,,html-keyboard-response,,,1105086,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,8,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,550,nback,,html-keyboard-response,,,1106095,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,9,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,551,nback,,html-keyboard-response,,,1107111,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,10,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,552,nback,,html-keyboard-response,,,1108112,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,11,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,553,nback,,html-keyboard-response,,,1109121,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,12,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,554,nback,,html-keyboard-response,,,1110128,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,13,hazard,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,555,nback,,html-keyboard-response,,,1111137,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,14,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,556,nback,,html-keyboard-response,628, ,1112151,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,15,hazard,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,557,nback,,html-keyboard-response,,,1113154,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,16,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,558,nback,,html-keyboard-response,,,1114163,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,17,famine,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,559,nback,,html-keyboard-response,,,1115178,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,18,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,560,nback,,html-keyboard-response,,,1116185,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,19,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,561,nback,,html-keyboard-response,,,1117194,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,22,2,negative,,20,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,562,nback_pause,,html-keyboard-response,,,1137210,"
+        <div class=""nback-pause"">
+          <p>Block 23 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,23,1,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,563,nback,,html-keyboard-response,,,1138227,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,1,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,564,nback,,html-keyboard-response,,,1139236,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,2,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,565,nback,,html-keyboard-response,,,1140244,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,3,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,566,nback,,html-keyboard-response,,,1141245,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,4,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,567,nback,,html-keyboard-response,,,1142252,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,5,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,568,nback,,html-keyboard-response,,,1143268,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,6,kitten,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,569,nback,,html-keyboard-response,471, ,1144271,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,7,kitten,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,570,nback,,html-keyboard-response,,,1145272,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,8,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,571,nback,,html-keyboard-response,,,1146287,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,9,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,572,nback,,html-keyboard-response,,,1147303,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,10,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,573,nback,,html-keyboard-response,,,1148313,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,11,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,574,nback,,html-keyboard-response,,,1149317,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,12,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,575,nback,,html-keyboard-response,,,1150326,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,13,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,576,nback,,html-keyboard-response,,,1151335,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,14,orchid,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,577,nback,,html-keyboard-response,,,1152343,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,23,1,positive,,15,orchid,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,578,nback,,html-keyboard-response,,,1153354,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,16,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,579,nback,,html-keyboard-response,,,1154368,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,17,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,580,nback,,html-keyboard-response,,,1155370,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,18,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,581,nback,,html-keyboard-response,,,1156376,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,19,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,582,nback,,html-keyboard-response,,,1157384,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,23,1,positive,,20,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,583,nback_pause,,html-keyboard-response,,,1177396,"
+        <div class=""nback-pause"">
+          <p>Block 24 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,24,3,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,584,nback,,html-keyboard-response,,,1178408,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,1,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,585,nback,,html-keyboard-response,,,1179414,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,2,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,586,nback,,html-keyboard-response,,,1180427,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,3,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,587,nback,,html-keyboard-response,,,1181444,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,4,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,588,nback,,html-keyboard-response,,,1182451,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,5,kitten,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,589,nback,,html-keyboard-response,,,1183459,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,6,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,590,nback,,html-keyboard-response,,,1184475,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,7,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,591,nback,,html-keyboard-response,870, ,1185482,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,8,kitten,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,592,nback,,html-keyboard-response,,,1186487,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,9,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,593,nback,,html-keyboard-response,,,1187494,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,10,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,594,nback,,html-keyboard-response,,,1188501,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,11,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,595,nback,,html-keyboard-response,,,1189510,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,12,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,596,nback,,html-keyboard-response,,,1190518,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,13,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,597,nback,,html-keyboard-response,,,1191522,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,14,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,598,nback,,html-keyboard-response,,,1192526,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,15,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,599,nback,,html-keyboard-response,,,1193543,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,16,kitten,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,600,nback,,html-keyboard-response,,,1194546,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,17,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,601,nback,,html-keyboard-response,,,1195556,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,18,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,602,nback,,html-keyboard-response,,,1196563,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,24,3,positive,,19,kitten,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,603,nback,,html-keyboard-response,,,1197575,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,24,3,positive,,20,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,604,nback_pause,,html-keyboard-response,,,1217585,"
+        <div class=""nback-pause"">
+          <p>Block 25 of 27</p>
+          <h2>1-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word just before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,25,1,neutral,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,605,nback,,html-keyboard-response,,,1218592,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,1,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,606,nback,,html-keyboard-response,,,1219605,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,2,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,607,nback,,html-keyboard-response,,,1220617,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,3,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,608,nback,,html-keyboard-response,,,1221628,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,4,module,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,609,nback,,html-keyboard-response,,,1222638,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,5,fiddle,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,610,nback,,html-keyboard-response,373, ,1223646,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,6,fiddle,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,611,nback,,html-keyboard-response,,,1224657,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,7,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,612,nback,,html-keyboard-response,,,1225668,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,8,cannon,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,613,nback,,html-keyboard-response,,,1226675,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,9,method,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,614,nback,,html-keyboard-response,,,1227682,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,25,1,neutral,,10,method,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,615,nback,,html-keyboard-response,,,1228691,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,11,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,616,nback,,html-keyboard-response,,,1229702,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,12,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,617,nback,,html-keyboard-response,,,1230711,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,13,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,618,nback,,html-keyboard-response,,,1231721,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,14,method,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,619,nback,,html-keyboard-response,,,1232729,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,15,gender,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,620,nback,,html-keyboard-response,,,1233741,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,16,fiddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,621,nback,,html-keyboard-response,,,1234755,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,17,tassel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,622,nback,,html-keyboard-response,,,1235759,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,18,retail,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,623,nback,,html-keyboard-response,,,1236776,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,19,domain,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,624,nback,,html-keyboard-response,,,1237784,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,25,1,neutral,,20,duffel,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,625,nback_pause,,html-keyboard-response,,,1257795,"
+        <div class=""nback-pause"">
+          <p>Block 26 of 27</p>
+          <h2>2-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word two words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,26,2,negative,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,626,nback,,html-keyboard-response,,,1258800,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,1,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,627,nback,,html-keyboard-response,,,1259810,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,2,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,628,nback,,html-keyboard-response,,,1260819,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,3,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,629,nback,,html-keyboard-response,,,1261826,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,4,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,630,nback,,html-keyboard-response,,,1262842,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,5,battle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,631,nback,,html-keyboard-response,,,1263852,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,6,danger,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,632,nback,,html-keyboard-response,,,1264860,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,7,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,633,nback,,html-keyboard-response,339, ,1265876,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,8,danger,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,634,nback,,html-keyboard-response,,,1266892,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,9,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,635,nback,,html-keyboard-response,,,1267909,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,10,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,636,nback,,html-keyboard-response,,,1268927,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,11,maggot,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,637,nback,,html-keyboard-response,,,1269933,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,12,trauma,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,638,nback,,html-keyboard-response,,,1270942,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,13,famine,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,639,nback,,html-keyboard-response,,,1271952,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,14,zombie,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,640,nback,,html-keyboard-response,,,1272964,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,26,2,negative,,15,famine,true,false,false,miss
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,641,nback,,html-keyboard-response,,,1273968,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,16,deceit,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,642,nback,,html-keyboard-response,,,1274984,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,17,lesion,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,643,nback,,html-keyboard-response,,,1275985,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,18,danger,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,644,nback,,html-keyboard-response,,,1276992,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,26,2,negative,,19,spider,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,645,nback,,html-keyboard-response,441, ,1277998,,2.2.0,pilot-a,within-subjects,false,false,,,,false,main,26,2,negative,,20,deceit,false,false,true,false_alarm
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,646,nback_pause,,html-keyboard-response,,,1298008,"
+        <div class=""nback-pause"">
+          <p>Block 27 of 27</p>
+          <h2>3-back</h2>
+          <p>Press the <strong>space bar</strong> when the word is the same as the word three words before it.</p>
+          <p>The block starts in <span id=""nback-countdown"">20</span> seconds.</p>
+        </div>",2.2.0,pilot-a,within-subjects,false,false,,,,,main,27,3,positive,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,647,nback,,html-keyboard-response,,,1299026,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,1,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,648,nback,,html-keyboard-response,,,1300035,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,2,access,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,649,nback,,html-keyboard-response,,,1301043,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,3,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,650,nback,,html-keyboard-response,,,1302052,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,4,vision,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,651,nback,,html-keyboard-response,,,1303059,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,5,yogurt,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,652,nback,,html-keyboard-response,,,1304068,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,6,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,653,nback,,html-keyboard-response,,,1305075,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,7,kitten,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,654,nback,,html-keyboard-response,,,1306092,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,8,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,655,nback,,html-keyboard-response,,,1307101,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,9,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,656,nback,,html-keyboard-response,,,1308104,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,10,vision,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,657,nback,,html-keyboard-response,,,1309118,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,11,orchid,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,658,nback,,html-keyboard-response,,,1310133,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,12,access,false,true,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,659,nback,,html-keyboard-response,634, ,1311135,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,13,vision,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,660,nback,,html-keyboard-response,,,1312140,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,14,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,661,nback,,html-keyboard-response,764, ,1313141,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,15,access,true,false,true,hit
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,662,nback,,html-keyboard-response,,,1314150,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,16,muffin,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,663,nback,,html-keyboard-response,,,1315158,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,17,silver,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,664,nback,,html-keyboard-response,,,1316166,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,18,season,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,665,nback,,html-keyboard-response,,,1317168,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,19,cuddle,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,666,nback,,html-keyboard-response,,,1318184,,2.2.0,pilot-a,within-subjects,false,false,,,,true,main,27,3,positive,,20,riches,false,false,false,correct_rejection
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,667,feedback,,survey-text,79625,"{""feedback"":""none""}",1397816,,2.1.1,pilot-a,within-subjects,false,false,,,,,,,,,,,,,,,
+qSoNquzch8dRPX6Crz5JrjqoZZg1-b2af7609,668,debrief,,html-button-response,34281,0,1432100,"
+      <h2>Debrief</h2>
+      <p>Thank you. In this study we tested whether the emotional valence of words in a working memory task
+      affect performance on the working memory task. Every participant saw the same words, but in randomized order.
+      Each block contained either words with a positive, negative, or neutral valence.
+      If you have questions about this research, contact
+      <a href=""mailto:stanfordpsych251@gmail.com"">stanfordpsych251@gmail.com</a>.
+      Press the button to save your responses and finish.</p>",2.1.0,pilot-a,within-subjects,false,false,,,,,,,,,,,,,,,
