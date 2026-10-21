@@ -350,20 +350,6 @@ bind_rows(
 
 ### Power analysis
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Report the original effect size, the sample needed for 80%, 90% and 95% power to detect it,
-and the sample you chose and why. The table below is computed from the original study's
-numbers entered at the top of this file.
-
-Original effects are usually overestimates, so powering to the original effect tends to
-produce an underpowered replication. One widely used alternative is to collect 2.5 times the
-original sample, which gives 80% power to detect an effect the original study had only 33%
-power to detect (Simonsohn, 2015; Experimentology §10.4). Say which approach you used, and
-what the course's participant budget allowed.
-:::
-
 ```{r}
 #| label: power
 
@@ -416,14 +402,6 @@ The planned sample is US residents on Prolific, fluent in English, 18 or older. 
 The planned sample size is 75 participants, following the 2.5* original sample rule that is a widely-used alternative to using the original sample size (Simonsohn, 2015). I will collect until 75 participants pass the exclusion criteria described below in the Analysis plan (i.e., 75 participants that actually completed the experiment correctly and paid attention).
 
 ### Materials
-
-::: {.callout-tip icon=false}
-## Guidance
-
-All materials. You can quote the original article directly: put the text in quotation marks
-and note that it was followed precisely, or quote it and point out the exceptions. Link to the
-live experiment above rather than pasting screenshots of every screen.
-:::
 
 - The n-back task structure is identical to the original article, quoted here: "Participants saw blocks of ten consecutive words presented
 on a computer screen. Two of these words were used as cues
