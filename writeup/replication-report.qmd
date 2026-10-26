@@ -92,6 +92,7 @@ original <- tibble(
 |Claude(Opus 5.5 Medium) | Edited experimental paradigm from demo to fit paradigm from original study as closely as possible | Manually reviewed code before committing to github in a separate branch, then tested the study as a participant before merging branch to main |
 |Claude(Opus 5.5 Medium)| Added temporary 'debug' buttons to skip thorugh experiment for debugging purposes; will be inactivated before actually deploying study | Manually reviewed code and went through github pages link to make sure the buttons functioned as expected.|
 |ChatGPT(GPT-6.1 Sol Medium) | Edited analysis code sections of replication report to match analysis structure of my study | Manually reviewed code and ensured output was as expected |
+|ChatGPT(GPT-6.1 Sol Medium) | Added 'data report' section to write-up to summarize results of pilot b | Manually reviewed code and ensured output was as expected |
 
 I wrote all of the text in this report myself. AI tools were not used to write, rewrite or
 paraphrase it, and were not used to generate, alter, or impute any participant data. I take full
@@ -653,6 +654,98 @@ if (nrow(demo) > 0) {
     knitr::kable(caption = "Age of the analysed sample.")
 }
 ```
+
+### Data report
+
+```{r}
+#| label: data-report
+#| eval: !expr have_data
+
+# Recorded session time, including instructions and practice.
+# Assumes jsPsych's time_elapsed column is exported in milliseconds.
+if ("time_elapsed" %in% names(trials)) {
+  session_times <- trials |>
+    mutate(elapsed_ms = suppressWarnings(as.numeric(time_elapsed))) |>
+    filter(is.finite(elapsed_ms), elapsed_ms >= 0) |>
+    group_by(participant_id) |>
+    summarise(minutes = max(elapsed_ms) / 60000, .groups = "drop")
+} else {
+  session_times <- tibble(
+    participant_id = participants$participant_id[0],
+    minutes = numeric()
+  )
+  message("Timing unavailable: trials.csv has no time_elapsed column.")
+}
+
+participant_times <- participants |>
+  transmute(participant_id, completed = completed %in% TRUE) |>
+  left_join(session_times, by = "participant_id")
+
+participant_times |>
+  transmute(
+    `Participant ID` = participant_id,
+    Completed = if_else(completed, "Yes", "No"),
+    `Recorded time (minutes)` = round(minutes, 2)
+  ) |>
+  knitr::kable(
+    caption = "Time through each participant's last saved trial, including instructions, practice, and breaks."
+  )
+
+# Average time among all completed participants, before behavioral exclusions.
+participant_times |>
+  filter(completed) |>
+  summarise(
+    `Completed participants` = n(),
+    `Participants with timing data` = sum(!is.na(minutes)),
+    `Mean time (minutes)` = if (any(!is.na(minutes))) {
+      round(mean(minutes, na.rm = TRUE), 2)
+    } else NA_real_,
+    `SD (minutes)` = round(sd(minutes, na.rm = TRUE), 2)
+  ) |>
+  knitr::kable(caption = "Average recorded completion time.")
+
+# Dropouts are participants not marked completed at the time of export.
+participant_times |>
+  summarise(
+    Started = n(),
+    Completed = sum(completed),
+    `Not completed` = sum(!completed),
+    `Dropout rate` = if (n() > 0) {
+      scales::percent(mean(!completed), accuracy = 0.1)
+    } else NA_character_
+  ) |>
+  knitr::kable(
+    caption = "Non-completion at export; this may include sessions still in progress."
+  )
+
+# List all non-empty feedback for manual review of comprehension.
+# Assumes feedback responses are JSON with a field named feedback.
+feedback_comments <- trials |>
+  filter(task == "feedback") |>
+  transmute(
+    participant_id,
+    comment = map_chr(as.character(response), function(x) {
+      if (is.na(x) || !nzchar(trimws(x))) return(NA_character_)
+      parsed <- tryCatch(fromJSON(x), error = function(e) NULL)
+      value <- if (is.list(parsed)) parsed$feedback else NULL
+      if (is.null(value) || length(value) != 1) return(NA_character_)
+      as.character(value)
+    })
+  ) |>
+  filter(!is.na(comment), nzchar(trimws(comment)))
+
+if (nrow(feedback_comments) > 0) {
+  feedback_comments |>
+    rename(`Participant ID` = participant_id, Feedback = comment) |>
+    knitr::kable(
+      caption = "Participant feedback: review comments for confusion about instructions or the task. Remove identifying details before publication."
+    )
+} else {
+  message("No non-empty feedback comments were found.")
+}
+```
+
+After pilot B, the average time elapsed was 31 minutes. However, most people who completed the study took 21-29 minutes, most under 25, and one person just took 65 minutes. This was an outlier, so I will keep the timing the same. It seemed that people comprehended the experiment. In terms of feedback, one person indicated the n-back task was difficult to follow for higher n, and someone else said to give a shorter wait time in between blocks, but to remain faithful to the original study, no further changes will be made.
 
 #### Deviations from the preregistered plan
 
