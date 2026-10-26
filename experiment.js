@@ -29,7 +29,7 @@ window.TEMPLATE_VERSION = "0.1.0";
 const EXPERIMENT = {
   // Firestore path: experiments/<id>/participants/... Change it when you start a new study
   // so pilot data and real data never mix (e.g. "smith2016-pilot-a", "smith2016-final").
-  id: "pilot-a",
+  id: "pilot-b",
 
   // Trials per Firestore write. 1 = save every trial the moment it finishes (dropouts leave
   // partial data). The free tier allows 20,000 writes/day: with 200 participants x 100 trials
@@ -42,7 +42,7 @@ const EXPERIMENT = {
 
   // Prolific: if set, participants are redirected to Prolific when they finish.
   // Leave empty for local testing or non-Prolific samples.
-  prolific_completion_code: "",
+  prolific_completion_code: "C220YZ54",
 
   // Contact shown in consent and debrief.
   contact_email: "stanfordpsych251@gmail.com",
@@ -295,7 +295,7 @@ const NBACK = {
     pages: [
       `<h2>Welcome</h2>
        <p>This short study has two parts: one practice task
-       and a longer memory task. It takes about thirty minutes.</p>`,
+       and a longer memory task. It takes about 25 minutes.</p>`,
       `<p>Please complete the study in one sitting, in a quiet place, on a laptop or desktop
        computer. Use the buttons or the arrow keys to move between pages.</p>`,
     ],
