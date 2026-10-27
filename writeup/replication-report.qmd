@@ -341,11 +341,11 @@ bind_rows(
 
 ## Introduction
 
-&emsp; The empirical article by Kopf et al. “The effect of emotional content on brain activation and the late positive potential in a word n-back task,” published in PLoS One in 2013, tests the hypothesis that emotional words, particularly the valence of those words, impact working memory performance. The authors found that across different blocks of the n-back task where the stimuli consisted of either positive, negative, or neutral words (which varied only by valence level, not by arousal level), more errors were made one difficult tasks when the valence was negative. I plan to replicate the main finding of the paper displayed in Figure 2 regarding errors made in the n-back test in different valence categories. This finding has relevance for my broader research interests that span not only the fundamental mechanisms underlying cognitive control, but also the factors that influence cognitive control performance, including mental health conditions and general emotional states. My first-year project involves investigating subcortical brain regions involved in a variety of cognitive control domains; one of the tasks in the dataset I am utilizing from my lab is a version of the n-back, the same task utilized in this study. Replicating this project will allow me to gain more foundational knowledge of this task paradigm as I implement the design in Javascript and motivate me to consider key considerations of how to analyze behavioral results from this task.
+&emsp; The empirical article by Kopf et al. “The effect of emotional content on brain activation and the late positive potential in a word n-back task,” published in PLoS One in 2013, tests the hypothesis that emotional words, particularly the valence of those words, impact working memory performance. The authors found that across different blocks of the n-back task where the stimuli consisted of either positive, negative, or neutral words (which varied only by valence level, not by arousal level), more errors were made on difficult tasks when the valence was negative. I plan to replicate the main finding of the paper displayed in Figure 2 regarding errors made in the n-back test in different valence categories. This finding has relevance for my broader research interests that span not only the fundamental mechanisms underlying cognitive control, but also the factors that influence cognitive control performance, including mental health conditions and general emotional states. My first-year project involves investigating subcortical brain regions involved in a variety of cognitive control domains; one of the tasks in the dataset I am utilizing from my lab is a version of the n-back, the same task utilized in this study. Replicating this project will allow me to gain more foundational knowledge of this task paradigm as I implement the design in Javascript and motivate me to consider key considerations of how to analyze behavioral results from this task.
 
 &emsp; The procedure described in the paper involves using words from the Berlin Affective Word list, which are classified for arousal and valence, and also matched for properties like word length, as stimuli in various blocks of the n-back task. There were 27 blocks in the task, three blocks of each of the conditions described next: a 1-back task with negative-valenced words as stimuli, a 2-back task with negative-valenced words as stimuli, and a 3-back task with negative-valenced words as stimuli; a 1-back task with neutral-valenced words as stimuli, a 2-back task with neutral-valenced words as stimuli, and a 3-back task with neutral-valenced words as stimuli; a 1-back task with positive-valenced words as stimuli, a 2-back task with positive-valenced words as stimuli, and a 3-back task with positive-valenced words as stimuli. A challenge I forsee is matching the words from the Berlin Affective Word list with English-equivalent words. I will have to find a similar word list that rates words on valence and arousal, as the English-translated versions of the words used in this study might not be sufficient, or might not be matched on word length, etc.
 
-&emsp; The key statistical test I will pre-register is collect each participant’s RT and error rates on the blocks, then run a 3 (emotional valence of word) * 3 (difficulty level of task) repeated ANOVA. The test is the interaction effect of word valence on error rate. The original study reported the results as such: “A significant interaction effect for the errors (F(2.8, 82.1) = 3.7, p = .016) was observed, indicating that word valence influenced the error rate differentially in each difficulty level, the more difficult the task; the more errors were made especially in the negative valence condition.” A possible extension I might complete for this study if it does not replicate is trying to recruit German speakers on Prolific to complete the task, and use the exact same words from the Berlin Affective Word list as in the original paper. I will use a first-language screener in Prolific, which might take a bit longer to recruit people to complete the task.
+&emsp; The key statistical test I will pre-register is collect each participant’s error rates on the blocks, then run a 3 (emotional valence of word) * 3 (difficulty level of task) repeated ANOVA. The test is the interaction effect of word valence on error rate. The original study reported the results as such: “A significant interaction effect for the errors (F(2.8, 82.1) = 3.7, p = .016) was observed, indicating that word valence influenced the error rate differentially in each difficulty level, the more difficult the task; the more errors were made especially in the negative valence condition.” A possible extension I might complete for this study if it does not replicate is trying to recruit German speakers on Prolific to complete the task, and use the exact same words from the Berlin Affective Word list as in the original paper. I will use a first-language screener in Prolific (English), and screen for U.S. residents, which might take a bit longer to recruit people to complete the task.
 
 ## Methods
 
@@ -498,7 +498,7 @@ well." Negative words with their English translations were: "TYPHUS (typhus), BE
 - First, the participant views the consent screen and consents to participate in the study.
 - Second, the participant completes a demographics page.
 - Third, the participant sees the welcome page orienting them to what they should expect from the study.
-- Fourth, the participant goes through a series of instruction screens where they are instructed how to do a 1-back, 2-back, and 3-back task. They are then presented with question that checks their understanding of the instructions. A correct answer will lead to a 'correct' screen, whereas a wrong answer will send them back to instructions.
+- Fourth, the participant goes through a series of instruction screens where they are instructed how to do a 1-back, 2-back, and 3-back task. They are then presented with a question that checks their understanding of the instructions. A correct answer will lead to a 'correct' screen, whereas a wrong answer will send them back to instructions.
 - Fifth, the participant enters the practice block, which follows the same structure as the original study: "Before the experiment, participants practised the task using
 one block of each difficulty (1-, 2-, 3-back). Before the task
 itself, completed a training phase, where they saw 30 consecutive neutral words in the 1-back condition, the same
@@ -541,7 +541,7 @@ The entire task is expected to take around 25 minutes.
 
 **Exploratory analysis.** We also looked at the n-back response times based on valence, as described in the Exploratory analyses section below.
 
-**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." I will add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the condiitons as follows: Pparticipants who never press the response key during any block of the n-back task; participants who respond on more than 80% of non-target trials (i.e., the word they see is NOT the same as the word n trials before)
+**Exclusions.** The original paper does not report exclusion reasons, other than 2 of the participants were excluded "for technical reasons." I will add additional behavioral checks to exclude participants who appear to have not paid attention at all during the study or attempt to cheat. I will exclude on the conditons as follows: Participants who never press the response key during any block of the n-back task; participants who respond on more than 80% of non-target trials (i.e., the word they see is NOT the same as the word n trials before)
 
 ### Differences from the original study
 
@@ -553,7 +553,7 @@ The entire task is expected to take around 25 minutes.
 | Design | Within subjects, pseudo-randomized condition order | Within subjects, pseudo-randomized condition order | The study specifies a psuedo-randomized condition order whereby the difficulty level had to vary from one block after the other, so in the replicated study the exact order for each subject will be different than the exact order for each subject in the original study. This is unlikely to have any effect. |
 | Response | Keyboard press (space key on standard keyboard) | Keyboard press (space key; however we cannot regulate what kind of keyboard participants have access to at home) | Unlikely. Most participants will probably have a standard keyboard, and any keyboard has a space bar on it.|
 | Exclusion criteria | Not specified other than "technical reasons" | Excluded based on participants who never pressed response key during any n-back block, or responded on more than 80% of non-target trials | Unlikely. If the original study included participants who weren't paying attention, then it would have likely made the effect size less significant. However, the original study took place in person, so experimenters would have likely noticed if a participant wasn't paying attention (these checks matter more for our online study on Prolific). |
-| Other tasks | Tasks were completed alongside fluid and crystallized intelligence questionnaires, a clinician interview to assess for neuropsychiatric diagnoses, and a emotions/mood questionnaire (PANAS). | Instructions were followed by an instruction comprehension check, all additional surveys were excluded | Unlikely: the instruction check is meant to ensure participants understand the task, not to change any results. Given the within-subjects design for the behavioral result, the additional surveys (intelligence, mood, neuropsychitric diagnoses), which were included in original study to confirm that there were comparable intelligence levels in the sample and that there were no neuropsychiatric diagnoses, should not have any effect on within-subjects ANOVA results. |
+| Other tasks | Tasks were completed alongside fluid and crystallized intelligence questionnaires, a clinician interview to assess for neuropsychiatric diagnoses, and a emotions/mood questionnaire (PANAS). | Instructions were followed by an instruction comprehension check, all additional surveys were excluded | Unlikely: the instruction check is meant to ensure participants understand the task, not to change any results. Given the within-subjects design for the behavioral result, the additional surveys (intelligence, mood, neuropsychiatric diagnoses), which were included in original study to confirm that there were comparable intelligence levels in the sample and that there were no neuropsychiatric diagnoses, should not have any effect on within-subjects ANOVA results. |
 
 ### Methods addendum (post data collection)
 
@@ -718,31 +718,6 @@ participant_times |>
     caption = "Non-completion at export; this may include sessions still in progress."
   )
 
-# List all non-empty feedback for manual review of comprehension.
-# Assumes feedback responses are JSON with a field named feedback.
-feedback_comments <- trials |>
-  filter(task == "feedback") |>
-  transmute(
-    participant_id,
-    comment = map_chr(as.character(response), function(x) {
-      if (is.na(x) || !nzchar(trimws(x))) return(NA_character_)
-      parsed <- tryCatch(fromJSON(x), error = function(e) NULL)
-      value <- if (is.list(parsed)) parsed$feedback else NULL
-      if (is.null(value) || length(value) != 1) return(NA_character_)
-      as.character(value)
-    })
-  ) |>
-  filter(!is.na(comment), nzchar(trimws(comment)))
-
-if (nrow(feedback_comments) > 0) {
-  feedback_comments |>
-    rename(`Participant ID` = participant_id, Feedback = comment) |>
-    knitr::kable(
-      caption = "Participant feedback: review comments for confusion about instructions or the task. Remove identifying details before publication."
-    )
-} else {
-  message("No non-empty feedback comments were found.")
-}
 ```
 
 After pilot B, the average time elapsed was 31 minutes. However, most people who completed the study took 21-29 minutes, most under 25, and one person just took 65 minutes. This was an outlier, so I will keep the timing the same. It seemed that people comprehended the experiment. In terms of feedback, one person indicated the n-back task was difficult to follow for higher n, and someone else said to give a shorter wait time in between blocks, but to remain faithful to the original study, no further changes will be made.
