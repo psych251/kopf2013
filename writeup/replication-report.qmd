@@ -49,7 +49,7 @@ library(jsonlite)
 
 # Must match EXPERIMENT.id in experiment.js, and the --experiment you passed to the export.
 # Phase 2 runs under its own id, so its data never mix with Phase 1's.
-experiment_id        <- "pilot-b"
+experiment_id        <- "full_experiment"
 experiment_id_phase2 <- "framing-demo-phase2"
 ```
 
@@ -395,12 +395,12 @@ knitr::kable(power_rows,
 ```
 
 
-The original sample size was intended to be 32 participants, but 2 were excluded, for a final sample size of 30 participants. The original effect size was F(2.8, 82.1) = 3.7 (which we can calculate as partial f2 = 0.126). The table above shows the sample size needed to detect this effect size. In this instance, 2.5 times the original sample would be 75 participants (per condition and total, since this is a within-participant study). We will use the 2.5 times original sample method and recruit 75 participants. Since the task takes about 25 minutes and is $10 per hour, the budget will be around $312.50 for the first replication.
+The original sample size was intended to be 32 participants, but 2 were excluded, for a final sample size of 30 participants. The original effect size was F(2.8, 82.1) = 3.7 (which we can calculate as partial f2 = 0.126). The table above shows the sample size needed to detect this effect size. In this instance, the N needed to detect 80% power is 33 participants (per condition and total, since this is a within-participant study). We will thus recruit 33 participants. Since the task takes about 25 minutes and is $10 per hour, the budget will be around $137.50 for the first replication.
 
 ### Planned sample
 
 The planned sample is US residents on Prolific, fluent in English, 18 or older. There are no filtering questions for the first replication.
-The planned sample size is 75 participants, following the 2.5* original sample rule that is a widely-used alternative to using the original sample size (Simonsohn, 2015). I will collect until 75 participants pass the exclusion criteria described below in the Analysis plan (i.e., 75 participants that actually completed the experiment correctly and paid attention).
+The planned sample size is 33 participants, following the N needed to detect 80% power. I will collect until 33 participants pass the exclusion criteria described below in the Analysis plan (i.e., 33 participants that actually completed the experiment correctly and paid attention).
 
 ### Materials
 
