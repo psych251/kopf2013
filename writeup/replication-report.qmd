@@ -75,7 +75,7 @@ original <- tibble(
 ## Project links
 
 - **Original paper:** Kopf, J. et al. (2013). The Effect of Emotional Content on Brain Activation and the Late Positive Potential in a Word n-back Task. *PloS One*. 2013 Sep 26;8(9):e75598. <https://doi.org/10.1371/journal.pone.0075598>
-- **Preregistration:** [OSF registration](https://osf.io/XXXXX) *(registered YYYY-MM-DD, before final data collection)*
+- **Preregistration:** [OSF registration](https://osf.io/sn6a9) *(registered 2026-11-01, before final data collection)*
 - **Live experiment:** < https://psych251.github.io/kopf2013/> (take the study exactly as participants did)
 - **Repository:** <https://github.com/psych251/kopf2013> (experiment code, data, and this report)
 :::
