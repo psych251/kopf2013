@@ -1,0 +1,8 @@
+set,category,n,mean_valence_z,sd_valence_z,mean_arousal_z,sd_arousal_z,mean_match_distance_z
+German original experimental,negative,10,-1.76333514,0.14393554,1.89795191,0.57837265,
+German original experimental,positive,10,1.75070435,0.16750172,-0.26354621,1.16026246,
+German original experimental,neutral,10,-0.05001183,0.00000000,0.02608016,0.74024592,
+English matched experimental,negative,10,-1.64394134,0.35681025,1.89691332,0.63394996,0.30615387
+English matched experimental,positive,10,1.60025617,0.27036041,-0.14567180,0.90512261,0.31330586
+English matched experimental,neutral,10,-0.07361169,0.10065367,-0.05084944,0.63987248,0.14428102
+English matched practice,neutral,30,-0.01609046,0.18750979,-0.11443620,0.56372015,0.25552174
