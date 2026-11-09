@@ -558,12 +558,6 @@ The entire task is expected to take around 25 minutes.
 
 ### Methods addendum (post data collection)
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Leave this section out of the version you preregister. After data collection, report the
-actual sample and any deviation from the plan above.
-:::
 
 #### Actual sample
 
@@ -725,12 +719,7 @@ After pilot B, the average time elapsed was 31 minutes. However, most people who
 
 #### Deviations from the preregistered plan
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Any deviation from the preregistered plan above, or "None". Changes made after seeing data
-belong here even if they seem minor, together with the reason.
-:::
+None
 
 ## Results
 
@@ -768,16 +757,6 @@ if (!is.null(result)) {
 ```
 
 ### Replication assessment
-
-::: {.callout-tip icon=false}
-## Guidance
-
-Judge the replication on effect sizes, not only on whether the key test is significant. Compare
-the replication estimate and its interval with the original: does the interval exclude zero, and
-does it include the original estimate? A significant result much smaller than the original, or
-a non-significant result whose interval still includes the original effect, are both
-informative and should be reported as such (Experimentology §3.2).
-:::
 
 ```{r}
 orig <- original
@@ -902,16 +881,6 @@ One plausible reason that Phase 1 did not reproduce the original result is that 
 
 ## Changes from Phase 1
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Every change from the Phase 1 experiment, one per row, each tagged with a category: Measurement,
-Trials, Design, Checks, Instructions, Sample, Added condition (scientific track only), or
-Exploratory measure (end of study only). If it is not in this table, it does not change: same
-materials, wording, procedure, exclusion rule and analysis. The rows below are examples for the
-demo; replace them with yours.
-:::
-
 | # | Category | Phase 1 | Phase 2 | Why |
 |---|---|---|---|---|
 | 1 | Design | Stimuli included words from Warriner et al. that matched words from Berlin Affective Word List in original study in terms of z-scored valence ratings. | Stimuli includes words from Warriner et al. with some of the most extreme arousal and valence scores. | It is possible that in Phase 1, the positive and negative words had valence scores that were too similar to the neutral words. Incorporating high arousal scores too would increase this distinguishability. |
@@ -1006,18 +975,7 @@ I will use the same sample size as in Phase 1 (33 participants, from calculated 
 
 ## Analysis plan
 
-::: {.callout-tip icon=false}
-## Guidance
-
-The confirmatory analysis for Phase 2, written before Phase 2 data collection. On the
-best-practices tracks this is normally the same key test as Phase 1, run on the Phase 2 data
-alone; say whether you will also report a pooled estimate across phases, and label it
-exploratory if so. On the scientific track, specify the test for the new comparison. Name the
-exclusion rule (unchanged unless it is in the Changes table) and list any exploratory measures.
-
-Run Phase 2 under a new `EXPERIMENT.id` in `experiment.js` (for example `smith2016-phase2`) and
-set `experiment_id_phase2` at the top of this file to match, so the two phases' data never mix.
-:::
+The confirmatory analysis for Phase 2 will be exactly the same as in Phase 1, just with Phase 2 data alone. Given the failed replication in Phase 1, I will not report a pooled estimate across phases. The exclusion rule is identical to Phase 1. Exploratory measures are identical to Phase 1 (looking qualitatively at reaction times).
 
 ## Results
 
@@ -1123,13 +1081,6 @@ with what the two phases together say about the original finding.
 :::
 
 # Data and code availability
-
-::: {.callout-tip icon=false}
-## Guidance
-
-Edit the statement below to match what you are actually sharing. Anonymized data and all code
-should be public; if something cannot be shared, say what and why.
-:::
 
 The experiment code, the anonymized data, and the code that produces every number in this
 report are available at <https://github.com/psych251/kopf2013/>. The experiment itself can be
