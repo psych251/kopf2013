@@ -893,7 +893,7 @@ Everything not listed above is identical to Phase 1.
 
 ```{r}
 #| label: phase2-power
-#| eval: false
+#| eval: true
 phase2_n_total <- 33
 phase2_n_per_group <- 33   # planned analysed participants per condition in Phase 2
 
