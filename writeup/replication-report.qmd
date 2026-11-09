@@ -1041,9 +1041,6 @@ if (!have_phase2) {
 #| label: phase2-results
 #| eval: !expr have_phase2
 #| results: asis
-#| label: phase2-results
-#| eval: !expr have_phase2
-#| results: asis
 
 if (is.null(phase2)) {
   cat("No exported Phase 2 data are available yet.\n")
