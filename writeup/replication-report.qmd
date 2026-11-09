@@ -93,6 +93,7 @@ original <- tibble(
 |Claude(Opus 5.5 Medium)| Added temporary 'debug' buttons to skip thorugh experiment for debugging purposes; will be inactivated before actually deploying study | Manually reviewed code and went through github pages link to make sure the buttons functioned as expected.|
 |ChatGPT(GPT-6.1 Sol Medium) | Edited analysis code sections of replication report to match analysis structure of my study | Manually reviewed code and ensured output was as expected |
 |ChatGPT(GPT-6.1 Sol Medium) | Added 'data report' section to write-up to summarize results of pilot b | Manually reviewed code and ensured output was as expected |
+|ChatGPT(GPT-6.1 Sol Medium) | Edited results code & power analysis code sections of extension part of replication report | Manually reviewed code and ensured output was as expected |
 
 I wrote all of the text in this report myself. AI tools were not used to write, rewrite or
 paraphrase it, and were not used to generate, alter, or impute any participant data. I take full
@@ -881,63 +882,23 @@ if (nrow(errors) > 0) {
 ## Discussion
 
 ### Summary of replication attempt
-
-::: {.callout-tip icon=false}
-## Guidance
-
-Open with one paragraph summarizing the result of the key analysis and your assessment of
-whether the original finding replicated, partially replicated, or failed to replicate. Base
-that judgment on the replication assessment above: the size of the effect relative to the
-original, not just the p value.
-:::
+The key analysis of valence by difficulty interaction on error counts (3*3 repeated ANOVA of emotional valence of word by difficulty level of task) was non-significant in my replication (F(2.89, 92.61) = 0.33, p = 0.800). Thus, the original finding (which found a significant valence by difficulty interaction) did not replicate and was not close to replicating or trending in the same direction. Based on comparison of the original graph and replication graph side-by-side, both show that as task difficulty increases, error rate increases, but only in the original study do we see that blocks with positive or negative valenced (as opposed to neutral valenced) words specifically increase error rate on difficult tasks. 
 
 ### Commentary
+&emsp;Looking at the exploratory analysis where we collected the mean RT in each valence by difficulty condition (i.e., negative 1-back task, negative 2-back task, etc.), there does not appear to be any real reaction time slowing based on valence. We did not conduct a formal statistical analysis on this exploration, but the table shows that mean RT tends to go up with increased difficulty (except the 3-back task for positive words shows slightly faster RT than 2-back task for positive words), but the differences between RT across word valences are minimal. 
 
-::: {.callout-tip icon=false}
-## Guidance
+&emsp;I think the replication might mean that the effect the original authors found was restricted to their experiment in their specific population or study sample. I think the differences between my study and the original are unlikely to be moderators of the results. The biggest difference that could be important is showing participants English instead of German words, which also results in study samples likely from different cultures, but I would think that any emotional impact on working memory would be somewhat culturally or linguistically universal.
 
-Open-ended commentary, none of it long: (a) what the exploratory analyses suggest; (b) what the
-replication means, for example whether the differences between your study and the original are
-definitely, plausibly, or unlikely to be moderators of the result; and (c) any objections or
-challenges raised by you or the original authors.
-:::
+&emsp;Some of the challenges that I experienced in the replication result from ambiguity in the original study paper. While I attempted to email the corresponding author of the paper, the email bounced back and it appear that email was no longer active, so I could not receive clarification on some of these ambiguities. The original study did not specify what counts as an “error”: I assumed it was misses and false alarms. There was a potential typographical error in the original paper: they reported that “neutral words had a mean arousal of 0 (on a scale from 1: very low arousal to 5: very high arousal).” The original figure 2 also resulted in some confusion in terms of units. The y-axis is labeled “errors,” but the axis labels range from 0 to 1 (i.e., 0.75), and it is unclear how these numbers are aggregated, if they represent a fraction or percent, or if many participants in the original study just made so few errors that the graph shows <1 error in each condition, which I believe to be unlikely. Furthermore, the original manuscript reports that positive and negative words were matched on arousal, but when I calculated the mean arousal scores for the positive and negative words, I got a mean score of 4.06 for negative words and 2.79 for positive words.
 
 # Phase 2: Extension
 <!-- Phase 2 code is disabled until this phase begins. -->
 
-::: {.callout-tip icon=false}
-## Guidance: choosing your extension
-
-Follow the Extension guidelines page on Canvas. In brief:
-
-- **By default the extension is a best-practices modification of your Phase 1 experiment.** If
-  your replication did not succeed, it is a **rescue**: address the plausible reasons for the
-  failure. If it did succeed, it is an **upgrade**: make the estimate more precise. Typical
-  changes are better or more reliable measurement, more trials, a within-participant design
-  where that is legitimate, comprehension and manipulation checks, clearer instructions, or a
-  larger or better-targeted sample.
-- **If your scientific extension pitch was approved at Milestone 3 and your replication
-  succeeded, propose that instead:** the original conditions rerun unchanged, plus the one
-  added condition or manipulation, with a power analysis for the new comparison.
-- On either track you may add exploratory measures **at the end** of the study.
-- Every change is listed and tagged by category below; everything else stays identical.
-
-State your track on the line below, and delete the others.
-:::
-
-**Track:** Best-practices upgrade / Best-practices rescue / Scientific extension (approved at Milestone 3)
+**Track:** Best-practices rescue
 
 ## Rationale
 
-::: {.callout-tip icon=false}
-## Guidance
-
-One or two paragraphs. For a rescue: what are the plausible reasons Phase 1 did not reproduce the
-original result, and how does each change address one of them? For an upgrade: where is the
-Phase 1 estimate least precise or least trustworthy, and how will the changes improve it? For a
-scientific extension: what question does the added condition answer, and why does it follow from
-the original finding?
-:::
+One plausible reason that Phase 1 did not reproduce the original result is that the positive and negative words did not have high or low enough valence or arousal scores to truly distinguish them from the neutral words. As such, in my replication, I will pick words from Warriner et al. that represent both high valence, high arousal words and low valence, low arousal words. Another reason that Phase 1 did not reproduce the original result could be that participants, especially in an online setting, had a difficult time understanding the task itself. As such, I will change my replication to include feedback in the practice task, indicating whether a participant’s keyboard press or lack of keyboard press was correct via written “Correct” (in green font) and “Incorrect” (in red font) feedback screens in the practice task. The original study did not specify whether they included such feedback in their practice task or not, so it is possible giving participants feedback will even be more loyal to the original study. I will also give participants a “score” of their performance/accuracy during the practice task. If their score is lower than 80%, they will have to re-do the practice task, ensuring they completely understand the task before moving on to the main task. Given the ambiguities of the original study, however, it is also possible the study did not replicate simply due to unclear descriptions of the original method.
 
 ## Changes from Phase 1
 
@@ -953,66 +914,95 @@ demo; replace them with yours.
 
 | # | Category | Phase 1 | Phase 2 | Why |
 |---|---|---|---|---|
-| 1 | Sample | 27 analysed participants | 300 analysed participants (150 per frame) | Phase 1's interval was too wide to distinguish the original effect from a much smaller one. |
-| 2 | Checks | No comprehension check | After the choice, participants say how many people are at risk (600) | Confirms participants read the scenario; failures are reported, and excluded only if preregistered. |
-| 3 | Exploratory measure | None | At the end: "How confident are you in your choice?" (1–7) | Exploratory only; collected after every confirmatory measure. |
+| 1 | Design | Stimuli included words from Warriner et al. that matched words from Berlin Affective Word List in original study in terms of z-scored valence ratings. | Stimuli includes words from Warriner et al. with some of the most extreme arousal and valence scores. | It is possible that in Phase 1, the positive and negative words had valence scores that were too similar to the neutral words. Incorporating high arousal scores too would increase this distinguishability. |
+| 2 | Instructions and Checks | Practice task does not include any feedback. | Practice task includes “Correct” and “Incorrect” feedback messages after each trial (in green and red, respectively). Participants will see their accuracy score at the end of the practice task and will have to re-do the practice task until they get at least 80% accuracy. | It is possible that participants in the online study failed to understand, or did not take the time to understand, the n-back task instructions and design. Including more feedback in the practice task should help with this limitation. |
 
 Everything not listed above is identical to Phase 1.
 
 ## Power and sample
 
-::: {.callout-tip icon=false}
-## Guidance
-
-Justify the Phase 2 sample, and **state how you expect the estimate and its precision to compare
-with Phase 1**. For an upgrade, plan the sample around the confidence interval you want; for a
-rescue, around the power to detect the original effect, or the smallest effect you would still
-consider a successful replication; for a scientific extension, around the power to detect the new
-comparison. Set `phase2_n_per_group` in the code below; the table uses Phase 1's estimate if you
-have it and the original's otherwise.
-:::
 
 ```{r}
 #| label: phase2-power
 #| eval: false
-phase2_n_per_group <- 150   # planned analysed participants per condition in Phase 2
+phase2_n_total <- 33
+phase2_n_per_group <- 33   # planned analysed participants per condition in Phase 2
 
-p1_counts <- if (have_data) risky_counts(phase1)
-p1_stats  <- if (have_data) diff_ci(p1_counts)
+p1_counts <- if (have_data) error_counts(phase1) else NULL
+p1_stats  <- if (!is.null(p1_counts)) interaction_test(p1_counts) else NULL
+
+original_f2 <- original$statistic * original$df1 / original$df2
+
 basis <- if (!is.null(p1_stats)) {
-  list(gain = p1_counts$risky[p1_counts$condition == "gain"] / p1_counts$n[p1_counts$condition == "gain"],
-       loss = p1_counts$risky[p1_counts$condition == "loss"] / p1_counts$n[p1_counts$condition == "loss"],
-       source = "Phase 1")
+  list(
+    f2 = p1_stats$statistic * p1_stats$df1 / p1_stats$df2,
+    source = "Phase 1"
+  )
 } else {
-  list(gain = original_p_gain, loss = original_p_loss, source = "the original study")
+  list(f2 = original_f2, source = "the original study")
 }
 
-# Expected 95% CI half-width on the difference at n per condition.
-half_width <- function(n) 1.96 * sqrt(basis$gain * (1 - basis$gain) / n + basis$loss * (1 - basis$loss) / n)
-power_at <- function(n, p1, p2) {
-  tryCatch(power.prop.test(n = n, p1 = p1, p2 = p2, sig.level = 0.05)$power, error = function(e) NA)
+# Approximation consistent with the earlier power chunk.
+# Assume the original study's GG epsilon for every effect-size scenario.
+# This does not simulate the conditional Mauchly/GG procedure.
+phase2_epsilon <- original$df2 / (4 * (original$N - 1))
+
+phase2_power_at <- function(n, f2) {
+  df1 <- 4 * phase2_epsilon
+  df2 <- 4 * (n - 1) * phase2_epsilon
+  critical_f <- qf(0.95, df1, df2)
+
+  pf(critical_f, df1, df2,
+     ncp = f2 * df2, lower.tail = FALSE)
 }
 
 rows <- tibble(
   Study = c(if (!is.null(p1_stats)) "Phase 1 (actual)", "Phase 2 (planned)"),
-  `N analysed` = c(if (!is.null(p1_stats)) p1_stats$N, 2 * phase2_n_per_group),
-  `95% CI half-width` = c(if (!is.null(p1_stats)) sprintf("±%.0f points", 100 * (p1_stats$ci_high - p1_stats$ci_low) / 2),
-                          sprintf("±%.0f points (expected)", 100 * half_width(phase2_n_per_group)))
+  `N analysed` = c(if (!is.null(p1_stats)) p1_stats$N, phase2_n_total)
 )
-knitr::kable(rows, caption = sprintf("Precision of the key estimate, Phase 2 expected values based on %s.", basis$source))
 
-tibble(
-  `Effect to detect` = c(sprintf("Original: %.0f points", 100 * (original_p_loss - original_p_gain)),
-                         if (!is.null(p1_stats)) sprintf("Phase 1: %.0f points", 100 * p1_stats$estimate),
-                         sprintf("Half the original: %.0f points", 50 * (original_p_loss - original_p_gain))),
-  `Power at planned N` = scales::percent(c(
-    power_at(phase2_n_per_group, original_p_gain, original_p_loss),
-    if (!is.null(p1_stats)) power_at(phase2_n_per_group, basis$gain, basis$loss),
-    power_at(phase2_n_per_group, original_p_gain, original_p_gain + (original_p_loss - original_p_gain) / 2)
-  ), accuracy = 1)
-) |>
-  knitr::kable(caption = sprintf("Power of the Phase 2 key test at %d per condition, two-sided alpha = .05.", phase2_n_per_group))
+knitr::kable(
+  rows,
+  caption = "Analysed sample sizes. All participants complete all nine conditions."
+)
+
+# Halving Cohen's f means dividing f-squared by four.
+effect_scenarios <- tibble(
+  `Effect to detect` = c(
+    "Original",
+    if (!is.null(p1_stats)) "Phase 1",
+    "Half the original Cohen's f"
+  ),
+  f2 = c(
+    original_f2,
+    if (!is.null(p1_stats)) basis$f2,
+    original_f2 / 4
+  )
+)
+
+effect_scenarios |>
+  mutate(
+    `Partial f² assumed` = sprintf("%.3f", f2),
+    `Power at planned N` = scales::percent(
+      map_dbl(f2, ~ phase2_power_at(phase2_n_total, .x)),
+      accuracy = 1
+    )
+  ) |>
+  select(-f2) |>
+  knitr::kable(
+    caption = sprintf(
+      paste0(
+        "Approximate power for the valence × difficulty interaction at N = %d, ",
+        "alpha = .05, assuming the original GG epsilon = %.2f. ",
+        "Phase 1 estimates are uncertain; these are effect-size scenarios, ",
+        "not guarantees of future power."
+      ),
+      phase2_n_total, phase2_epsilon
+    )
+  )
 ```
+I will use the same sample size as in Phase 1 (33 participants, from calculated 80% power; this is the power needed to detect the original effect). While 80% power gives a relatively small sample size still, I was limited by the budget constraints of this class. Therefore, I expect the estimate and its precision to compare with Phase 1 based on the power, although the suggested rescue will probably increase the interaction effect.
+
 
 ## Analysis plan
 
@@ -1049,30 +1039,79 @@ if (!have_phase2) {
 
 ```{r}
 #| label: phase2-results
-#| eval: false
-##| eval: !expr have_phase2
-p2_counts <- risky_counts(phase2)
-p2_stats  <- diff_ci(p2_counts)
-cat(sprintf("Phase 2: %d started, %d completed, %d analysed.\n",
-            nrow(phase2$participants), nrow(phase2$complete), nrow(phase2$keep)))
-if (!is.null(p2_stats)) {
-  p_text <- if (p2_stats$p < 0.001) "p < .001" else sprintf("p = %.3f", p2_stats$p)
-  cat(sprintf("Key comparison: %.0f points [%.0f, %.0f], chi-square(1) = %.2f, %s.\n",
-              100 * p2_stats$estimate, 100 * p2_stats$ci_low, 100 * p2_stats$ci_high,
-              p2_stats$statistic, p_text))
+#| eval: !expr have_phase2
+#| results: asis
+#| label: phase2-results
+#| eval: !expr have_phase2
+#| results: asis
+
+if (is.null(phase2)) {
+  cat("No exported Phase 2 data are available yet.\n")
+} else {
+  p2_counts <- error_counts(phase2)
+  p2_stats  <- interaction_test(p2_counts)
+
+  cat(sprintf(
+    "Phase 2: %d started, %d completed, %d retained after exclusions.\n\n",
+    nrow(phase2$participants),
+    nrow(phase2$complete),
+    nrow(phase2$keep)
+  ))
+
+  if (!is.null(p2_stats)) {
+    p_text <- if (p2_stats$p < .001) {
+      "p < .001"
+    } else {
+      sprintf("p = %.3f", p2_stats$p)
+    }
+
+    partial_eta2 <- (p2_stats$statistic * p2_stats$df1) /
+      (p2_stats$statistic * p2_stats$df1 + p2_stats$df2)
+
+    cat(sprintf(
+      paste0(
+        "Valence × difficulty interaction on error counts: ",
+        "N = %d, F(%.2f, %.2f) = %.2f, %s, partial eta squared = %.3f.\n\n"
+      ),
+      p2_stats$N, p2_stats$df1, p2_stats$df2,
+      p2_stats$statistic, p_text, partial_eta2
+    ))
+
+    if (!is.finite(p2_stats$mauchly_p)) {
+      cat("Mauchly's test was unavailable; an uncorrected pilot ANOVA is reported.\n")
+    } else {
+      cat(sprintf(
+        "Mauchly's test: p = %.3f. %s\n",
+        p2_stats$mauchly_p,
+        if (p2_stats$correction == "GG") {
+          "Greenhouse–Geisser correction was applied."
+        } else {
+          "Uncorrected degrees of freedom are reported."
+        }
+      ))
+    }
+  } else {
+    cat("The Phase 2 interaction could not be estimated from the available data.\n")
+  }
 }
 ```
 
 ```{r}
-#| label: fig-phase2
-#| eval: false
-##| eval: !expr have_phase2
-#| fig-cap: "Percentage choosing the risky program in each frame: original study, Phase 1 replication, and Phase 2 extension. Error bars are 95% confidence intervals."
+#| label: fig-phase2-comparison
+#| eval: !expr have_phase2
+#| fig-cap: "Mean errors per block by valence and difficulty. Error bars indicate ±1 SE across participants."
 #| fig-width: 8
 #| fig-height: 4
-comparison_plot(Original = original,
-                `Phase 1: replication` = if (have_data) risky_counts(phase1),
-                `Phase 2: extension` = risky_counts(phase2))
+
+if (is.null(phase2) || is.null(phase2$trials)) {
+  message("No exported Phase 2 trial data are available yet.")
+} else {
+  comparison_plot(
+    `Phase 1: replication` =
+      if (!is.null(phase1) && !is.null(phase1$trials)) error_counts(phase1) else NULL,
+    `Phase 2: extension` = error_counts(phase2)
+  )
+}
 ```
 
 ## Discussion
