@@ -88,12 +88,12 @@ const TIMING = FAST
   : { word_ms: 500, soa_ms: 1000, pause_ms: 20000 };
 
 // ---------------------------------------------------------------------------
-// Stimuli (copied from materials/nback-zmatched-experiment-word-ratings.csv and
+// Stimuli (copied from materials/nback-experiment-word-ratings.csv and
 // materials/nback-zmatched-practice-word-ratings.csv)
 // ---------------------------------------------------------------------------
 const WORDS = {
-  positive: ["access", "orchid", "muffin", "riches", "yogurt", "season", "vision", "silver", "cuddle", "kitten"],
-  negative: ["trauma", "deceit", "lesion", "maggot", "hazard", "danger", "famine", "battle", "spider", "zombie"],
+  positive: ["payday", "winner", "desire", "kisser", "reward", "dollar", "travel", "summer", "riches", "giggle"],
+  negative: ["arrest", "crisis", "danger", "hazard", "deceit", "hatred", "prison", "unrest", "malice", "damage"],
   neutral: ["domain", "cannon", "module", "fiddle", "gender", "method", "duffel", "tassel", "copter", "retail"],
 };
 const PRACTICE_WORDS = [
