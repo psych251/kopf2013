@@ -90,6 +90,20 @@ async function fsGet(path) {
   return { status: r.status, body: r.status === 200 ? await r.json() : null };
 }
 
+// Lists every document in a collection, following nextPageToken (one page can be capped
+// below pageSize, and practice feedback pushes a run past 150 chunks at chunk_size 5).
+async function fsListAll(path) {
+  const documents = [];
+  let token = "";
+  do {
+    const r = await fsGet(`${path}?pageSize=300${token ? `&pageToken=${encodeURIComponent(token)}` : ""}`);
+    if (r.status !== 200) return r;
+    documents.push(...(r.body.documents || []));
+    token = r.body.nextPageToken || "";
+  } while (token);
+  return { status: 200, body: { documents } };
+}
+
 // Unwrap Firestore REST "fields" encoding into plain JS.
 function decode(v) {
   if (v == null) return null;
@@ -153,7 +167,7 @@ test.describe("experiment", () => {
 
     // Trials arrive in chunks of the configured size, and together carry every trial.
     const chunkSize = await page.evaluate(() => window.__saver.opts.chunk_size);
-    const chunks = await fsGet(`experiments/${EXPERIMENT_ID}/participants/${uid}/trials?pageSize=500`);
+    const chunks = await fsListAll(`experiments/${EXPERIMENT_ID}/participants/${uid}/trials`);
     expect(chunks.status).toBe(200);
     const docs = (chunks.body.documents || []).map((d) => decodeFields(d.fields));
     expect(docs.length).toBe(Math.ceil(pdoc.n_trials / chunkSize));
@@ -178,6 +192,13 @@ test.describe("experiment", () => {
     expect(practice.length).toBe(90);
     expect(practice.every((t) => t.valence === "neutral")).toBe(true);
     expect([...new Set(practice.map((t) => t.n_back))]).toEqual([1, 2, 3]);
+    // Practice feedback: one screen after every practice word, none in the main task. The robot's
+    // one miss and one false alarm both fall in practice, so exactly two say "Incorrect".
+    const fbTrials = trials.filter((t) => t.task === "nback_practice_feedback");
+    expect(fbTrials.length).toBe(90);
+    expect(fbTrials.every((t) => t.phase === "practice")).toBe(true);
+    expect(fbTrials.map((t) => t.correct)).toEqual(practice.map((t) => t.correct));
+    expect(fbTrials.filter((t) => t.feedback === "Incorrect").length).toBe(2);
     const pauses = trials.filter((t) => t.task === "nback_pause" && t.phase === "main");
     expect(pauses.length).toBe(27);
     for (let i = 1; i < pauses.length; i++) expect(pauses[i].n_back).not.toBe(pauses[i - 1].n_back);
@@ -211,7 +232,7 @@ test.describe("experiment", () => {
     await runThroughExperiment(page);
     const uid = await page.evaluate(() => window.__saver.docId);
     const p = decodeFields((await fsGet(`experiments/${EXPERIMENT_ID}/participants/${uid}`)).body.fields);
-    const chunks = await fsGet(`experiments/${EXPERIMENT_ID}/participants/${uid}/trials?pageSize=500`);
+    const chunks = await fsListAll(`experiments/${EXPERIMENT_ID}/participants/${uid}/trials`);
     const docs = (chunks.body.documents || []).map((d) => decodeFields(d.fields));
     expect(docs.length).toBe(Math.ceil(p.n_trials / 5));
     const indices = docs.flatMap((d) => d.trials).map((t) => t.trial_index).sort((a, b) => a - b);
@@ -270,7 +291,7 @@ test.describe("experiment", () => {
       const pdoc = decodeFields(p.body.fields);
       expect(pdoc.completed, "run " + run + " completed").toBe(true);
       expect(pdoc.prolific_pid).toBe("rerun" + run);
-      const chunks = await fsGet(`experiments/${EXPERIMENT_ID}/participants/${ids[run].docId}/trials?pageSize=500`);
+      const chunks = await fsListAll(`experiments/${EXPERIMENT_ID}/participants/${ids[run].docId}/trials`);
       const chunkSize = await page.evaluate(() => window.__saver.opts.chunk_size);
       expect((chunks.body.documents || []).length).toBe(Math.ceil(pdoc.n_trials / chunkSize));
     }

@@ -10,6 +10,8 @@
  *        Main = 27 blocks (3 per load x valence cell), 20 words each, 2 cue -> target pairs each.
  *        Each word 500 ms + 500 ms blank (1000 ms; a block lasts 20 s). Space bar accepted
  *        throughout the 1000 ms. Every block is preceded by a 20 s pause showing its instruction.
+ *        Practice only: after each word, 500 ms of feedback ("Correct" in green / "Incorrect" in
+ *        red) for the press or non-press (task "nback_practice_feedback"). Main task: no feedback.
  *   Randomization: main block order shuffled so the n-back level always changes from one block
  *        to the next; valence order is otherwise random. Words are drawn at random from the
  *        valence's 10-word pool; cue positions are random; no word repeats any of the previous
@@ -79,13 +81,13 @@ const CHUNK_SIZE = Number(URL_PARAMS.get("chunk_size")) || EXPERIMENT.chunk_size
 if (USE_EMULATOR && URL_PARAMS.get("cc")) EXPERIMENT.prolific_completion_code = URL_PARAMS.get("cc");
 
 // n-back timing (ms), from Kopf et al. (2013): each word 500 ms, then a 500 ms blank, and a 20 s
-// pause before every block. Test-only: `?fast=1` shrinks these so the robot can play the whole
+// pause before every block. feedback_ms (practice feedback after each word) is our addition. Test-only: `?fast=1` shrinks these so the robot can play the whole
 // task in under a minute. It is honoured only on localhost, so it can never affect a live run.
 const IS_LOCALHOST = ["localhost", "127.0.0.1"].includes(window.location.hostname);
 const FAST = IS_LOCALHOST && URL_PARAMS.get("fast") === "1";
 const TIMING = FAST
-  ? { word_ms: 20, soa_ms: 40, pause_ms: 50 }
-  : { word_ms: 500, soa_ms: 1000, pause_ms: 20000 };
+  ? { word_ms: 20, soa_ms: 40, pause_ms: 50, feedback_ms: 20 }
+  : { word_ms: 500, soa_ms: 1000, pause_ms: 20000, feedback_ms: 500 };
 
 // ---------------------------------------------------------------------------
 // Stimuli (copied from materials/nback-experiment-word-ratings.csv and
@@ -327,7 +329,8 @@ const NBACK = {
        </ul>
        <p>For every other word, do nothing. Respond as quickly and accurately as you can.</p>`,
       `<p>Between blocks there is a 20-second pause. You will start with three practice
-       blocks (1-back, 2-back, then 3-back), followed by the main task.</p>
+       blocks (1-back, 2-back, then 3-back), followed by the main task. In the practice blocks,
+       after each word you will see whether your response was correct.</p>
        <p>First, a quick question to check the instructions.</p>`,
     ],
     show_clickable_nav: true,
@@ -449,6 +452,32 @@ const NBACK = {
     },
   };
 
+  // Practice only: after each word, show whether the press (or lack of one) was correct.
+  // A separate trial, so the word timing itself is identical to the main task.
+  const practiceFeedback = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: () => {
+      const ok = jsPsych.data.getLastTrialData().values()[0].correct;
+      return ok
+        ? `<div class="stimulus nback-feedback nback-feedback-correct" data-correct="1">Correct</div>`
+        : `<div class="stimulus nback-feedback nback-feedback-incorrect" data-correct="0">Incorrect</div>`;
+    },
+    choices: "NO_KEYS",
+    trial_duration: TIMING.feedback_ms,
+    save_trial_parameters: { stimulus: false },
+    data: {
+      task: "nback_practice_feedback",
+      phase: jsPsych.timelineVariable("phase"),
+      block: jsPsych.timelineVariable("block"),
+      n_back: jsPsych.timelineVariable("n_back"),
+      position: jsPsych.timelineVariable("position"),
+    },
+    on_finish: (data) => {
+      data.correct = jsPsych.data.get().filter({ task: "nback" }).last(1).values()[0].correct;
+      data.feedback = data.correct ? "Correct" : "Incorrect";
+    },
+  };
+
   const NBACK_RULE = {
     1: "the same as the word just before it",
     2: "the same as the word two words before it",
@@ -483,7 +512,10 @@ const NBACK = {
   function blockTimeline(block) {
     return [
       pauseTrial(block),
-      { timeline: [nbackWord], timeline_variables: block.items.map((it) => ({ ...block.info, ...it })) },
+      {
+        timeline: block.phase === "practice" ? [nbackWord, practiceFeedback] : [nbackWord],
+        timeline_variables: block.items.map((it) => ({ ...block.info, ...it })),
+      },
     ];
   }
 
