@@ -162,22 +162,42 @@ read_phase <- function(id) {
       )
     )
 
+  # Practice criterion (Phase 2 only): the experiment repeats the practice until the
+  # score reaches 80%, for at most 3 rounds, then moves everyone on to the main task.
+  # A participant whose final practice_score row has passed == FALSE never passed and
+  # is excluded. Phase 1 has no practice_score rows, so nobody is flagged there.
+  practice <- trials |>
+    filter(task == "practice_score")
+  practice <- if (nrow(practice) > 0 && all(c("passed", "practice_round") %in% names(practice))) {
+    practice |>
+      mutate(passed = as.logical(passed), practice_round = as.numeric(practice_round)) |>
+      group_by(participant_id) |>
+      slice_max(practice_round, n = 1, with_ties = FALSE) |>
+      ungroup() |>
+      transmute(participant_id, practice_rounds = practice_round, failed_practice = !passed)
+  } else {
+    tibble(participant_id = character(), practice_rounds = numeric(), failed_practice = logical())
+  }
+
   checked <- complete |>
     left_join(nb, by = "participant_id") |>
+    left_join(practice, by = "participant_id") |>
     mutate(
       n_responses = coalesce(n_responses, 0L),
       no_response = n_responses == 0,
-      excessive_responses = false_alarm_rate > 0.80
+      excessive_responses = false_alarm_rate > 0.80,
+      failed_practice = coalesce(failed_practice, FALSE)
     )
 
   if (any(checked$n_responses > 0 & is.na(checked$false_alarm_rate))) {
     stop("Cannot evaluate exclusions: a responding participant has no recorded non-target trials.")
   }
 
-  # Exclude completed participants with no main-task responses or
-  # responses on more than 80% of main-task non-target trials.
+  # Exclude completed participants with no main-task responses,
+  # responses on more than 80% of main-task non-target trials, or (Phase 2)
+  # no passing practice score in any round.
   keep <- checked |>
-    filter(!no_response, !(excessive_responses %in% TRUE))
+    filter(!no_response, !(excessive_responses %in% TRUE), !failed_practice)
 
   list(
     participants = participants,
@@ -656,6 +676,11 @@ if (n_excessive_responses > 0) {
   cat(sprintf(" %d completed session(s) contained responses on more than 80%% of non-target trials and were excluded.",
               n_excessive_responses))
 }
+n_failed_practice <- sum(checked$failed_practice %in% TRUE)
+if (n_failed_practice > 0) {
+  cat(sprintf(" %d completed session(s) never reached the 80%% practice score and were excluded.",
+              n_failed_practice))
+}
 if (nrow(keep) == 0) cat(" No participants remain for analysis yet.")
 cat("\n")
 ```
@@ -1064,6 +1089,12 @@ if (is.null(phase2)) {
     nrow(phase2$participants),
     nrow(phase2$complete),
     nrow(phase2$keep)
+  ))
+  cat(sprintf(
+    "Excluded: %d with no main-task response, %d responding on more than 80%% of non-target trials, %d who never reached the 80%% practice score (a participant can meet more than one criterion).\n\n",
+    sum(phase2$checked$no_response %in% TRUE),
+    sum(phase2$checked$excessive_responses %in% TRUE),
+    sum(phase2$checked$failed_practice %in% TRUE)
   ))
 
   if (!is.null(p2_stats)) {
