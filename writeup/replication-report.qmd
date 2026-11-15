@@ -415,7 +415,9 @@ The planned sample size is 33 participants, following the N needed to detect 80%
 
 ### Materials
 
-- The n-back task structure is identical to the original article, quoted here: "Participants saw blocks of ten consecutive words presented
+- The n-back task structure is nearly identical to the original article, quoted below. The only difference
+is that the original paper had ambiguity regarding the block structure. They reported blocks of ten consecutive words, but also mentioned that each block was 20 seconds long, with each word presented for 500 ms with a 500 ms break in between. In my replication, I followed the timing structure such that each block had twenty consecutive words with two target words.
+"Participants saw blocks of ten consecutive words presented
 on a computer screen. Two of these words were used as cues
 and were followed by a target word which was presented one,
 two or three words after the cue word, to vary the difficulty level
@@ -515,7 +517,7 @@ one block of each difficulty (1-, 2-, 3-back). Before the task
 itself, completed a training phase, where they saw 30 consecutive neutral words in the 1-back condition, the same
 neutral words in the 2-back condition and in the 3-back
 condition."
-- Sixth, the participant enters the main task block, which follows the same structure as the original study: "Participants saw blocks of ten consecutive words presented
+- Sixth, the participant enters the main task block, which follows the same structure as the original study: "Participants saw blocks of ten [to deal with ambiguity mentioned above in original study, we use 20 consecutive words] consecutive words presented
 on a computer screen. Two of these words were used as cues
 and were followed by a target word which was presented one,
 two or three words after the cue word, to vary the difficulty level
