@@ -23,8 +23,9 @@ const FS = `http://localhost:8080/v1/projects/${PROJECT}/databases/(default)/doc
 // (one false alarm). Totals: 72 targets (3 practice x 6 + 27 main x 2), 630 words.
 const N_WORDS = 3 * 30 + 27 * 20;
 const N_TARGETS = 3 * 6 + 27 * 2;
-async function installNbackResponder(page) {
-  await page.evaluate(() => {
+// `silentPracticeRounds`: practice rounds (1, 2, 3) in which the robot never presses, to fail them.
+async function installNbackResponder(page, silentPracticeRounds = []) {
+  await page.evaluate((silent) => {
     let targetsSeen = 0;
     let falseAlarmDone = false;
     const press = () => {
@@ -36,6 +37,7 @@ async function installNbackResponder(page) {
       const el = document.querySelector(".nback-word:not([data-seen])");
       if (!el) return;
       el.setAttribute("data-seen", "1");
+      if (silent.includes(Number(el.dataset.round))) return;
       if (el.dataset.target === "1") {
         targetsSeen += 1;
         if (targetsSeen === 1) return;      // miss the first target
@@ -45,11 +47,11 @@ async function installNbackResponder(page) {
       }
       setTimeout(press, 1);
     }).observe(document.body, { childList: true, subtree: true });
-  });
+  }, silentPracticeRounds);
 }
 
 // Plays everything up to (not including) the debrief's Finish button.
-async function runToDebrief(page) {
+async function runToDebrief(page, { silentPracticeRounds = [] } = {}) {
   // 1. consent
   await page.getByRole("button", { name: "I agree to participate" }).click();
   // 2. demographics
@@ -67,9 +69,12 @@ async function runToDebrief(page) {
   for (let i = 0; i < 3; i++) await page.locator("#jspsych-instructions-next").click();
   await page.getByText("When the word is the same as the word two words before it", { exact: true }).click();
   await page.locator('input[value="Continue"]').click();
-  await installNbackResponder(page);
+  await installNbackResponder(page, silentPracticeRounds);
   await page.getByRole("button", { name: "Start the practice" }).click();
-  // 5. practice (3 blocks) and 6. main task (27 blocks) run on timers
+  // 5. practice rounds (3 blocks + score each) and 6. main task (27 blocks) run on timers
+  for (const _ of silentPracticeRounds.filter((r) => r < 3)) {
+    await page.getByRole("button", { name: "Do the practice again" }).click({ timeout: 60000 });
+  }
   await page.getByRole("button", { name: "Start the main task" }).click({ timeout: 60000 });
   // 7. feedback (free text)
   await page.locator("textarea").fill("Robot participant says hi.", { timeout: 120000 });
@@ -194,6 +199,12 @@ test.describe("experiment", () => {
     expect([...new Set(practice.map((t) => t.n_back))]).toEqual([1, 2, 3]);
     // Practice feedback: one screen after every practice word, none in the main task. The robot's
     // one miss and one false alarm both fall in practice, so exactly two say "Incorrect".
+    const scores = trials.filter((t) => t.task === "practice_score");
+    expect(scores.length).toBe(1);
+    expect(scores[0].passed).toBe(true);
+    expect(scores[0].score).toBeCloseTo((17 / 18 + 71 / 72) / 2, 6);
+    expect(pdoc.practice_rounds).toBe(1);
+    expect(pdoc.practice_passed).toBe(true);
     const fbTrials = trials.filter((t) => t.task === "nback_practice_feedback");
     expect(fbTrials.length).toBe(90);
     expect(fbTrials.every((t) => t.phase === "practice")).toBe(true);
@@ -224,6 +235,63 @@ test.describe("experiment", () => {
     expect([...new Set(trials.map((t) => t.participant_id))]).toEqual([uid]);
   });
 
+  // Reads every saved trial of the current participant, in order.
+  async function savedTrials(page) {
+    const uid = await page.evaluate(() => window.__saver.docId);
+    const pdoc = decodeFields((await fsGet(`experiments/${EXPERIMENT_ID}/participants/${uid}`)).body.fields);
+    const chunks = await fsListAll(`experiments/${EXPERIMENT_ID}/participants/${uid}/trials`);
+    const trials = chunks.body.documents.map((d) => decodeFields(d.fields)).flatMap((d) => d.trials)
+      .sort((a, b) => a.trial_index - b.trial_index);
+    return { pdoc, trials };
+  }
+
+  test("never pressing fails the practice; a passing second round moves on", async ({ page }) => {
+    test.skip(!EMULATOR, "needs the Firestore emulator");
+    test.setTimeout(240000);
+    await page.goto("/?emulator=1&fast=1");
+    await page.waitForFunction(() => window.__saver && window.__saver.uid);
+    await runToDebrief(page, { silentPracticeRounds: [1] });
+    await page.getByRole("button", { name: "Finish" }).click();
+    await expect(page.getByText("All done")).toBeVisible({ timeout: 30000 });
+    const { pdoc, trials } = await savedTrials(page);
+    const scores = trials.filter((t) => t.task === "practice_score");
+    expect(scores.map((t) => t.practice_round)).toEqual([1, 2]);
+    expect(scores[0].score).toBe(0.5);      // plain accuracy would have been 80%
+    expect(scores.map((t) => t.passed)).toEqual([false, true]);
+    expect(pdoc.practice_rounds).toBe(2);
+    expect(pdoc.practice_passed).toBe(true);
+    const practice = trials.filter((t) => t.task === "nback" && t.phase === "practice");
+    expect(practice.length).toBe(180);
+    // Each round gets its own sequences.
+    const seq = (r) => practice.filter((t) => t.practice_round === r).map((t) => t.word).join(",");
+    expect(seq(1)).not.toBe(seq(2));
+    expect(trials.filter((t) => t.task === "nback" && t.phase === "main").length).toBe(540);
+    const indices = trials.map((t) => t.trial_index);
+    // Every trial saved exactly once. A skipped practice round still uses up one trial_index in
+    // jsPsych 8, so indices can have gaps there; check uniqueness and count, not contiguity.
+    expect(new Set(indices).size).toBe(pdoc.n_trials);
+    expect(indices.length).toBe(pdoc.n_trials);
+  });
+
+  test("practice stops after three failed rounds and continues to the main task", async ({ page }) => {
+    test.skip(!EMULATOR, "needs the Firestore emulator");
+    test.setTimeout(300000);
+    await page.goto("/?emulator=1&fast=1");
+    await page.waitForFunction(() => window.__saver && window.__saver.uid);
+    await runToDebrief(page, { silentPracticeRounds: [1, 2, 3] });
+    await page.getByRole("button", { name: "Finish" }).click();
+    await expect(page.getByText("All done")).toBeVisible({ timeout: 30000 });
+    const { pdoc, trials } = await savedTrials(page);
+    const scores = trials.filter((t) => t.task === "practice_score");
+    expect(scores.map((t) => t.passed)).toEqual([false, false, false]);
+    expect(scores.map((t) => t.score)).toEqual([0.5, 0.5, 0.5]);
+    expect(scores[2].practice_passed).toBe(false);
+    expect(pdoc.practice_rounds).toBe(3);
+    expect(pdoc.practice_passed).toBe(false);
+    expect(pdoc.practice_scores).toEqual([0.5, 0.5, 0.5]);
+    expect(trials.filter((t) => t.task === "nback" && t.phase === "main").length).toBe(540);
+  });
+
   test("chunked writes (chunk_size > 1) save every trial", async ({ page }) => {
     test.skip(!EMULATOR, "needs the Firestore emulator");
     test.setTimeout(180000);
@@ -236,7 +304,9 @@ test.describe("experiment", () => {
     const docs = (chunks.body.documents || []).map((d) => decodeFields(d.fields));
     expect(docs.length).toBe(Math.ceil(p.n_trials / 5));
     const indices = docs.flatMap((d) => d.trials).map((t) => t.trial_index).sort((a, b) => a - b);
-    expect(indices).toEqual([...Array(p.n_trials).keys()]);
+    // Unique and complete (a skipped practice round leaves a gap in trial_index; see above).
+    expect(new Set(indices).size).toBe(p.n_trials);
+    expect(indices.length).toBe(p.n_trials);
   });
 
   test("declining consent ends the study without a thank-you-for-your-data message", async ({ page }) => {

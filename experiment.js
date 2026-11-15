@@ -12,6 +12,11 @@
  *        throughout the 1000 ms. Every block is preceded by a 20 s pause showing its instruction.
  *        Practice only: after each word, 500 ms of feedback ("Correct" in green / "Incorrect" in
  *        red) for the press or non-press (task "nback_practice_feedback"). Main task: no feedback.
+ *   Practice score (task "practice_score", one row per round): balanced accuracy over the 90
+ *        practice words = (hit rate + correct-rejection rate) / 2, so never pressing (or always
+ *        pressing) scores 50%. Below 80% repeats the whole practice with new sequences, at most
+ *        3 rounds; after a third failed round the participant continues to the main task and
+ *        `practice_passed` is false (on the score rows and the participant document).
  *   Randomization: main block order shuffled so the n-back level always changes from one block
  *        to the next; valence order is otherwise random. Words are drawn at random from the
  *        valence's 10-word pool; cue positions are random; no word repeats any of the previous
@@ -20,7 +25,7 @@
  *
  * Timeline
  *   1. consent  2. demographics  3. welcome  4. n-back instructions + instruction check
- *   5. practice (1-, 2-, 3-back)  6. main task (27 blocks)  7. feedback  8. debrief
+ *   5. practice (1-, 2-, 3-back) + score, repeated until >= 80% (max 3 rounds)  6. main task (27 blocks)  7. feedback  8. debrief
  */
 
 // ---------------------------------------------------------------------------
@@ -112,6 +117,8 @@ const NBACK = {
   targets_per_block: 2,
   practice_words_per_block: 30,
   practice_targets_per_block: 6,
+  practice_pass_score: 0.8,   // balanced accuracy needed to move on
+  practice_max_rounds: 3,     // after this many failed rounds, continue to the main task anyway
 };
 
 // ---------------------------------------------------------------------------
@@ -331,6 +338,9 @@ const NBACK = {
       `<p>Between blocks there is a 20-second pause. You will start with three practice
        blocks (1-back, 2-back, then 3-back), followed by the main task. In the practice blocks,
        after each word you will see whether your response was correct.</p>
+       <p>At the end of the practice you will see your score. You need a score of at least
+       ${Math.round(NBACK.practice_pass_score * 100)}% to move on to the main task; otherwise you will
+       do the practice again.</p>
        <p>First, a quick question to check the instructions.</p>`,
     ],
     show_clickable_nav: true,
@@ -425,7 +435,8 @@ const NBACK = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: () => {
       const t = jsPsych.evaluateTimelineVariable("is_target") ? 1 : 0;
-      return `<div class="stimulus nback-word" data-target="${t}">${jsPsych.evaluateTimelineVariable("word").toUpperCase()}</div>`;
+      const round = jsPsych.evaluateTimelineVariable("practice_round") ?? "";
+      return `<div class="stimulus nback-word" data-target="${t}" data-round="${round}">${jsPsych.evaluateTimelineVariable("word").toUpperCase()}</div>`;
     },
     choices: [" "],
     stimulus_duration: TIMING.word_ms,
@@ -442,6 +453,7 @@ const NBACK = {
       word: jsPsych.timelineVariable("word"),
       is_target: jsPsych.timelineVariable("is_target"),
       is_cue: jsPsych.timelineVariable("is_cue"),
+      practice_round: jsPsych.timelineVariable("practice_round"),
     },
     on_finish: (data) => {
       data.responded = data.response !== null;
@@ -471,6 +483,7 @@ const NBACK = {
       block: jsPsych.timelineVariable("block"),
       n_back: jsPsych.timelineVariable("n_back"),
       position: jsPsych.timelineVariable("position"),
+      practice_round: jsPsych.timelineVariable("practice_round"),
     },
     on_finish: (data) => {
       data.correct = jsPsych.data.get().filter({ task: "nback" }).last(1).values()[0].correct;
@@ -490,14 +503,19 @@ const NBACK = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <div class="nback-pause">
-          <p>${block.phase === "practice" ? "Practice block" : "Block"} ${block.block} of ${block.n_blocks}</p>
+          <p>${block.phase === "practice"
+            ? `Practice round ${block.practice_round}, block ${block.block} of ${block.n_blocks}`
+            : `Block ${block.block} of ${block.n_blocks}`}</p>
           <h2>${block.n_back}-back</h2>
           <p>Press the <strong>space bar</strong> when the word is ${NBACK_RULE[block.n_back]}.</p>
           <p>The block starts in <span id="nback-countdown">${Math.ceil(TIMING.pause_ms / 1000)}</span> seconds.</p>
         </div>`,
       choices: "NO_KEYS",
       trial_duration: TIMING.pause_ms,
-      data: { task: "nback_pause", phase: block.phase, block: block.block, n_back: block.n_back, valence: block.valence },
+      data: {
+        task: "nback_pause", phase: block.phase, block: block.block, n_back: block.n_back,
+        valence: block.valence, practice_round: block.practice_round,
+      },
       on_load: () => {
         const start = performance.now();
         timer = setInterval(() => {
@@ -519,25 +537,92 @@ const NBACK = {
     ];
   }
 
-  function makeBlock(phase, blockNum, nBlocks, n, valence, pool, length, nTargets) {
-    const info = { phase, block: blockNum, n_back: n, valence };
+  function makeBlock(phase, blockNum, nBlocks, n, valence, pool, length, nTargets, practiceRound = null) {
+    const info = { phase, block: blockNum, n_back: n, valence, practice_round: practiceRound };
     return { ...info, n_blocks: nBlocks, info, items: buildSequence(pool, length, n, nTargets) };
   }
 
   // -------------------------------------------------------------------------
-  // 5. Practice: one neutral block of each load, in order 1-, 2-, 3-back
+  // 5. Practice: one neutral block of each load, in order 1-, 2-, 3-back, then a score.
+  //    Repeated (new sequences each round) until the score reaches practice_pass_score,
+  //    for at most practice_max_rounds rounds.
   // -------------------------------------------------------------------------
-  const practiceBlocks = NBACK.levels.map((n, i) =>
-    makeBlock("practice", i + 1, NBACK.levels.length, n, "neutral", PRACTICE_WORDS,
-      NBACK.practice_words_per_block, NBACK.practice_targets_per_block));
-  const practiceEnd = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: `<h2>Practice complete</h2>
-      <p>The main task works the same way: 27 blocks, each preceded by a 20-second pause that
-      tells you which rule (1-, 2- or 3-back) to use. It takes about 18 minutes.</p>`,
-    choices: ["Start the main task"],
-    data: { task: "practice_end" },
-  };
+  const practice = { rounds: 0, passed: false, scores: [] };
+
+  // Balanced accuracy: the mean of the hit rate (targets pressed) and the correct-rejection
+  // rate (other words not pressed). Plain accuracy would let a participant who never presses
+  // pass (72 of 90 practice words are non-targets = 80%); this scores them 50%.
+  function practiceScore(round) {
+    const words = jsPsych.data.get().filter({ task: "nback", phase: "practice", practice_round: round }).values();
+    const targets = words.filter((w) => w.is_target);
+    const others = words.filter((w) => !w.is_target);
+    const hitRate = targets.filter((w) => w.responded).length / targets.length;
+    const crRate = others.filter((w) => !w.responded).length / others.length;
+    return { hit_rate: hitRate, correct_rejection_rate: crRate, score: (hitRate + crRate) / 2 };
+  }
+
+  function practiceScoreScreen(round) {
+    // jsPsych 8 evaluates parameter functions before on_start, so the score is computed on
+    // first use (stimulus) and reused by choices and on_finish.
+    let result = null;
+    const getResult = () => (result ??= practiceScore(round));
+    const last = round === NBACK.practice_max_rounds;
+    return {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: () => {
+        const result = getResult();
+        const pct = Math.round(result.score * 100);
+        const passed = result.score >= NBACK.practice_pass_score;
+        const head = `<h2>Practice round ${round} complete</h2>
+          <p class="practice-score">Your score: <strong>${pct}%</strong></p>
+          <p>The score counts both pressing the space bar for repeated words and not pressing it
+          for all other words. You need ${Math.round(NBACK.practice_pass_score * 100)}% to move on.</p>`;
+        if (passed) {
+          return head + `<p>Well done, you are ready for the main task. It works the same way, without the
+            Correct/Incorrect messages: 27 blocks, each preceded by a 20-second pause that tells you
+            which rule (1-, 2- or 3-back) to use. It takes about 18 minutes.</p>`;
+        }
+        if (!last) {
+          return head + `<p>Your score is below ${Math.round(NBACK.practice_pass_score * 100)}%, so please do the
+            practice again. Remember: press the space bar
+            only when the word is the same as the word 1, 2 or 3 words before it, depending on the block.</p>`;
+        }
+        return head + `<p>You have now done the maximum number of practice rounds, so you will continue to the
+          main task. It works the same way, without the Correct/Incorrect messages: 27 blocks, each
+          preceded by a 20-second pause that tells you which rule (1-, 2- or 3-back) to use. It takes
+          about 18 minutes.</p>`;
+      },
+      choices: () => [getResult().score >= NBACK.practice_pass_score || last ? "Start the main task" : "Do the practice again"],
+      data: { task: "practice_score", phase: "practice", practice_round: round },
+      on_finish: (data) => {
+        const result = getResult();
+        Object.assign(data, result);
+        data.passed = result.score >= NBACK.practice_pass_score;
+        practice.rounds = round;
+        practice.passed = data.passed;
+        practice.scores.push(result.score);
+        data.practice_passed = practice.passed;
+        saver.updateParticipant({
+          practice_rounds: practice.rounds,
+          practice_passed: practice.passed,
+          practice_scores: practice.scores,
+        });
+      },
+    };
+  }
+
+  // Every round is built in advance with its own sequences; rounds after the first run only
+  // if the previous round was failed.
+  const practiceRounds = [];
+  for (let round = 1; round <= NBACK.practice_max_rounds; round++) {
+    const blocks = NBACK.levels.map((n, i) =>
+      makeBlock("practice", i + 1, NBACK.levels.length, n, "neutral", PRACTICE_WORDS,
+        NBACK.practice_words_per_block, NBACK.practice_targets_per_block, round));
+    practiceRounds.push({
+      timeline: [...blocks.flatMap(blockTimeline), practiceScoreScreen(round)],
+      conditional_function: () => round === 1 || !practice.passed,
+    });
+  }
 
   // -------------------------------------------------------------------------
   // 6. Main task: 3 blocks per load x valence cell (27), n-back level changes every block
@@ -589,8 +674,7 @@ const NBACK = {
     section("demographics", [demographics]),
     section("welcome", [instructions]),
     section("n-back instructions", [instructionLoop]),
-    section("practice", practiceBlocks.flatMap(blockTimeline)),
-    practiceEnd,
+    section("practice", practiceRounds),
     section("main task", mainBlocks.flatMap(blockTimeline)),
     section("feedback", [feedback]),
     debrief,
