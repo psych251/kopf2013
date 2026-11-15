@@ -128,7 +128,16 @@ read_phase <- function(id) {
   errors_path <- file.path(dir, "errors.csv")
   errors <- if (file.exists(errors_path)) read_csv(errors_path, show_col_types = FALSE) else tibble()
 
-  complete <- participants |> filter(completed)
+  # Declining consent ends the study but still marks the participant document completed,
+  # so "complete" means finished *and* consented. Participants with no consent row are
+  # kept (consent is the first trial, so that only happens with missing data).
+  declined <- if ("consented" %in% names(trials)) {
+    trials |>
+      filter(task == "consent", as.logical(consented) %in% FALSE) |>
+      distinct(participant_id) |>
+      pull(participant_id)
+  } else character()
+  complete <- participants |> filter(completed, !participant_id %in% declined)
 
   main <- trials |>
     filter(task == "n_back", practice == FALSE)
@@ -172,6 +181,7 @@ read_phase <- function(id) {
 
   list(
     participants = participants,
+    declined = declined,
     trials = trials,
     errors = errors,
     complete = complete,
@@ -672,8 +682,9 @@ if ("time_elapsed" %in% names(trials)) {
   message("Timing unavailable: trials.csv has no time_elapsed column.")
 }
 
+# "Completed" uses the same definition as the funnel: finished and consented.
 participant_times <- participants |>
-  transmute(participant_id, completed = completed %in% TRUE) |>
+  transmute(participant_id, completed = participant_id %in% complete$participant_id) |>
   left_join(session_times, by = "participant_id")
 
 participant_times |>
@@ -699,7 +710,8 @@ participant_times |>
   ) |>
   knitr::kable(caption = "Average recorded completion time.")
 
-# Dropouts are participants not marked completed at the time of export.
+# Dropouts are participants not completed (as defined above) at the time of export,
+# including anyone who declined consent.
 participant_times |>
   summarise(
     Started = n(),
