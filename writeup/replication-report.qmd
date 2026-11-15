@@ -205,6 +205,25 @@ error_counts <- function(d) {
     summarise(errors = mean(errors), .groups = "drop")
 }
 
+# Confidence interval for partial eta squared from an F test, by inverting the
+# noncentral F distribution (Steiger, 2004): find the noncentrality values whose
+# upper/lower tail probabilities at the observed F equal (1 - level) / 2, then convert
+# each with eta2 = ncp / (ncp + df1 + df2 + 1). A 90% interval is conventional for
+# eta squared because it pairs with a one-sided test at alpha = .05. Uses the df given
+# (Greenhouse–Geisser corrected when the test was), so it matches the reported F test.
+partial_eta2_ci <- function(statistic, df1, df2, level = .90) {
+  tail <- (1 - level) / 2
+  cdf <- function(ncp) pf(statistic, df1, df2, ncp = ncp)
+  find_ncp <- function(target) {
+    if (cdf(0) < target) return(0)          # even ncp = 0 is too large: bound at 0
+    upper <- max(10, statistic * df1 * 5)
+    while (cdf(upper) > target) upper <- upper * 2
+    uniroot(function(ncp) cdf(ncp) - target, c(0, upper), tol = 1e-10)$root
+  }
+  ncp <- c(lower = find_ncp(1 - tail), upper = find_ncp(tail))
+  ncp / (ncp + df1 + df2 + 1)
+}
+
 # Key test: valence × difficulty interaction in a 3 × 3 repeated-measures ANOVA.
 # Apply Greenhouse–Geisser only when Mauchly's test indicates violated sphericity.
 interaction_test <- function(counts) {
@@ -781,12 +800,16 @@ if (!is.null(rep)) {
     transmute(Study, N,
               `Partial eta squared` = sprintf("%.3f",
                 (statistic * df1) / (statistic * df1 + df2)),
+              `90% CI` = purrr::pmap_chr(list(statistic, df1, df2), function(f, d1, d2) {
+                ci <- partial_eta2_ci(f, d1, d2)
+                sprintf("[%.3f, %.3f]", ci[["lower"]], ci[["upper"]])
+              }),
               F = sprintf("%.2f", statistic),
               df1 = sprintf("%.2f", df1),
               df2 = sprintf("%.2f", df2),
               p = format.pval(p, digits = 2, eps = 0.001)) |>
     knitr::kable(caption = paste(
-      "Valence × difficulty interaction on error counts. Original degrees of freedom are Greenhouse–Geisser corrected. Replication results use the correction when Mauchly’s test indicates violated sphericity (p < .05). When Mauchly’s test cannot be estimated, uncorrected replication results are shown for pilot debugging only. Original partial eta squared is reconstructed from rounded published statistics."
+      "Valence × difficulty interaction on error counts. Original degrees of freedom are Greenhouse–Geisser corrected. Replication results use the correction when Mauchly’s test indicates violated sphericity (p < .05). When Mauchly’s test cannot be estimated, uncorrected replication results are shown for pilot debugging only. Original partial eta squared is reconstructed from rounded published statistics. 90% CIs for partial eta squared come from inverting the noncentral F distribution at the reported (corrected) degrees of freedom; the original's interval is approximate because it uses rounded statistics."
     ))
 } else {
   message("Replication statistics not computed yet: need at least two analysed participants with complete data across all nine conditions.")
@@ -804,9 +827,18 @@ if (!is.null(rep)) {
   rep_effect <- (rep$statistic * rep$df1) /
     (rep$statistic * rep$df1 + rep$df2)
 
+  orig_ci <- partial_eta2_ci(orig$statistic, orig$df1, orig$df2)
+  rep_ci  <- partial_eta2_ci(rep$statistic, rep$df1, rep$df2)
+
   cat(sprintf(
-    "The replication's valence × difficulty interaction had partial eta squared = %.3f, compared with approximately %.3f in the original study. ",
-    rep_effect, orig_effect))
+    "The replication's valence × difficulty interaction had partial eta squared = %.3f (90%% CI [%.3f, %.3f]), compared with approximately %.3f (90%% CI [%.3f, %.3f]) in the original study. ",
+    rep_effect, rep_ci[["lower"]], rep_ci[["upper"]],
+    orig_effect, orig_ci[["lower"]], orig_ci[["upper"]]))
+
+  orig_in_rep <- orig_effect >= rep_ci[["lower"]] && orig_effect <= rep_ci[["upper"]]
+  cat(sprintf(
+    "The original estimate falls %s the replication's 90%% CI. ",
+    if (orig_in_rep) "inside" else "outside"))
 
   cat(sprintf(
     "The replication interaction was %s at alpha = .05 (%s). ",
